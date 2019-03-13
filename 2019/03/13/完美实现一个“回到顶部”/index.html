@@ -143,25 +143,18 @@
 
 
 
-  <meta name="description" content="常见布局 normal flow（正常流） float + clear（浮动+清楚浮动） position relative + absolute （相对定位+绝对定位） display inline-block （改变元素属性） -margin（负外边距）  Flex布局特性 块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是与方向无关的  flex布局可以实现空间自动分配、自动对齐（全">
-<meta name="keywords" content="css,布局">
+  <meta name="description" content="前端程序猿">
+<meta name="keywords" content="前端 javascript html css vue react es6 webpack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flex布局">
-<meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/flex布局/index.html">
+<meta property="og:title" content="完美实现一个“回到顶部”">
+<meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/完美实现一个“回到顶部”/index.html">
 <meta property="og:site_name" content="ZombieBrand">
-<meta property="og:description" content="常见布局 normal flow（正常流） float + clear（浮动+清楚浮动） position relative + absolute （相对定位+绝对定位） display inline-block （改变元素属性） -margin（负外边距）  Flex布局特性 块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是与方向无关的  flex布局可以实现空间自动分配、自动对齐（全">
+<meta property="og:description" content="前端程序猿">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://camo.githubusercontent.com/c204f0894898f5a8feee7ec098a16fc94532a5fa/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f30352f30392f353931313763336464623763662e706e67">
-<meta property="og:image" content="https://camo.githubusercontent.com/bb8b00a8353d931a32a422edc2f8b525cc510f1a/687474703a2f2f7777772e7275616e796966656e672e636f6d2f626c6f67696d672f61737365742f323031352f6267323031353037313030352e706e67">
-<meta property="og:image" content="https://camo.githubusercontent.com/ef9b8559067337e190b156db8ff369f199e7e477/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d353461626161306361653634323863652e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430">
-<meta property="og:image" content="https://camo.githubusercontent.com/8f5eaddc35a3f320262ee598998c8d038946d04c/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d636664303366343763313632663434382e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430">
-<meta property="og:image" content="https://camo.githubusercontent.com/e4492baad276d7c4ad526348c72addbbe0b7ff86/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d363362306666326638653362616136622e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430">
-<meta property="og:image" content="https://camo.githubusercontent.com/d5d550de5ba40286e0d1d2a63dd709fdf4605e13/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d356562633339343136396339356566302e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430">
-<meta property="og:updated_time" content="2019-03-13T08:56:28.530Z">
+<meta property="og:updated_time" content="2019-03-13T09:10:57.292Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="flex布局">
-<meta name="twitter:description" content="常见布局 normal flow（正常流） float + clear（浮动+清楚浮动） position relative + absolute （相对定位+绝对定位） display inline-block （改变元素属性） -margin（负外边距）  Flex布局特性 块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是与方向无关的  flex布局可以实现空间自动分配、自动对齐（全">
-<meta name="twitter:image" content="https://camo.githubusercontent.com/c204f0894898f5a8feee7ec098a16fc94532a5fa/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f30352f30392f353931313763336464623763662e706e67">
+<meta name="twitter:title" content="完美实现一个“回到顶部”">
+<meta name="twitter:description" content="前端程序猿">
 
 
 
@@ -170,7 +163,7 @@
 
 
 
-  <link rel="canonical" href="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/flex布局/">
+  <link rel="canonical" href="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/完美实现一个“回到顶部”/">
 
 
 
@@ -180,7 +173,7 @@
   };
 </script>
 
-  <title>flex布局 | ZombieBrand</title>
+  <title>完美实现一个“回到顶部” | ZombieBrand</title>
   
 
 
@@ -414,7 +407,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zombrbrand.github.io/ZombieBrand.github.io/ZombieBrand.github.io/2019/03/13/flex布局/">
+    <link itemprop="mainEntityOfPage" href="https://zombrbrand.github.io/ZombieBrand.github.io/ZombieBrand.github.io/2019/03/13/完美实现一个“回到顶部”/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="车勇志">
@@ -431,7 +424,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">flex布局
+          <h2 class="post-title" itemprop="name headline">完美实现一个“回到顶部”
 
               
             
@@ -457,34 +450,12 @@
                 
               
 
-              <time title="创建时间：2019-03-13 16:49:23 / 修改时间：16:56:28" itemprop="dateCreated datePublished" datetime="2019-03-13T16:49:23+08:00">2019-03-13</time>
+              <time title="创建时间：2019-03-13 17:10:57" itemprop="dateCreated datePublished" datetime="2019-03-13T17:10:57+08:00">2019-03-13</time>
             
 
-            
-              
-
-              
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -515,7 +486,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.2k</span>
+                <span title="本文字数">0</span>
               
 
               
@@ -529,7 +500,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -549,223 +520,7 @@
       
 
       
-        <h2 id="常见布局"><a href="#常见布局" class="headerlink" title="常见布局"></a>常见布局</h2><ul>
-<li>normal flow（正常流）</li>
-<li>float + clear（浮动+清楚浮动）</li>
-<li>position relative + absolute （相对定位+绝对定位）</li>
-<li>display inline-block （改变元素属性）</li>
-<li>-margin（负外边距）</li>
-</ul>
-<h2 id="Flex布局特性"><a href="#Flex布局特性" class="headerlink" title="Flex布局特性"></a>Flex布局特性</h2><ol>
-<li><p>块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是<strong>与方向无关的</strong></p>
-</li>
-<li><p>flex布局可以实现<strong>空间自动分配</strong>、<strong>自动对齐</strong>（全称:the flexible box Module）</p>
-</li>
-<li><p>flex适用于<strong>简单的线性布局</strong>，更复杂的布局要交给grid布局（目前还没发布）</p>
-</li>
-</ol>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><blockquote>
-<p>display: flex;</p>
-<p>display: inline-flex;</p>
-<p>设为Flex布局后，子元素的<code>loat,clear</code>和<code>vertical-align</code>属性将失效。</p>
-</blockquote>
-<h2 id="Flex基础概念"><a href="#Flex基础概念" class="headerlink" title="Flex基础概念"></a>Flex基础概念</h2><p><strong>采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。</strong></p>
-<p><a href="https://camo.githubusercontent.com/c204f0894898f5a8feee7ec098a16fc94532a5fa/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f30352f30392f353931313763336464623763662e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/c204f0894898f5a8feee7ec098a16fc94532a5fa/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f30352f30392f353931313763336464623763662e706e67" alt="flex基础分解图"></a></p>
-<ul>
-<li><p>上图水平是主轴(main axis)垂直是侧轴(cross axis)。主轴的开始位置叫做<code>main start</code>，结束位置叫做<code>main end</code>；侧轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code> 。</p>
-</li>
-<li><p>项目默认沿主轴排列。单个项目占据的主轴空间叫做<code>main size</code>，占据的侧轴空间叫做<code>cross size</code>。</p>
-</li>
-</ul>
-<h2 id="Flex-container容器属性"><a href="#Flex-container容器属性" class="headerlink" title="Flex container容器属性"></a>Flex container容器属性</h2><h3 id="flex-direction-决定了主轴的方向（即项目的排列方向"><a href="#flex-direction-决定了主轴的方向（即项目的排列方向" class="headerlink" title="flex-direction: 决定了主轴的方向（即项目的排列方向)"></a>flex-direction: 决定了主轴的方向（即项目的排列方向)</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">     <span class="attribute">display</span>:flex;</span><br><span class="line">     <span class="attribute">flex-direction</span>:column-revers|column|row-reverse|row;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>row(默认)</td>
-<td>主轴方向为水平，起点在左端</td>
-</tr>
-<tr>
-<td>row- reverse</td>
-<td>主轴方向为水平，起点在右端</td>
-</tr>
-<tr>
-<td>column</td>
-<td>主轴方向为垂直，起点在上端</td>
-</tr>
-<tr>
-<td>column-reverse</td>
-<td>主轴方向为垂直，起点在下端</td>
-</tr>
-</tbody>
-</table>
-<p>  <a href="https://camo.githubusercontent.com/bb8b00a8353d931a32a422edc2f8b525cc510f1a/687474703a2f2f7777772e7275616e796966656e672e636f6d2f626c6f67696d672f61737365742f323031352f6267323031353037313030352e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/bb8b00a8353d931a32a422edc2f8b525cc510f1a/687474703a2f2f7777772e7275616e796966656e672e636f6d2f626c6f67696d672f61737365742f323031352f6267323031353037313030352e706e67" alt="flex-direction排序图"></a></p>
-<blockquote>
-<p>单独添加flex-direction: row; //默认是不会换行</p>
-</blockquote>
-<hr>
-<h3 id="flex-wrap-定义如果一条轴线排不下，如何换行"><a href="#flex-wrap-定义如果一条轴线排不下，如何换行" class="headerlink" title="flex-wrap: 定义如果一条轴线排不下，如何换行"></a>flex-wrap: 定义如果一条轴线排不下，如何换行</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">     <span class="attribute">display</span>:flex;</span><br><span class="line">     <span class="attribute">flex-direction</span>:now  </span><br><span class="line">     flex-wrap:wrap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>nowrap(默认)</td>
-<td>不换行</td>
-</tr>
-<tr>
-<td>wrap</td>
-<td>换行</td>
-</tr>
-<tr>
-<td>wrap-reverse</td>
-<td>换行反转</td>
-</tr>
-</tbody>
-</table>
-<p>  <a href="https://camo.githubusercontent.com/ef9b8559067337e190b156db8ff369f199e7e477/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d353461626161306361653634323863652e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/ef9b8559067337e190b156db8ff369f199e7e477/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d353461626161306361653634323863652e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" alt="img"></a></p>
-<hr>
-<h3 id="flex-flow（以上两个属性的简写）"><a href="#flex-flow（以上两个属性的简写）" class="headerlink" title="flex-flow（以上两个属性的简写）"></a>flex-flow（以上两个属性的简写）</h3><p>  <code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">flex-flow</span>: row nowrap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="justify-content-定义了项目在主轴上的对齐方式"><a href="#justify-content-定义了项目在主轴上的对齐方式" class="headerlink" title="justify-content:定义了项目在主轴上的对齐方式"></a>justify-content:定义了项目在主轴上的对齐方式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">justify-content</span>:flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>flex-start(默认)</td>
-<td>项目沿着主轴方向的起始位置靠齐</td>
-</tr>
-<tr>
-<td>flex-end</td>
-<td>项目沿着主轴方向的结束位置靠齐，和flex-start相反</td>
-</tr>
-<tr>
-<td>space-between</td>
-<td>项目在主轴方向上两端对齐，其中的间隔相等</td>
-</tr>
-<tr>
-<td>space-around</td>
-<td>每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍</td>
-</tr>
-</tbody>
-</table>
-<p>  <a href="https://camo.githubusercontent.com/8f5eaddc35a3f320262ee598998c8d038946d04c/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d636664303366343763313632663434382e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/8f5eaddc35a3f320262ee598998c8d038946d04c/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d636664303366343763313632663434382e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" alt="img"></a></p>
-<hr>
-<h3 id="align-items定义项目在交叉轴上如何对齐"><a href="#align-items定义项目在交叉轴上如何对齐" class="headerlink" title="align-items定义项目在交叉轴上如何对齐"></a>align-items定义项目在交叉轴上如何对齐</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-items</span>:flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>flex-start</td>
-<td>项目沿着侧轴上的起点对齐</td>
-</tr>
-<tr>
-<td>flex-end</td>
-<td>项目沿着侧轴上的终点对齐</td>
-</tr>
-<tr>
-<td>center</td>
-<td>项目在侧轴方向上居中对齐</td>
-</tr>
-<tr>
-<td>stretch(默认)</td>
-<td>如果项目未设置高度或高度为auto,将占满整个容器的高度。</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://camo.githubusercontent.com/e4492baad276d7c4ad526348c72addbbe0b7ff86/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d363362306666326638653362616136622e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/e4492baad276d7c4ad526348c72addbbe0b7ff86/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d363362306666326638653362616136622e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" alt="img"></a></p>
-<hr>
-<h3 id="align-content多行多列内容对齐方式"><a href="#align-content多行多列内容对齐方式" class="headerlink" title="align-content多行多列内容对齐方式"></a>align-content多行多列内容对齐方式</h3><p><em>注意如果项目只有一行，属性不起作用</em></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-content</span>:flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>flex-start</td>
-<td>项目与侧轴的起点对齐</td>
-</tr>
-<tr>
-<td>flex-end</td>
-<td>项目与侧轴的终点对齐</td>
-</tr>
-<tr>
-<td>center</td>
-<td>项目与侧轴的中点对齐</td>
-</tr>
-<tr>
-<td>space-between</td>
-<td>与侧轴两端对齐，轴线之间的间隔平均分布</td>
-</tr>
-<tr>
-<td>space-around</td>
-<td>每行轴线两侧的间隔都相等。所以轴线之间的间隔比轴线与边框的间隔大一倍</td>
-</tr>
-<tr>
-<td>stretch（默认）</td>
-<td>轴线占满整个测轴</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://camo.githubusercontent.com/d5d550de5ba40286e0d1d2a63dd709fdf4605e13/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d356562633339343136396339356566302e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/d5d550de5ba40286e0d1d2a63dd709fdf4605e13/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d356562633339343136396339356566302e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" alt="img"></a></p>
-<hr>
-<h2 id="flex-item项目属性"><a href="#flex-item项目属性" class="headerlink" title="flex item项目属性"></a>flex item项目属性</h2><ul>
-<li><h3 id="order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0"><a href="#order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0" class="headerlink" title="order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0"></a>order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0</h3></li>
-</ul>
-<p><code>.item{order: &lt;integer&gt;;}</code></p>
-<ul>
-<li><h3 id="flex-grow属性-定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大"><a href="#flex-grow属性-定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大" class="headerlink" title="flex-grow属性:定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大"></a>flex-grow属性:定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</h3></li>
-</ul>
-<p><code>.item{flex-grow:&lt;number&gt;;}</code></p>
-<p>flex-grow为零的话则不变化，不能为負值。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项的2倍。</p>
-<ul>
-<li><h3 id="flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小"><a href="#flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小" class="headerlink" title="flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小"></a>flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小</h3></li>
-</ul>
-<p><code>.item{flex-shrink:&lt;number&gt;;}</code></p>
-<p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。负值对该属性无效。</p>
-<ul>
-<li><h3 id="flex-basis属性-定义了在分配多余空间之前，项目占据的主轴空间（main-size）"><a href="#flex-basis属性-定义了在分配多余空间之前，项目占据的主轴空间（main-size）" class="headerlink" title="flex-basis属性:定义了在分配多余空间之前，项目占据的主轴空间（main size）"></a>flex-basis属性:定义了在分配多余空间之前，项目占据的主轴空间（main size）</h3></li>
-</ul>
-<p>浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。它可以设为跟width或height属性一样的值，则项目将占据固定空间</p>
-<p><code>.item{flex-basis: &lt;length&gt;| auto;</code></p>
-<ul>
-<li><h3 id="flex属性：flex-grow-flex-shrink和flex-basis的简写"><a href="#flex属性：flex-grow-flex-shrink和flex-basis的简写" class="headerlink" title="flex属性：flex-grow,flex-shrink和flex-basis的简写"></a>flex属性：flex-grow,flex-shrink和flex-basis的简写</h3></li>
-</ul>
-<p>默认值为0 1 auto。后两个属性可选。该属性有两个<code>快捷值：auto(</code>1 1 <em>auto) 和 none</em> (0 0 auto)。</p>
-<ul>
-<li><h3 id="align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性"><a href="#align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性" class="headerlink" title="align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性"></a>align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</h3></li>
-</ul>
-<p>默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
-<p><code>.item{align-self:auto | flex-start | flex-end | center | baseline | stretch;}</code></p>
-<p>该属性可能取6个值，除了auto，其他都与align-items属性完全一致。</p>
-<blockquote>
-<p><a href="https://www.w3cplus.com/css3/understanding-flexbox-everything-you-need-to-know.html" target="_blank" rel="noopener">最近发现一篇很详细关于flex box 布局的博客链接</a><br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">阮一峰flex实战布局教程</a></p>
-</blockquote>
-
+        
       
     </div>
 
@@ -786,14 +541,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/ZombieBrand.github.io/tags/css/" rel="tag"><i class="fa fa-tag"></i> css</a>
-          
-            <a href="/ZombieBrand.github.io/tags/布局/" rel="tag"><i class="fa fa-tag"></i> 布局</a>
-          
-        </div>
-      
 
       
       
@@ -803,8 +550,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/ZombieBrand.github.io/2019/03/13/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/ZombieBrand.github.io/2019/03/13/实现点击button滚动返回顶部动画/" rel="next" title="实现点击button滚动返回顶部动画">
+                <i class="fa fa-chevron-left"></i> 实现点击button滚动返回顶部动画
               </a>
             
           </div>
@@ -812,10 +559,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/ZombieBrand.github.io/2019/03/13/常见布局居中/" rel="prev" title="常见布局居中">
-                常见布局居中 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -864,17 +607,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1046,23 +780,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见布局"><span class="nav-number">1.</span> <span class="nav-text">常见布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flex布局特性"><span class="nav-number">2.</span> <span class="nav-text">Flex布局特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flex基础概念"><span class="nav-number">3.</span> <span class="nav-text">Flex基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flex-container容器属性"><span class="nav-number">4.</span> <span class="nav-text">Flex container容器属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-direction-决定了主轴的方向（即项目的排列方向"><span class="nav-number">4.1.</span> <span class="nav-text">flex-direction: 决定了主轴的方向（即项目的排列方向)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-wrap-定义如果一条轴线排不下，如何换行"><span class="nav-number">4.2.</span> <span class="nav-text">flex-wrap: 定义如果一条轴线排不下，如何换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-flow（以上两个属性的简写）"><span class="nav-number">4.3.</span> <span class="nav-text">flex-flow（以上两个属性的简写）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#justify-content-定义了项目在主轴上的对齐方式"><span class="nav-number">4.4.</span> <span class="nav-text">justify-content:定义了项目在主轴上的对齐方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-items定义项目在交叉轴上如何对齐"><span class="nav-number">4.5.</span> <span class="nav-text">align-items定义项目在交叉轴上如何对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-content多行多列内容对齐方式"><span class="nav-number">4.6.</span> <span class="nav-text">align-content多行多列内容对齐方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-item项目属性"><span class="nav-number">5.</span> <span class="nav-text">flex item项目属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0"><span class="nav-number">5.1.</span> <span class="nav-text">order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-grow属性-定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大"><span class="nav-number">5.2.</span> <span class="nav-text">flex-grow属性:定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小"><span class="nav-number">5.3.</span> <span class="nav-text">flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-basis属性-定义了在分配多余空间之前，项目占据的主轴空间（main-size）"><span class="nav-number">5.4.</span> <span class="nav-text">flex-basis属性:定义了在分配多余空间之前，项目占据的主轴空间（main size）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex属性：flex-grow-flex-shrink和flex-basis的简写"><span class="nav-number">5.5.</span> <span class="nav-text">flex属性：flex-grow,flex-shrink和flex-basis的简写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性"><span class="nav-number">5.6.</span> <span class="nav-text">align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
@@ -1274,7 +991,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/03/13/flex布局/'
+    refer: '2019/03/13/完美实现一个“回到顶部”/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

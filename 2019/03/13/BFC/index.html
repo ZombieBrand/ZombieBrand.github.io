@@ -143,25 +143,25 @@
 
 
 
-  <meta name="description" content="常见布局 normal flow（正常流） float + clear（浮动+清楚浮动） position relative + absolute （相对定位+绝对定位） display inline-block （改变元素属性） -margin（负外边距）  Flex布局特性 块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是与方向无关的  flex布局可以实现空间自动分配、自动对齐（全">
+  <meta name="description" content="BFC 已经是一个耳听熟闻的词语了，网上有许多关于 BFC 的文章，介绍了如何触发 BFC 以及 BFC 的一些用处（如清除浮动，防止 margin 重叠等）。 一、BFC是什么？　　在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。 Box: CSS布局的基本单位Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成">
 <meta name="keywords" content="css,布局">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flex布局">
-<meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/flex布局/index.html">
+<meta property="og:title" content="BFC">
+<meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/BFC/index.html">
 <meta property="og:site_name" content="ZombieBrand">
-<meta property="og:description" content="常见布局 normal flow（正常流） float + clear（浮动+清楚浮动） position relative + absolute （相对定位+绝对定位） display inline-block （改变元素属性） -margin（负外边距）  Flex布局特性 块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是与方向无关的  flex布局可以实现空间自动分配、自动对齐（全">
+<meta property="og:description" content="BFC 已经是一个耳听熟闻的词语了，网上有许多关于 BFC 的文章，介绍了如何触发 BFC 以及 BFC 的一些用处（如清除浮动，防止 margin 重叠等）。 一、BFC是什么？　　在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。 Box: CSS布局的基本单位Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://camo.githubusercontent.com/c204f0894898f5a8feee7ec098a16fc94532a5fa/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f30352f30392f353931313763336464623763662e706e67">
-<meta property="og:image" content="https://camo.githubusercontent.com/bb8b00a8353d931a32a422edc2f8b525cc510f1a/687474703a2f2f7777772e7275616e796966656e672e636f6d2f626c6f67696d672f61737365742f323031352f6267323031353037313030352e706e67">
-<meta property="og:image" content="https://camo.githubusercontent.com/ef9b8559067337e190b156db8ff369f199e7e477/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d353461626161306361653634323863652e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430">
-<meta property="og:image" content="https://camo.githubusercontent.com/8f5eaddc35a3f320262ee598998c8d038946d04c/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d636664303366343763313632663434382e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430">
-<meta property="og:image" content="https://camo.githubusercontent.com/e4492baad276d7c4ad526348c72addbbe0b7ff86/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d363362306666326638653362616136622e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430">
-<meta property="og:image" content="https://camo.githubusercontent.com/d5d550de5ba40286e0d1d2a63dd709fdf4605e13/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d356562633339343136396339356566302e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430">
-<meta property="og:updated_time" content="2019-03-13T08:56:28.530Z">
+<meta property="og:image" content="https://camo.githubusercontent.com/910fec6f2966e5cdbd7098c96d60dfb67bf1d3d0/687474703a2f2f696d616765732e7a7979313231372e636f6d2f566b685749">
+<meta property="og:image" content="https://camo.githubusercontent.com/9fb7d39c70c0c75cc71b6cd2370d95f19cd496f4/687474703a2f2f696d616765732e7a7979313231372e636f6d2f743031303737383836613937303663623236622e706e67">
+<meta property="og:image" content="https://camo.githubusercontent.com/cba2b0f0a6a58bda7ed00c8383fe27f910c30f52/687474703a2f2f696d616765732e7a7979313231372e636f6d2f7a5664696f">
+<meta property="og:image" content="https://camo.githubusercontent.com/e5d7823adb7490f19cc063c39752e6da974f0777/687474703a2f2f696d616765732e7a7979313231372e636f6d2f4c79553652">
+<meta property="og:image" content="https://camo.githubusercontent.com/32e92a309c226b6713d14154ce6dd07fd527a349/687474703a2f2f696d616765732e7a7979313231372e636f6d2f744d585343">
+<meta property="og:image" content="https://camo.githubusercontent.com/fa7fc70342c72f30843f6de8f240c97c784bde30/687474703a2f2f696d616765732e7a7979313231372e636f6d2f416e595131">
+<meta property="og:updated_time" content="2019-03-13T09:15:06.372Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="flex布局">
-<meta name="twitter:description" content="常见布局 normal flow（正常流） float + clear（浮动+清楚浮动） position relative + absolute （相对定位+绝对定位） display inline-block （改变元素属性） -margin（负外边距）  Flex布局特性 块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是与方向无关的  flex布局可以实现空间自动分配、自动对齐（全">
-<meta name="twitter:image" content="https://camo.githubusercontent.com/c204f0894898f5a8feee7ec098a16fc94532a5fa/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f30352f30392f353931313763336464623763662e706e67">
+<meta name="twitter:title" content="BFC">
+<meta name="twitter:description" content="BFC 已经是一个耳听熟闻的词语了，网上有许多关于 BFC 的文章，介绍了如何触发 BFC 以及 BFC 的一些用处（如清除浮动，防止 margin 重叠等）。 一、BFC是什么？　　在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。 Box: CSS布局的基本单位Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/910fec6f2966e5cdbd7098c96d60dfb67bf1d3d0/687474703a2f2f696d616765732e7a7979313231372e636f6d2f566b685749">
 
 
 
@@ -170,7 +170,7 @@
 
 
 
-  <link rel="canonical" href="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/flex布局/">
+  <link rel="canonical" href="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/BFC/">
 
 
 
@@ -180,7 +180,7 @@
   };
 </script>
 
-  <title>flex布局 | ZombieBrand</title>
+  <title>BFC | ZombieBrand</title>
   
 
 
@@ -414,7 +414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zombrbrand.github.io/ZombieBrand.github.io/ZombieBrand.github.io/2019/03/13/flex布局/">
+    <link itemprop="mainEntityOfPage" href="https://zombrbrand.github.io/ZombieBrand.github.io/ZombieBrand.github.io/2019/03/13/BFC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="车勇志">
@@ -431,7 +431,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">flex布局
+          <h2 class="post-title" itemprop="name headline">BFC
 
               
             
@@ -457,7 +457,7 @@
                 
               
 
-              <time title="创建时间：2019-03-13 16:49:23 / 修改时间：16:56:28" itemprop="dateCreated datePublished" datetime="2019-03-13T16:49:23+08:00">2019-03-13</time>
+              <time title="创建时间：2019-03-13 17:06:41 / 修改时间：17:15:06" itemprop="dateCreated datePublished" datetime="2019-03-13T17:06:41+08:00">2019-03-13</time>
             
 
             
@@ -515,7 +515,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.2k</span>
+                <span title="本文字数">4.4k</span>
               
 
               
@@ -529,7 +529,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -549,222 +549,98 @@
       
 
       
-        <h2 id="常见布局"><a href="#常见布局" class="headerlink" title="常见布局"></a>常见布局</h2><ul>
-<li>normal flow（正常流）</li>
-<li>float + clear（浮动+清楚浮动）</li>
-<li>position relative + absolute （相对定位+绝对定位）</li>
-<li>display inline-block （改变元素属性）</li>
-<li>-margin（负外边距）</li>
+        <p>BFC 已经是一个耳听熟闻的词语了，网上有许多关于 BFC 的文章，介绍了如何触发 BFC 以及 BFC 的一些用处（如清除浮动，防止 margin 重叠等）。</p>
+<h1 id="一、BFC是什么？"><a href="#一、BFC是什么？" class="headerlink" title="一、BFC是什么？"></a>一、BFC是什么？</h1><p>　　在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。</p>
+<h2 id="Box-CSS布局的基本单位"><a href="#Box-CSS布局的基本单位" class="headerlink" title="Box: CSS布局的基本单位"></a>Box: CSS布局的基本单位</h2><p>Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。让我们看看有哪些盒子：</p>
+<ul>
+<li><p>block-level box:</p>
+<p>display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；</p>
+</li>
+<li><p>inline-level box:</p>
+<p>display 属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context；</p>
+</li>
+<li><p>run-in box:</p>
+<p>css3 中才有， 这儿先不讲了。</p>
+</li>
 </ul>
-<h2 id="Flex布局特性"><a href="#Flex布局特性" class="headerlink" title="Flex布局特性"></a>Flex布局特性</h2><ol>
-<li><p>块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是<strong>与方向无关的</strong></p>
-</li>
-<li><p>flex布局可以实现<strong>空间自动分配</strong>、<strong>自动对齐</strong>（全称:the flexible box Module）</p>
-</li>
-<li><p>flex适用于<strong>简单的线性布局</strong>，更复杂的布局要交给grid布局（目前还没发布）</p>
-</li>
+<h2 id="Formatting-context"><a href="#Formatting-context" class="headerlink" title="Formatting context"></a>Formatting context</h2><p>　　Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。<br>　　CSS2.1 中只有 BFC 和 IFC, CSS3 中还增加了 GFC 和 FFC。</p>
+<h2 id="BFC-定义"><a href="#BFC-定义" class="headerlink" title="BFC 定义"></a>BFC 定义</h2><p>　　BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。</p>
+<h2 id="BFC布局规则："><a href="#BFC布局规则：" class="headerlink" title="BFC布局规则："></a>BFC布局规则：</h2><ol>
+<li>内部的Box会在垂直方向，一个接一个地放置。</li>
+<li>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</li>
+<li>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</li>
+<li>BFC的区域不会与float box重叠。</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</li>
+<li>计算BFC的高度时，浮动元素也参与计算</li>
 </ol>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><blockquote>
-<p>display: flex;</p>
-<p>display: inline-flex;</p>
-<p>设为Flex布局后，子元素的<code>loat,clear</code>和<code>vertical-align</code>属性将失效。</p>
-</blockquote>
-<h2 id="Flex基础概念"><a href="#Flex基础概念" class="headerlink" title="Flex基础概念"></a>Flex基础概念</h2><p><strong>采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。</strong></p>
-<p><a href="https://camo.githubusercontent.com/c204f0894898f5a8feee7ec098a16fc94532a5fa/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f30352f30392f353931313763336464623763662e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/c204f0894898f5a8feee7ec098a16fc94532a5fa/68747470733a2f2f6f6f6f2e306f302e6f6f6f2f323031372f30352f30392f353931313763336464623763662e706e67" alt="flex基础分解图"></a></p>
-<ul>
-<li><p>上图水平是主轴(main axis)垂直是侧轴(cross axis)。主轴的开始位置叫做<code>main start</code>，结束位置叫做<code>main end</code>；侧轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code> 。</p>
-</li>
-<li><p>项目默认沿主轴排列。单个项目占据的主轴空间叫做<code>main size</code>，占据的侧轴空间叫做<code>cross size</code>。</p>
-</li>
-</ul>
-<h2 id="Flex-container容器属性"><a href="#Flex-container容器属性" class="headerlink" title="Flex container容器属性"></a>Flex container容器属性</h2><h3 id="flex-direction-决定了主轴的方向（即项目的排列方向"><a href="#flex-direction-决定了主轴的方向（即项目的排列方向" class="headerlink" title="flex-direction: 决定了主轴的方向（即项目的排列方向)"></a>flex-direction: 决定了主轴的方向（即项目的排列方向)</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">     <span class="attribute">display</span>:flex;</span><br><span class="line">     <span class="attribute">flex-direction</span>:column-revers|column|row-reverse|row;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>row(默认)</td>
-<td>主轴方向为水平，起点在左端</td>
-</tr>
-<tr>
-<td>row- reverse</td>
-<td>主轴方向为水平，起点在右端</td>
-</tr>
-<tr>
-<td>column</td>
-<td>主轴方向为垂直，起点在上端</td>
-</tr>
-<tr>
-<td>column-reverse</td>
-<td>主轴方向为垂直，起点在下端</td>
-</tr>
-</tbody>
-</table>
-<p>  <a href="https://camo.githubusercontent.com/bb8b00a8353d931a32a422edc2f8b525cc510f1a/687474703a2f2f7777772e7275616e796966656e672e636f6d2f626c6f67696d672f61737365742f323031352f6267323031353037313030352e706e67" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/bb8b00a8353d931a32a422edc2f8b525cc510f1a/687474703a2f2f7777772e7275616e796966656e672e636f6d2f626c6f67696d672f61737365742f323031352f6267323031353037313030352e706e67" alt="flex-direction排序图"></a></p>
+<h1 id="二、哪些元素会生成BFC"><a href="#二、哪些元素会生成BFC" class="headerlink" title="二、哪些元素会生成BFC?"></a>二、哪些元素会生成BFC?</h1><ol>
+<li>根元素</li>
+<li>float属性不为none</li>
+<li>position为absolute或fixed</li>
+<li>display为inline-block, table-cell, table-caption, flex, inline-flex</li>
+<li>overflow不为visible</li>
+</ol>
+<h1 id="三、BFC的作用及原理"><a href="#三、BFC的作用及原理" class="headerlink" title="三、BFC的作用及原理"></a>三、BFC的作用及原理</h1><h2 id="1-自适应两栏布局"><a href="#1-自适应两栏布局" class="headerlink" title="1. 自适应两栏布局"></a>1. 自适应两栏布局</h2><p>代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-tag">body</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">        <span class="attribute">position</span>: relative;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="selector-class">.aside</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">        <span class="attribute">float</span>: left;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#f66</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="selector-class">.main</span> &#123;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;div class="aside"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class="main"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p><a href="http://images.zyy1217.com/VkhWI" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/910fec6f2966e5cdbd7098c96d60dfb67bf1d3d0/687474703a2f2f696d616765732e7a7979313231372e636f6d2f566b685749" alt="Untitled Image"></a></p>
+<p>根据BFC布局规则第3条：</p>
 <blockquote>
-<p>单独添加flex-direction: row; //默认是不会换行</p>
+<p>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</p>
 </blockquote>
-<hr>
-<h3 id="flex-wrap-定义如果一条轴线排不下，如何换行"><a href="#flex-wrap-定义如果一条轴线排不下，如何换行" class="headerlink" title="flex-wrap: 定义如果一条轴线排不下，如何换行"></a>flex-wrap: 定义如果一条轴线排不下，如何换行</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">     <span class="attribute">display</span>:flex;</span><br><span class="line">     <span class="attribute">flex-direction</span>:now  </span><br><span class="line">     flex-wrap:wrap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>nowrap(默认)</td>
-<td>不换行</td>
-</tr>
-<tr>
-<td>wrap</td>
-<td>换行</td>
-</tr>
-<tr>
-<td>wrap-reverse</td>
-<td>换行反转</td>
-</tr>
-</tbody>
-</table>
-<p>  <a href="https://camo.githubusercontent.com/ef9b8559067337e190b156db8ff369f199e7e477/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d353461626161306361653634323863652e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/ef9b8559067337e190b156db8ff369f199e7e477/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d353461626161306361653634323863652e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" alt="img"></a></p>
-<hr>
-<h3 id="flex-flow（以上两个属性的简写）"><a href="#flex-flow（以上两个属性的简写）" class="headerlink" title="flex-flow（以上两个属性的简写）"></a>flex-flow（以上两个属性的简写）</h3><p>  <code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">flex-flow</span>: row nowrap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="justify-content-定义了项目在主轴上的对齐方式"><a href="#justify-content-定义了项目在主轴上的对齐方式" class="headerlink" title="justify-content:定义了项目在主轴上的对齐方式"></a>justify-content:定义了项目在主轴上的对齐方式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">justify-content</span>:flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>flex-start(默认)</td>
-<td>项目沿着主轴方向的起始位置靠齐</td>
-</tr>
-<tr>
-<td>flex-end</td>
-<td>项目沿着主轴方向的结束位置靠齐，和flex-start相反</td>
-</tr>
-<tr>
-<td>space-between</td>
-<td>项目在主轴方向上两端对齐，其中的间隔相等</td>
-</tr>
-<tr>
-<td>space-around</td>
-<td>每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍</td>
-</tr>
-</tbody>
-</table>
-<p>  <a href="https://camo.githubusercontent.com/8f5eaddc35a3f320262ee598998c8d038946d04c/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d636664303366343763313632663434382e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/8f5eaddc35a3f320262ee598998c8d038946d04c/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d636664303366343763313632663434382e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" alt="img"></a></p>
-<hr>
-<h3 id="align-items定义项目在交叉轴上如何对齐"><a href="#align-items定义项目在交叉轴上如何对齐" class="headerlink" title="align-items定义项目在交叉轴上如何对齐"></a>align-items定义项目在交叉轴上如何对齐</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-items</span>:flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>flex-start</td>
-<td>项目沿着侧轴上的起点对齐</td>
-</tr>
-<tr>
-<td>flex-end</td>
-<td>项目沿着侧轴上的终点对齐</td>
-</tr>
-<tr>
-<td>center</td>
-<td>项目在侧轴方向上居中对齐</td>
-</tr>
-<tr>
-<td>stretch(默认)</td>
-<td>如果项目未设置高度或高度为auto,将占满整个容器的高度。</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://camo.githubusercontent.com/e4492baad276d7c4ad526348c72addbbe0b7ff86/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d363362306666326638653362616136622e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/e4492baad276d7c4ad526348c72addbbe0b7ff86/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d363362306666326638653362616136622e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" alt="img"></a></p>
-<hr>
-<h3 id="align-content多行多列内容对齐方式"><a href="#align-content多行多列内容对齐方式" class="headerlink" title="align-content多行多列内容对齐方式"></a>align-content多行多列内容对齐方式</h3><p><em>注意如果项目只有一行，属性不起作用</em></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-content</span>:flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>flex-start</td>
-<td>项目与侧轴的起点对齐</td>
-</tr>
-<tr>
-<td>flex-end</td>
-<td>项目与侧轴的终点对齐</td>
-</tr>
-<tr>
-<td>center</td>
-<td>项目与侧轴的中点对齐</td>
-</tr>
-<tr>
-<td>space-between</td>
-<td>与侧轴两端对齐，轴线之间的间隔平均分布</td>
-</tr>
-<tr>
-<td>space-around</td>
-<td>每行轴线两侧的间隔都相等。所以轴线之间的间隔比轴线与边框的间隔大一倍</td>
-</tr>
-<tr>
-<td>stretch（默认）</td>
-<td>轴线占满整个测轴</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://camo.githubusercontent.com/d5d550de5ba40286e0d1d2a63dd709fdf4605e13/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d356562633339343136396339356566302e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/d5d550de5ba40286e0d1d2a63dd709fdf4605e13/687474703a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f353535363032362d356562633339343136396339356566302e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430" alt="img"></a></p>
-<hr>
-<h2 id="flex-item项目属性"><a href="#flex-item项目属性" class="headerlink" title="flex item项目属性"></a>flex item项目属性</h2><ul>
-<li><h3 id="order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0"><a href="#order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0" class="headerlink" title="order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0"></a>order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0</h3></li>
-</ul>
-<p><code>.item{order: &lt;integer&gt;;}</code></p>
-<ul>
-<li><h3 id="flex-grow属性-定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大"><a href="#flex-grow属性-定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大" class="headerlink" title="flex-grow属性:定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大"></a>flex-grow属性:定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</h3></li>
-</ul>
-<p><code>.item{flex-grow:&lt;number&gt;;}</code></p>
-<p>flex-grow为零的话则不变化，不能为負值。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项的2倍。</p>
-<ul>
-<li><h3 id="flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小"><a href="#flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小" class="headerlink" title="flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小"></a>flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小</h3></li>
-</ul>
-<p><code>.item{flex-shrink:&lt;number&gt;;}</code></p>
-<p>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。负值对该属性无效。</p>
-<ul>
-<li><h3 id="flex-basis属性-定义了在分配多余空间之前，项目占据的主轴空间（main-size）"><a href="#flex-basis属性-定义了在分配多余空间之前，项目占据的主轴空间（main-size）" class="headerlink" title="flex-basis属性:定义了在分配多余空间之前，项目占据的主轴空间（main size）"></a>flex-basis属性:定义了在分配多余空间之前，项目占据的主轴空间（main size）</h3></li>
-</ul>
-<p>浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。它可以设为跟width或height属性一样的值，则项目将占据固定空间</p>
-<p><code>.item{flex-basis: &lt;length&gt;| auto;</code></p>
-<ul>
-<li><h3 id="flex属性：flex-grow-flex-shrink和flex-basis的简写"><a href="#flex属性：flex-grow-flex-shrink和flex-basis的简写" class="headerlink" title="flex属性：flex-grow,flex-shrink和flex-basis的简写"></a>flex属性：flex-grow,flex-shrink和flex-basis的简写</h3></li>
-</ul>
-<p>默认值为0 1 auto。后两个属性可选。该属性有两个<code>快捷值：auto(</code>1 1 <em>auto) 和 none</em> (0 0 auto)。</p>
-<ul>
-<li><h3 id="align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性"><a href="#align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性" class="headerlink" title="align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性"></a>align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</h3></li>
-</ul>
-<p>默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
-<p><code>.item{align-self:auto | flex-start | flex-end | center | baseline | stretch;}</code></p>
-<p>该属性可能取6个值，除了auto，其他都与align-items属性完全一致。</p>
+<p>　　因此，虽然存在浮动的元素aside，但main的左边依然会与包含块的左边相接触。</p>
+<p>　　根据BFC布局规则第四条：</p>
 <blockquote>
-<p><a href="https://www.w3cplus.com/css3/understanding-flexbox-everything-you-need-to-know.html" target="_blank" rel="noopener">最近发现一篇很详细关于flex box 布局的博客链接</a><br><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">阮一峰flex实战布局教程</a></p>
+<p>BFC的区域不会与float box重叠。</p>
 </blockquote>
+<p>　　我们可以通过触发main生成BFC， 来实现自适应两栏布局。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　当触发main生成BFC后，这个新的BFC<strong>为了不与浮动的aside重叠</strong>。因此会根据包含块的宽度，和aside的宽度，自动变窄。效果如下：<br><a href="http://images.zyy1217.com/t01077886a9706cb26b.png" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/9fb7d39c70c0c75cc71b6cd2370d95f19cd496f4/687474703a2f2f696d616765732e7a7979313231372e636f6d2f743031303737383836613937303663623236622e706e67" alt="img"></a><br>：</p>
+<h2 id="2-清除内部浮动"><a href="#2-清除内部浮动" class="headerlink" title="2. 清除内部浮动"></a>2. 清除内部浮动</h2><p>代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-class">.par</span> &#123;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">5px</span> solid <span class="number">#fcc</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="selector-class">.child</span> &#123;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">5px</span> solid <span class="number">#f66</span>;</span><br><span class="line">        <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">float</span>: left;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;div class="par"&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class="child"&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p><a href="http://images.zyy1217.com/zVdio" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/cba2b0f0a6a58bda7ed00c8383fe27f910c30f52/687474703a2f2f696d616765732e7a7979313231372e636f6d2f7a5664696f" alt="Untitled Image"></a></p>
+<p>根据BFC布局规则第六条：</p>
+<blockquote>
+<p>计算BFC的高度时，浮动元素也参与计算</p>
+</blockquote>
+<p>　　</p>
+<h3 id="解决方案一般有两种"><a href="#解决方案一般有两种" class="headerlink" title="解决方案一般有两种"></a>解决方案一般有两种</h3><p>1). 利用 clear属性，清除浮动</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">对父元素加一个<span class="selector-tag">class</span><span class="selector-pseudo">:floatfix</span></span><br><span class="line"></span><br><span class="line">添加如下<span class="selector-tag">CSS</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.floatfix</span>&#123;</span><br><span class="line">    *zoom:1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.floatfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">    <span class="attribute">display</span>:table;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2). 使父容器形成BFC</p>
+<p>为达到清除内部浮动，我们可以触发par生成BFC，那么par在计算高度时，par内部的浮动元素child也会参与计算。</p>
+<p>代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="selector-class">.par</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　效果如下：</p>
+<p><a href="http://images.zyy1217.com/LyU6R" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/e5d7823adb7490f19cc063c39752e6da974f0777/687474703a2f2f696d616765732e7a7979313231372e636f6d2f4c79553652" alt="Untitled Image"></a></p>
+<h2 id="3-防止垂直-margin-重叠"><a href="#3-防止垂直-margin-重叠" class="headerlink" title="3. 防止垂直 margin 重叠"></a>3. 防止垂直 margin 重叠</h2><p>代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-tag">p</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#f55</span>;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">        <span class="attribute">line-height</span>: <span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">text-align</span>:center;</span><br><span class="line">        <span class="attribute">margin</span>: <span class="number">100px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;p&gt;Haha&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Hehe&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>　页面：</p>
+<p><a href="http://images.zyy1217.com/tMXSC" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/32e92a309c226b6713d14154ce6dd07fd527a349/687474703a2f2f696d616765732e7a7979313231372e636f6d2f744d585343" alt="Untitled Image"></a></p>
+<p>　两个p之间的距离为100px，发送了margin重叠。<br>　　根据BFC布局规则第二条：</p>
+<blockquote>
+<p>Box垂直方向的距离由margin决定。属于<strong>同一个BFC的两个相邻Box的margin会发生重叠</strong></p>
+</blockquote>
+<p>折叠的结果：</p>
+<ul>
+<li>两个相邻的外边距都是正数时，折叠结果是它们两者之间较大的值。</li>
+<li>两个相邻的外边距都是负数时，折叠结果是两者绝对值的较大值。</li>
+<li>两个外边距一正一负时，折叠结果是两者的相加的和。</li>
+</ul>
+<p><strong>我们可以在p外面包裹一层容器，并触发该容器生成一个BFC。那么两个P便不属于同一个BFC，就不会发生margin重叠了</strong>。</p>
+<p>　　代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-class">.wrap</span> &#123;</span><br><span class="line">        <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">p</span> &#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#f55</span>;</span><br><span class="line">        <span class="attribute">background</span>: <span class="number">#fcc</span>;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">        <span class="attribute">line-height</span>: <span class="number">100px</span>;</span><br><span class="line">        <span class="attribute">text-align</span>:center;</span><br><span class="line">        <span class="attribute">margin</span>: <span class="number">100px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;p&gt;Haha&lt;/p&gt;</span><br><span class="line">    &lt;div class="wrap"&gt;</span><br><span class="line">        &lt;p&gt;Hehe&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>　效果如下:</p>
+<p><a href="http://images.zyy1217.com/AnYQ1" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/fa7fc70342c72f30843f6de8f240c97c784bde30/687474703a2f2f696d616765732e7a7979313231372e636f6d2f416e595131" alt="Untitled Image"></a></p>
+<h3 id="浮动和绝对定位不与任何元素产生-margin-折叠"><a href="#浮动和绝对定位不与任何元素产生-margin-折叠" class="headerlink" title="浮动和绝对定位不与任何元素产生 margin 折叠"></a>浮动和绝对定位不与任何元素产生 margin 折叠</h3><p>原因：</p>
+<p>浮动元素和绝对定位元素不与其他盒子产生外边距折叠是因为元素会脱离当前的文档流，违反了上面所述的两个margin是邻接的条件同时，又因为浮动和绝对定位会使元素为它的内容创建新的BFC，因此该元素和子元素所处的BFC是不相同的，因此也不会产生margin的折叠。</p>
+<h3 id="自己经验添加"><a href="#自己经验添加" class="headerlink" title="自己经验添加"></a>自己经验添加</h3><p>父子元素margin合并可以给父元素添加border或者padding解决</p>
+<p>高级解决父子元素margin合并问题:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.no-collapse</span><span class="selector-pseudo">::before</span>&#123;<span class="attribute">content</span>:<span class="string">''</span>;<span class="attribute">display</span>:table;&#125;,<span class="selector-class">.no-collapse</span><span class="selector-pseudo">::after</span>&#123;<span class="attribute">content</span>:<span class="string">''</span>;<span class="attribute">display</span>:table;&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>　　其实以上的几个例子都体现了BFC布局规则第五条：</p>
+<blockquote>
+<p>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</p>
+</blockquote>
+<p>　　因为BFC内部的元素和外部的元素绝对不会互相影响，因此， <strong>当BFC外部存在浮动时，它不应该影响BFC内部Box的布局，BFC会通过变窄，而不与浮动有重叠。同样的，当BFC内部有浮动时，为了不影响外部元素的布局，BFC计算高度时会包括浮动的高度。避免margin重叠也是这样的一个道理。</strong></p>
 
       
     </div>
@@ -803,8 +679,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/ZombieBrand.github.io/2019/03/13/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/ZombieBrand.github.io/2019/03/13/文本溢出加-如何实现/" rel="next" title="文本溢出加..如何实现">
+                <i class="fa fa-chevron-left"></i> 文本溢出加..如何实现
               </a>
             
           </div>
@@ -813,8 +689,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/ZombieBrand.github.io/2019/03/13/常见布局居中/" rel="prev" title="常见布局居中">
-                常见布局居中 <i class="fa fa-chevron-right"></i>
+              <a href="/ZombieBrand.github.io/2019/03/13/浮动/" rel="prev" title="浮动">
+                浮动 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1057,7 +933,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见布局"><span class="nav-number">1.</span> <span class="nav-text">常见布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flex布局特性"><span class="nav-number">2.</span> <span class="nav-text">Flex布局特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flex基础概念"><span class="nav-number">3.</span> <span class="nav-text">Flex基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flex-container容器属性"><span class="nav-number">4.</span> <span class="nav-text">Flex container容器属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-direction-决定了主轴的方向（即项目的排列方向"><span class="nav-number">4.1.</span> <span class="nav-text">flex-direction: 决定了主轴的方向（即项目的排列方向)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-wrap-定义如果一条轴线排不下，如何换行"><span class="nav-number">4.2.</span> <span class="nav-text">flex-wrap: 定义如果一条轴线排不下，如何换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-flow（以上两个属性的简写）"><span class="nav-number">4.3.</span> <span class="nav-text">flex-flow（以上两个属性的简写）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#justify-content-定义了项目在主轴上的对齐方式"><span class="nav-number">4.4.</span> <span class="nav-text">justify-content:定义了项目在主轴上的对齐方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-items定义项目在交叉轴上如何对齐"><span class="nav-number">4.5.</span> <span class="nav-text">align-items定义项目在交叉轴上如何对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-content多行多列内容对齐方式"><span class="nav-number">4.6.</span> <span class="nav-text">align-content多行多列内容对齐方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-item项目属性"><span class="nav-number">5.</span> <span class="nav-text">flex item项目属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0"><span class="nav-number">5.1.</span> <span class="nav-text">order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-grow属性-定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大"><span class="nav-number">5.2.</span> <span class="nav-text">flex-grow属性:定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小"><span class="nav-number">5.3.</span> <span class="nav-text">flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-basis属性-定义了在分配多余空间之前，项目占据的主轴空间（main-size）"><span class="nav-number">5.4.</span> <span class="nav-text">flex-basis属性:定义了在分配多余空间之前，项目占据的主轴空间（main size）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex属性：flex-grow-flex-shrink和flex-basis的简写"><span class="nav-number">5.5.</span> <span class="nav-text">flex属性：flex-grow,flex-shrink和flex-basis的简写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性"><span class="nav-number">5.6.</span> <span class="nav-text">align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、BFC是什么？"><span class="nav-number">1.</span> <span class="nav-text">一、BFC是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Box-CSS布局的基本单位"><span class="nav-number">1.1.</span> <span class="nav-text">Box: CSS布局的基本单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Formatting-context"><span class="nav-number">1.2.</span> <span class="nav-text">Formatting context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC-定义"><span class="nav-number">1.3.</span> <span class="nav-text">BFC 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC布局规则："><span class="nav-number">1.4.</span> <span class="nav-text">BFC布局规则：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、哪些元素会生成BFC"><span class="nav-number">2.</span> <span class="nav-text">二、哪些元素会生成BFC?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、BFC的作用及原理"><span class="nav-number">3.</span> <span class="nav-text">三、BFC的作用及原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-自适应两栏布局"><span class="nav-number">3.1.</span> <span class="nav-text">1. 自适应两栏布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-清除内部浮动"><span class="nav-number">3.2.</span> <span class="nav-text">2. 清除内部浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案一般有两种"><span class="nav-number">3.2.1.</span> <span class="nav-text">解决方案一般有两种</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-防止垂直-margin-重叠"><span class="nav-number">3.3.</span> <span class="nav-text">3. 防止垂直 margin 重叠</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浮动和绝对定位不与任何元素产生-margin-折叠"><span class="nav-number">3.3.1.</span> <span class="nav-text">浮动和绝对定位不与任何元素产生 margin 折叠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己经验添加"><span class="nav-number">3.3.2.</span> <span class="nav-text">自己经验添加</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -1274,7 +1150,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/03/13/flex布局/'
+    refer: '2019/03/13/BFC/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
