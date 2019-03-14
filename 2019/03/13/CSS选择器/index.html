@@ -143,18 +143,18 @@
 
 
 
-  <meta name="description" content="前端程序猿">
-<meta name="keywords" content="前端 javascript html css vue react es6 webpack">
+  <meta name="description" content="CSS选择器选择器类型 基础选择器 组合选择器 属性选择器 伪类选择器 伪元素选择器   基础选择器   选择器 含义     * 通用元素选择器，匹配页面任何元素（这也就决定了我们很少使用）   #id id选择器，匹配特定id的元素   .class 类选择器，匹配class包含(不是等于)特定类的元素   element 标签选择器     组合选择器   选择器 含义     E,F 多元">
+<meta name="keywords" content="CSS,选择器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS选择器">
 <meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/CSS选择器/index.html">
 <meta property="og:site_name" content="ZombieBrand">
-<meta property="og:description" content="前端程序猿">
+<meta property="og:description" content="CSS选择器选择器类型 基础选择器 组合选择器 属性选择器 伪类选择器 伪元素选择器   基础选择器   选择器 含义     * 通用元素选择器，匹配页面任何元素（这也就决定了我们很少使用）   #id id选择器，匹配特定id的元素   .class 类选择器，匹配class包含(不是等于)特定类的元素   element 标签选择器     组合选择器   选择器 含义     E,F 多元">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-13T09:07:11.222Z">
+<meta property="og:updated_time" content="2019-03-14T12:02:30.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS选择器">
-<meta name="twitter:description" content="前端程序猿">
+<meta name="twitter:description" content="CSS选择器选择器类型 基础选择器 组合选择器 属性选择器 伪类选择器 伪元素选择器   基础选择器   选择器 含义     * 通用元素选择器，匹配页面任何元素（这也就决定了我们很少使用）   #id id选择器，匹配特定id的元素   .class 类选择器，匹配class包含(不是等于)特定类的元素   element 标签选择器     组合选择器   选择器 含义     E,F 多元">
 
 
 
@@ -454,8 +454,42 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-14 20:02:30" itemprop="dateModified" datetime="2019-03-14T20:02:30+08:00">2019-03-14</time>
+              
+            
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -486,7 +520,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">0</span>
+                <span title="本文字数">5.1k</span>
               
 
               
@@ -500,7 +534,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -520,7 +554,349 @@
       
 
       
-        
+        <h1 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h1><h2 id="选择器类型"><a href="#选择器类型" class="headerlink" title="选择器类型"></a>选择器类型</h2><ol>
+<li>基础选择器</li>
+<li>组合选择器</li>
+<li>属性选择器</li>
+<li>伪类选择器</li>
+<li>伪元素选择器</li>
+</ol>
+<hr>
+<h2 id="基础选择器"><a href="#基础选择器" class="headerlink" title="基础选择器"></a>基础选择器</h2><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>通用元素选择器，匹配页面任何元素（这也就决定了我们很少使用）</td>
+</tr>
+<tr>
+<td>#id</td>
+<td>id选择器，匹配特定id的元素</td>
+</tr>
+<tr>
+<td>.class</td>
+<td>类选择器，匹配class包含(不是等于)特定类的元素</td>
+</tr>
+<tr>
+<td>element</td>
+<td>标签选择器</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="组合选择器"><a href="#组合选择器" class="headerlink" title="组合选择器"></a>组合选择器</h2><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E,F</td>
+<td>多元素选择器，用,分隔，同时匹配元素E或元素F</td>
+</tr>
+<tr>
+<td>E F</td>
+<td>后代选择器，用空格分隔，匹配E元素所有的后代（不只是子元素、子元素向下递归）元素F</td>
+</tr>
+<tr>
+<td>E&gt;F</td>
+<td>子元素选择器，用&gt;分隔，匹配E元素的所有直接子元素</td>
+</tr>
+<tr>
+<td>E+F</td>
+<td>直接相邻选择器，匹配E元素之后的相邻的同级元素F</td>
+</tr>
+<tr>
+<td>E~F</td>
+<td>普通相邻选择器（弟弟选择器），匹配E元素之后的同级元素F（无论直接相邻与否）</td>
+</tr>
+<tr>
+<td>.class1.class2</td>
+<td>id和class选择器和选择器连写的时候中间没有分隔符，. 和 # 本身充当分隔符的元素</td>
+</tr>
+<tr>
+<td>element#id</td>
+<td>id和class选择器和选择器连写的时候中间没有分隔符，. 和 # 本身充当分隔符的元素</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E[attr]</td>
+<td>匹配所有具有属性attr的元素，div[id]就能取到所有有id属性的div</td>
+</tr>
+<tr>
+<td>E[attr = value]</td>
+<td>匹配属性attr值为value的元素，div[id=test],匹配id=test的div</td>
+</tr>
+<tr>
+<td>E[attr ~= value]</td>
+<td>匹配所有属性attr具有多个空格分隔、其中一个值等于value的元素</td>
+</tr>
+<tr>
+<td>E[attr ^= value]</td>
+<td>匹配属性attr的值以value开头的元素</td>
+</tr>
+<tr>
+<td>E[attr $= value]</td>
+<td>匹配属性attr的值以value结尾的元素</td>
+</tr>
+<tr>
+<td>E[attr *= value]</td>
+<td>匹配属性attr的值包含value的元素</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="伪类选择器"><a href="#伪类选择器" class="headerlink" title="伪类选择器"></a>伪类选择器</h2><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:first-child</td>
+<td>匹配作为长子（第一个子女）的元素E</td>
+</tr>
+<tr>
+<td>E:link</td>
+<td>匹配所有未被点击的链接</td>
+</tr>
+<tr>
+<td>E:visited</td>
+<td>匹配所有已被点击的链接</td>
+</tr>
+<tr>
+<td>E:active</td>
+<td>匹配鼠标已经其上按下、还没有释放的E元素</td>
+</tr>
+<tr>
+<td>E:hover</td>
+<td>匹配鼠标悬停其上的E元素</td>
+</tr>
+<tr>
+<td>E:focus</td>
+<td>匹配获得当前焦点的E元素</td>
+</tr>
+<tr>
+<td>E:lang(c)</td>
+<td>匹配lang属性等于c的E元素</td>
+</tr>
+<tr>
+<td>E:enabled</td>
+<td>匹配表单中可用的元素</td>
+</tr>
+<tr>
+<td>E:disabled</td>
+<td>匹配表单中禁用的元素</td>
+</tr>
+<tr>
+<td>E:checked</td>
+<td>匹配表单中被选中的radio或checkbox元素</td>
+</tr>
+<tr>
+<td>E::selection</td>
+<td>匹配用户当前选中的元素</td>
+</tr>
+<tr>
+<td>所有选择器列表在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference#%E9%80%89%E6%8B%A9%E5%99%A8" target="_blank" rel="noopener">MDN</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="伪类选择器-1"><a href="#伪类选择器-1" class="headerlink" title="伪类选择器"></a>伪类选择器</h2><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:root</td>
+<td>匹配文档的根元素，对于HTML文档，就是HTML元素</td>
+</tr>
+<tr>
+<td>E:nth-child(n)</td>
+<td>匹配其父元素的第n个子元素，第一个编号为1</td>
+</tr>
+<tr>
+<td>E:nth-last-child(n)</td>
+<td>匹配其父元素的倒数第n个子元素，第一个编号为1</td>
+</tr>
+<tr>
+<td>E:nth-of-type(n)</td>
+<td>与:nth-child()作用类似，但是仅匹配使用同种标签的元素</td>
+</tr>
+<tr>
+<td>E:nth-last-of-type(n)</td>
+<td>与:nth-last-child() 作用类似，但是仅匹配使用同种标签的元素</td>
+</tr>
+<tr>
+<td>E:last-child</td>
+<td>匹配父元素的最后一个子元素，等同于:nth-last-child(1)</td>
+</tr>
+<tr>
+<td>E:first-of-type</td>
+<td>匹配父元素下使用同种标签的第一个子元素，等同于:nth-of-type(1)</td>
+</tr>
+<tr>
+<td>E:last-of-type</td>
+<td>匹配父元素下使用同种标签的最后一个子元素，等同于:nth-last-of-type(1)</td>
+</tr>
+<tr>
+<td>E:only-child</td>
+<td>匹配父元素下仅有的一个子元素，等同于:first-child:last-child或 :nth-child(1):nth-last-child(1)</td>
+</tr>
+<tr>
+<td>E:only-of-type</td>
+<td>匹配父元素下使用同种标签的唯一一个子元素，等同于:first-of-type:last-of-type或 :nth-of-type(1):nth-last-of-type(1)</td>
+</tr>
+<tr>
+<td>E:empty</td>
+<td>匹配一个不包含任何子元素的元素，文本节点也被看作子元素</td>
+</tr>
+<tr>
+<td>E:not(selector)</td>
+<td>匹配不符合当前选择器的任何元素</td>
+</tr>
+</tbody>
+</table>
+<h3 id="n的取值"><a href="#n的取值" class="headerlink" title="n的取值"></a>n的取值</h3><p>1，2，3，4，5<br>2n+1, 2n, 4n-1<br>odd, even</p>
+<hr>
+<h2 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h2><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E::first-line</td>
+<td>匹配E元素内容的第一行</td>
+</tr>
+<tr>
+<td>E::first-letter</td>
+<td>匹配E元素内容的第一个字母</td>
+</tr>
+<tr>
+<td>E::before</td>
+<td>在E元素之前插入生成的内容</td>
+</tr>
+<tr>
+<td>E::after</td>
+<td>在E元素之后插入生成的内容</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="CSS优先级"><a href="#CSS优先级" class="headerlink" title="CSS优先级"></a>CSS优先级</h2><p>从高到低分别是</p>
+<ol>
+<li>在属性后面使用 !important 会覆盖页面内任何位置定义的元素样式</li>
+<li>作为style属性写在元素标签上的内联样式</li>
+<li>id选择器</li>
+<li>类选择器</li>
+<li>伪类选择器</li>
+<li>属性选择器</li>
+<li>标签选择器</li>
+<li>通配符选择器</li>
+<li>浏览器自定义</li>
+</ol>
+<h3 id="复杂场景"><a href="#复杂场景" class="headerlink" title="复杂场景"></a>复杂场景</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#test p.class1 &#123;...&#125;</span><br><span class="line">#test .class1.class2 &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>行内样式 <code>&lt;div style=&quot;xxx&quot;&gt;&lt;/div&gt;</code>==&gt; a</li>
+<li>ID 选择器 ==&gt; b</li>
+<li>类，属性选择器和伪类选择器 ==&gt; c</li>
+<li>标签选择器、伪元素 ==&gt; d<br>示例：</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">*             &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=0 -&gt; 0,0,0,0 */</span></span><br><span class="line"><span class="selector-tag">p</span>             &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=1 -&gt; 0,0,0,1 */</span></span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>       &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=2 -&gt; 0,0,0,2 */</span></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span>         &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=2 -&gt; 0,0,0,2 */</span></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">ol</span>+<span class="selector-tag">li</span>      &#123;&#125;  <span class="comment">/* a=0 b=0 c=0 d=3 -&gt; 0,0,0,3 */</span></span><br><span class="line"><span class="selector-tag">h1</span>+<span class="selector-tag">input</span><span class="selector-attr">[type=hidden]</span>&#123;&#125;  <span class="comment">/* a=0 b=0 c=1 d=2 -&gt; 0,0,1,1 */</span></span><br><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">ol</span> <span class="selector-tag">li</span><span class="selector-class">.active</span>   &#123;&#125;  <span class="comment">/* a=0 b=0 c=1 d=3 -&gt; 0,0,1,3 */</span></span><br><span class="line"><span class="selector-id">#ct</span> <span class="selector-class">.box</span> <span class="selector-tag">p</span>        &#123;&#125;  <span class="comment">/* a=0 b=1 c=1 d=1 -&gt; 0,1,1,1 */</span></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-id">#header</span><span class="selector-pseudo">:after</span>  &#123;&#125;  <span class="comment">/* a=0 b=1 c=0 d=2 -&gt; 0,1,0,2 */</span></span><br><span class="line">style=""          /* a=1 b=0 c=0 d=0 -&gt; 1,0,0,0 */</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="样式覆盖"><a href="#样式覆盖" class="headerlink" title="样式覆盖"></a>样式覆盖</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;<span class="attribute">color</span>: <span class="number">#333</span>;&#125;</span><br><span class="line">....</span><br><span class="line"><span class="selector-tag">div</span> &#123;<span class="attribute">color</span>: <span class="number">#666</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>这样div文案的颜色明显会是#666</p>
+<hr>
+<h2 id="class-和-id-的使用场景"><a href="#class-和-id-的使用场景" class="headerlink" title="class 和 id 的使用场景?"></a>class 和 id 的使用场景?</h2><p>id是制定标签的唯一标识，格式为：<code>&lt;input type=password id=&quot;userpwd&quot;&gt;</code> ,id属性的值在当前的page页面要是唯一的。<br>应用场景：</p>
+<ol>
+<li>根据提供的唯一id号，快速获取标签对象。如：<code>document.getElementById(id)</code></li>
+<li>用于充当label标签for属性的值：示例：<code>&lt;label for=&#39;userid&#39;&gt;用户名：&lt;/label&gt;</code>，表示单击此label标签时，id为userid的标签获得焦点。</li>
+</ol>
+<p>Class用来指定标签的类名，格式为<code>&lt;input type=button class=&quot;btnsubmit&quot; /&gt;</code>，可以把多个类，放在一个class属性里，但必须用空格隔开；如：<code>class=&#39;btnsubmit btnopen&#39;</code><br>应用场景：CSS操作，把一些特定样式放到一个class类中，需要此样式的标签，可以在添加此类。</p>
+<h2 id="a-link-a-hover-a-active-a-visited-的顺序是怎样的？-为什么？"><a href="#a-link-a-hover-a-active-a-visited-的顺序是怎样的？-为什么？" class="headerlink" title="a:link, a:hover, a:active, a:visited 的顺序是怎样的？ 为什么？"></a>a:link, a:hover, a:active, a:visited 的顺序是怎样的？ 为什么？</h2><p>正确顺序为：a:link、a:visited、a:hover、a:active<br>原因：</p>
+<ol>
+<li>鼠标经过的“未访问链接”同时拥有a:link、a:hover、a:active三种属性，后面的属性会覆盖前面的属性定义，所以a:link必须放在a:hover的前面，a:hover必须放在a:active的前</li>
+<li>鼠标经过的“已访问链接”同时拥有a:visited、a:hover、a:link三种属性，后面的属性会覆盖前面的属性定义，此时a:visted和a:link必须放在a:hover的前面</li>
+</ol>
+<p>以下选择器分别是什么意思?</p>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#header{}</td>
+<td>选择id为header的元素</td>
+</tr>
+<tr>
+<td>.header{}</td>
+<td>选择class为header的元素</td>
+</tr>
+<tr>
+<td>.header .logo{}</td>
+<td>选择class为header元素下的子元素及所有后代元素class名为logo的元素</td>
+</tr>
+<tr>
+<td>.header.mobile{}</td>
+<td>选择同时有class名header和mobile的元素</td>
+</tr>
+<tr>
+<td>.header p, .header h3{}</td>
+<td>选择class为header下的所有p标签以及class为header所有h3标签</td>
+</tr>
+<tr>
+<td>#header .nav&gt;li{}</td>
+<td>选择id为header下的class为nav的直接子元素li</td>
+</tr>
+<tr>
+<td>#header a:hover{}</td>
+<td>选择id为header下的所以a:hover的伪类选择器元素</td>
+</tr>
+<tr>
+<td>#header .logo~p{}</td>
+<td>选择id为header下的class为logo的元素之后的所有同级p标签</td>
+</tr>
+<tr>
+<td>#header input[type=”text”]{}</td>
+<td>选择id为header下的所有input标签的属性值type=”text”的元素</td>
+</tr>
+</tbody>
+</table>
+<h2 id="div-first-child、div-first-of-type、div-first-child和div-first-of-type的作用和区别-（注意空格的作用）"><a href="#div-first-child、div-first-of-type、div-first-child和div-first-of-type的作用和区别-（注意空格的作用）" class="headerlink" title="div:first-child、div:first-of-type、div :first-child和div :first-of-type的作用和区别 （注意空格的作用）"></a>div:first-child、div:first-of-type、div :first-child和div :first-of-type的作用和区别 （注意空格的作用）</h2><p>div:first-child：匹配div元素父元素中的第一个div元素<br>div :first-child：匹配div元素下的第一个子元素<br>div:first-of-type：匹配div元素父元素下的同种类型(这里是div元素)的第一个元素<br>div :first-of-type：匹配div元素下同种类型的第一个元素</p>
+<h2 id="运行如下代码，解析下输出样式的原因。"><a href="#运行如下代码，解析下输出样式的原因。" class="headerlink" title="运行如下代码，解析下输出样式的原因。"></a>运行如下代码，解析下输出样式的原因。</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.item1</span><span class="selector-pseudo">:first-child</span>&#123;</span></span><br><span class="line"><span class="undefined">  color: red;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.item1</span><span class="selector-pseudo">:first-of-type</span>&#123;</span></span><br><span class="line"><span class="undefined">  background: blue;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ct"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span>aa<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span>bb<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span>ccc<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>原因：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item1</span><span class="selector-pseudo">:first-child</span>&#123;</span><br><span class="line"> <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义选择了class名为item1的父元素的第一个子元素，即div下的第一个元素p的文字颜色显示为红色</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item1</span><span class="selector-pseudo">:first-of-type</span>&#123;</span><br><span class="line">  <span class="attribute">background</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义选择了class名为item1的父元素下的同种类型（p与h3）的第一个元素，即div下的p标签和第一个h3标签 （包括其嵌套的元素）的背景颜色显示为蓝色</p>
+
       
     </div>
 
@@ -540,6 +916,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/ZombieBrand.github.io/tags/CSS/" rel="tag"><i class="fa fa-tag"></i> CSS</a>
+          
+            <a href="/ZombieBrand.github.io/tags/选择器/" rel="tag"><i class="fa fa-tag"></i> 选择器</a>
+          
+        </div>
       
 
       
@@ -611,8 +995,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -629,7 +1022,7 @@
                 
                   <a href="/ZombieBrand.github.io/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -648,7 +1041,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -669,7 +1070,31 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -785,6 +1210,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS选择器"><span class="nav-number">1.</span> <span class="nav-text">CSS选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#选择器类型"><span class="nav-number">1.1.</span> <span class="nav-text">选择器类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础选择器"><span class="nav-number">1.2.</span> <span class="nav-text">基础选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合选择器"><span class="nav-number">1.3.</span> <span class="nav-text">组合选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器"><span class="nav-number">1.4.</span> <span class="nav-text">属性选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类选择器"><span class="nav-number">1.5.</span> <span class="nav-text">伪类选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类选择器-1"><span class="nav-number">1.6.</span> <span class="nav-text">伪类选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#n的取值"><span class="nav-number">1.6.1.</span> <span class="nav-text">n的取值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素选择器"><span class="nav-number">1.7.</span> <span class="nav-text">伪元素选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS优先级"><span class="nav-number">1.8.</span> <span class="nav-text">CSS优先级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂场景"><span class="nav-number">1.8.1.</span> <span class="nav-text">复杂场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式覆盖"><span class="nav-number">1.8.2.</span> <span class="nav-text">样式覆盖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#class-和-id-的使用场景"><span class="nav-number">1.9.</span> <span class="nav-text">class 和 id 的使用场景?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-link-a-hover-a-active-a-visited-的顺序是怎样的？-为什么？"><span class="nav-number">1.10.</span> <span class="nav-text">a:link, a:hover, a:active, a:visited 的顺序是怎样的？ 为什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#div-first-child、div-first-of-type、div-first-child和div-first-of-type的作用和区别-（注意空格的作用）"><span class="nav-number">1.11.</span> <span class="nav-text">div:first-child、div:first-of-type、div :first-child和div :first-of-type的作用和区别 （注意空格的作用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行如下代码，解析下输出样式的原因。"><span class="nav-number">1.12.</span> <span class="nav-text">运行如下代码，解析下输出样式的原因。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -813,7 +1255,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">121k</span>
   
 
   
@@ -824,7 +1266,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">1:50</span>
   
 </div>
 
@@ -844,7 +1286,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.5k字</span>
+  <span class="post-count">博客全站共45.4k字</span>
 </div>
         
 <div class="busuanzi-count">

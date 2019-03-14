@@ -143,18 +143,18 @@
 
 
 
-  <meta name="description" content="前端程序猿">
-<meta name="keywords" content="前端 javascript html css vue react es6 webpack">
+  <meta name="description" content="浮动基本概念浮动模型也是一种可视化格式模型，浮动的框可以左右移动（根据float属性值而定），直到它的外边缘碰到包含框或者另一个浮动元素的框的边缘。浮动元素不在文档的普通流中，文档的普通流中的元素表现的就像浮动元素不存在一样.  普通流：（normal flow)，或者称之为常规流。 浮动：浮动的框可以左右移动，直至它的外边缘遇到包含框或者另一个浮动框的边缘。浮动框不属于文档中的普通流，当一个元素">
+<meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浮动">
 <meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/13/浮动/index.html">
 <meta property="og:site_name" content="ZombieBrand">
-<meta property="og:description" content="前端程序猿">
+<meta property="og:description" content="浮动基本概念浮动模型也是一种可视化格式模型，浮动的框可以左右移动（根据float属性值而定），直到它的外边缘碰到包含框或者另一个浮动元素的框的边缘。浮动元素不在文档的普通流中，文档的普通流中的元素表现的就像浮动元素不存在一样.  普通流：（normal flow)，或者称之为常规流。 浮动：浮动的框可以左右移动，直至它的外边缘遇到包含框或者另一个浮动框的边缘。浮动框不属于文档中的普通流，当一个元素">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-13T09:06:58.072Z">
+<meta property="og:updated_time" content="2019-03-14T12:03:47.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浮动">
-<meta name="twitter:description" content="前端程序猿">
+<meta name="twitter:description" content="浮动基本概念浮动模型也是一种可视化格式模型，浮动的框可以左右移动（根据float属性值而定），直到它的外边缘碰到包含框或者另一个浮动元素的框的边缘。浮动元素不在文档的普通流中，文档的普通流中的元素表现的就像浮动元素不存在一样.  普通流：（normal flow)，或者称之为常规流。 浮动：浮动的框可以左右移动，直至它的外边缘遇到包含框或者另一个浮动框的边缘。浮动框不属于文档中的普通流，当一个元素">
 
 
 
@@ -454,8 +454,42 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-14 20:03:47" itemprop="dateModified" datetime="2019-03-14T20:03:47+08:00">2019-03-14</time>
+              
+            
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -486,7 +520,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">0</span>
+                <span title="本文字数">3.9k</span>
               
 
               
@@ -500,7 +534,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -520,7 +554,63 @@
       
 
       
-        
+        <h2 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h2><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>浮动模型也是一种可视化格式模型，浮动的框可以左右移动（根据float属性值而定），直到它的外边缘碰到包含框或者另一个浮动元素的框的边缘。浮动元素不在文档的普通流中，文档的普通流中的元素表现的就像浮动元素不存在一样.</p>
+<ol>
+<li>普通流：（normal flow)，或者称之为常规流。</li>
+<li>浮动：浮动的框可以左右移动，直至它的外边缘遇到包含框或者另一个浮动框的边缘。浮动框不属于文档中的普通流，当一个元素浮动之后，不会影响到块级框的布局而只会影响内联框（通常是文本）的排列，文档中的普通流就会表现得和浮动框不存在一样，当浮动框高度超出包含框的时候，也就会出现包含框不会自动伸高来闭合浮动元素（“高度塌陷”现象）。顾名思义，就是漂浮于普通流之上，像浮云一样，但是只能左右浮动。</li>
+</ol>
+<p>而 float 元素脱离了 normal flow 就相当于进入了一个平行空间，不再与其后边及父级块级元素发生反应，这一特性使得 float 元素无法撑起父元素的高度，</p>
+<ol>
+<li>导致父元素塌陷。</li>
+<li>其他的文本和行内元素环绕 float元素，但是 float 后的块级元素会与其发生重叠。</li>
+</ol>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><h3 id="因为浮动元素的父元素有高度塌陷的问题。-顺便可以解决浮动元素与普通流中的块级元素有重叠的问题"><a href="#因为浮动元素的父元素有高度塌陷的问题。-顺便可以解决浮动元素与普通流中的块级元素有重叠的问题" class="headerlink" title="因为浮动元素的父元素有高度塌陷的问题。 (顺便可以解决浮动元素与普通流中的块级元素有重叠的问题)"></a>因为浮动元素的父元素有高度塌陷的问题。 (顺便可以解决浮动元素与普通流中的块级元素有重叠的问题)</h3><h2 id="两种方案"><a href="#两种方案" class="headerlink" title="两种方案"></a>两种方案</h2><ul>
+<li>采用clear属性清除浮动.通过在浮动元素的末尾添加一个空元素，设置 clear：both属性，after伪元素其实也是通过 content 在元素的后面生成了内容为一个块级元素.</li>
+<li>让浮动元素的父元素形成BFC，可以包含浮动</li>
+</ul>
+<h2 id="实施"><a href="#实施" class="headerlink" title="实施"></a>实施</h2><h3 id="采用clear属性："><a href="#采用clear属性：" class="headerlink" title="采用clear属性："></a>采用clear属性：</h3><ol>
+<li>浮动的父元素设置 :after伪元素，<code>clear:both/left/right;</code>，<code>content=&quot;&quot;;</code>， <code>display:block/table;</code>。<br>a. 至于content里面是点还是其他都是可以的,里面内容为空firefox直到7.0 content:”” 仍然会产生额外的空隙(待亲自实验)。<br>b. display:block 使生成的元素以块级元素显示,占满剩余空间。<br>c. content 为点的话可以加 height:0 避免生成内容破坏原有布局的高度； visibility:hidden 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互。</li>
+<li>在浮动元素末尾加一个空div，并设置clear属性。</li>
+</ol>
+<h3 id="让浮动元素的父元素形成BFC："><a href="#让浮动元素的父元素形成BFC：" class="headerlink" title="让浮动元素的父元素形成BFC："></a>让浮动元素的父元素形成BFC：</h3><ol>
+<li>float: left / right(除none以外值)</li>
+<li>display: table-cell / table-caption / inline-block/flex/inline-flex</li>
+<li>overflow: hidden / auto / scroll (除visible以外)</li>
+<li>position: absolute / fixed<br>BFC的几种方式都有各自的问题，上面提到使用BFC使用float的时候会使父容器长度缩短，而且还有个重要缺陷——父容器float解决了其塌陷问题，那么父容器的父容器怎么办？overflow属性会影响滚动条和绝对定位的元素；position会改变元素的定位方式，这是我们不希望的，display这几种方式依然没有解决低版本IE问题。</li>
+</ol>
+<h2 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h2><p>BFC的全称是 Block Format Content 块级格式化上下文<br>三个特性：</p>
+<ol>
+<li>BFC会阻止垂直外边距（margin-top、margin-bottom）重叠<br>a. 按照BFC的定义，只有同属于一个BFC时，两个元素才有可能发生垂直margin的重叠，这个包括相邻元素，嵌套元素，只要他们之间没有阻挡(例如边框，非空内容，padding等)就会发生margin重叠。<br>b. 因此要解决margin重叠问题，只要让它们不在同一个BFC就行了，但是对于两个相邻元素来说，意义不大，没有必要给它们加个外壳，但是对于嵌套元素来说就很有必要了，只要把父元素设为BFC就可以了。这样子元素的margin就不会和父元素的margin发生重叠</li>
+<li>BFC不会重叠浮动元素</li>
+<li>BFC可以包含浮动</li>
+</ol>
+<p>通俗地来说：创建了 BFC的元素就是一个独立的盒子，里面的子元素不会在布局上影响外面的元素，反之亦然，同时BFC任然属于文档中的普通流。</p>
+<p>我们可以利用BFC的第三条特性来“清浮动”，这里其实说清浮动已经不再合适，应该说包含浮动。也就是说只要父容器形成BFC就可以。</p>
+<ul>
+<li>局限性<br>上面提到使用BFC使用float的时候会使父容器长度缩短，而且还有个重要缺陷——父容器float解决了其塌陷问题，那么父容器的父容器怎么办？难道要全部使用folat吗（确实有这种布局方式倒是）。BFC的几种方式都有各自的问题，overflow属性会影响滚动条和绝对定位的元素；position会改变元素的定位方式，这是我们不希望的，display这几种方式依然没有解决低版本IE问题。。。</li>
+</ul>
+<h2 id="hasLayout"><a href="#hasLayout" class="headerlink" title="hasLayout"></a>hasLayout</h2><p>我们知道在IE6、7内有个布局Layout的概念，很多bug正是由hasLayout导致的</p>
+<p>当元素的hasLayout属性值为false的时候，元素的尺寸和位置由最近拥有布局的祖先元素控制<br>当元素的hasLayout属性值为true的时候会达到和BFC类似的效果，元素负责本身及其子元素的尺寸设置和定位<br>利用这点儿在IE6、7下完成清浮动，先看看怎么使元素hasLayout为true</p>
+<p>position: absolute<br>float: left|right<br>display: inline-block<br>width: 除 “auto” 外的任意值<br>height: 除 “auto” 外的任意值<br>zoom: 除 “normal” 外的任意值<br>writing-mode: tb-rl<br>在IE7中使用overflow: hidden|scroll|auto 也可以使hasLayout为true</p>
+<p>综上所述：</p>
+<p>在支持BFC的浏览器（IE8+，firefox，chrome，safari）可以通过创建新的BFC闭合浮动；<br>在不支持 BFC的浏览器 （IE6-7），可以通过触发 hasLayout 闭合浮动。</p>
+<h2 id="通用的清理浮动方案"><a href="#通用的清理浮动方案" class="headerlink" title="通用的清理浮动方案"></a>通用的清理浮动方案</h2><p>一、</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">"."</span>;</span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">visibility</span>:hidden;</span><br><span class="line">  <span class="attribute">clear</span>:both; </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">  *zoom:1; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>display:block 使生成的元素以块级元素显示,占满剩余空间;</li>
+<li>height:0 避免生成内容破坏原有布局的高度。</li>
+<li>visibility:hidden 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互;</li>
+<li>通过 content:”.”生成内容作为最后一个元素，至于content里面是点还是其他都是可以的，例如oocss里面就有经典的 content:”XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX”,有些版本可能content 里面内容为空,一丝冰凉不推荐这样做的,firefox直到7.0 content:”” 仍然会产生额外的空隙；(待验证，目前好像都是采用空的比较多)</li>
+<li>zoom：1 触发IE hasLayout。</li>
+</ol>
+<p>二、</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 全浏览器通用的clearfix方案</span><br><span class="line">// 引入了zoom以支持IE6/7</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    *zoom:1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">" "</span>;</span><br><span class="line">    <span class="attribute">display</span>:table;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们想要与BFC行为保持一致，或者解决上边距折叠问题</p>
+<p>三、<br>精益求精方案：<br>由Nicolas Gallagher 提出来的,原文:<a href="http://nicolasgallagher.com/micro-clearfix-hack/" target="_blank" rel="noopener">A new micro clearfix hackNicolas Gallagher</a>，该方法也不存在firefox中空隙的问题。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For modern browsers */</span></span><br><span class="line">// 全浏览器通用的clearfix方案【推荐】</span><br><span class="line">// 引入了zoom以支持IE6/7</span><br><span class="line">// 同时加入:before以解决现代浏览器上边距折叠的问题</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.cf</span><span class="selector-pseudo">:before</span>,<span class="selector-class">.cf</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line"><span class="attribute">content</span>:<span class="string">" "</span>;</span><br><span class="line"><span class="attribute">display</span>:table;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.cf</span><span class="selector-pseudo">:after</span> &#123; </span><br><span class="line"><span class="attribute">clear</span>:both; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* For IE 6/7 (trigger hasLayout) */</span></span><br><span class="line"><span class="selector-class">.cf</span> &#123; <span class="attribute">zoom</span>:<span class="number">1</span>; &#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是：<br>上面的方法用到了 ：before伪元素，是用来处理margin边距重叠的，由于内部元素 float 创建了BFC，导致内部元素的margin-top和 上一个盒子的margin-bottom 发生叠加。如果这不是你所希望的，那么就可以加上before，如果只是单纯的闭合浮动，after就够了</p>
+<p>除了以上方案外，还有一些其他的方案，比如将父元素的 display 样式属性改为display:table或者position:fixed，但是这些方案容易带来更大的副作用，得不偿失，所以实践中一般都会使用clear属性/修改父元素的overflow属性</p>
+
       
     </div>
 
@@ -540,6 +630,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/ZombieBrand.github.io/tags/CSS/" rel="tag"><i class="fa fa-tag"></i> CSS</a>
+          
+        </div>
       
 
       
@@ -611,8 +707,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -629,7 +734,7 @@
                 
                   <a href="/ZombieBrand.github.io/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -648,7 +753,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -669,7 +782,31 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -785,6 +922,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浮动"><span class="nav-number">1.</span> <span class="nav-text">浮动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决问题"><span class="nav-number">3.</span> <span class="nav-text">解决问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#因为浮动元素的父元素有高度塌陷的问题。-顺便可以解决浮动元素与普通流中的块级元素有重叠的问题"><span class="nav-number">3.1.</span> <span class="nav-text">因为浮动元素的父元素有高度塌陷的问题。 (顺便可以解决浮动元素与普通流中的块级元素有重叠的问题)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种方案"><span class="nav-number">4.</span> <span class="nav-text">两种方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实施"><span class="nav-number">5.</span> <span class="nav-text">实施</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#采用clear属性："><span class="nav-number">5.1.</span> <span class="nav-text">采用clear属性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#让浮动元素的父元素形成BFC："><span class="nav-number">5.2.</span> <span class="nav-text">让浮动元素的父元素形成BFC：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC"><span class="nav-number">6.</span> <span class="nav-text">BFC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hasLayout"><span class="nav-number">7.</span> <span class="nav-text">hasLayout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通用的清理浮动方案"><span class="nav-number">8.</span> <span class="nav-text">通用的清理浮动方案</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -813,7 +967,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">121k</span>
   
 
   
@@ -824,7 +978,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">1:50</span>
   
 </div>
 
@@ -844,7 +998,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.5k字</span>
+  <span class="post-count">博客全站共45.4k字</span>
 </div>
         
 <div class="busuanzi-count">
