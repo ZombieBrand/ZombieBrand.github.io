@@ -151,12 +151,12 @@
 <meta property="og:site_name" content="ZombieBrand">
 <meta property="og:description" content="在实际开发中，ES6已经非常普及了。掌握ES6的知识变成了一种必须。尽管我们在使用时仍然需要经过babel编译。 ES6彻底改变了前端的编码风格，可以说对于前端的影响非常巨大。值得高兴的是，如果你熟悉ES5，学习ES6并不需要花费太多的时间就可以掌握，因为常用的基础语法并不多，花少量的时间，就可以开始我们的ES6之旅了。 这篇文章不会详细的告诉你ES6的每一个细节知识，只会根据我自己的开发经验，将">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄ES6常用知识合集/assets/599584-0bb3aa3c263aebf0.png">
-<meta property="og:updated_time" content="2019-03-17T13:54:55.931Z">
+<meta property="og:image" content="https://zombrbrand.github.io/assets/599584-0bb3aa3c263aebf0.png">
+<meta property="og:updated_time" content="2019-03-17T14:08:54.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="摘抄ES6常用知识合集">
 <meta name="twitter:description" content="在实际开发中，ES6已经非常普及了。掌握ES6的知识变成了一种必须。尽管我们在使用时仍然需要经过babel编译。 ES6彻底改变了前端的编码风格，可以说对于前端的影响非常巨大。值得高兴的是，如果你熟悉ES5，学习ES6并不需要花费太多的时间就可以掌握，因为常用的基础语法并不多，花少量的时间，就可以开始我们的ES6之旅了。 这篇文章不会详细的告诉你ES6的每一个细节知识，只会根据我自己的开发经验，将">
-<meta name="twitter:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄ES6常用知识合集/assets/599584-0bb3aa3c263aebf0.png">
+<meta name="twitter:image" content="https://zombrbrand.github.io/assets/599584-0bb3aa3c263aebf0.png">
 
 
 
@@ -452,7 +452,7 @@
                 
               
 
-              <time title="创建时间：2019-03-17 16:11:22 / 修改时间：21:54:55" itemprop="dateCreated datePublished" datetime="2019-03-17T16:11:22+08:00">2019-03-17</time>
+              <time title="创建时间：2019-03-17 16:11:22 / 修改时间：22:08:54" itemprop="dateCreated datePublished" datetime="2019-03-17T16:11:22+08:00">2019-03-17</time>
             
 
             
@@ -556,7 +556,7 @@
 <p>而这个简单的例子，会被编译为：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> _a = <span class="number">20</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);  <span class="comment">// a is not defined</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="built_in">console</span>.log(a);   <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// a is not defined</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="./assets/599584-0bb3aa3c263aebf0.png" alt="变量提升demo示例"></p>
+<p><img src="/assets/599584-0bb3aa3c263aebf0.png" alt="变量提升demo示例"></p>
 <p>当然，你的代码编译成为了ES5之后，仍然会存在变量提升，这一点只需要我们记住即可。在实际使用中，也需要尽量避免使用变量提升的特性带来的负面影响。只有在面试题中，才会对变量提升不停的滥用。</p>
 <p>使用ES6，我们需要全面使用let/const替换var，那么什么时候用let，什么时候用const就成为了一个大家要熟练区分的一个知识点。</p>
 <p><strong>我们常常使用let来声明一个值会被改变的变量，而使用const来声明一个值不会被改变的变量，也可以称之为常量</strong>。</p>

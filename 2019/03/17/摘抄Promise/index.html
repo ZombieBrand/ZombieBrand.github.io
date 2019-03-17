@@ -151,14 +151,14 @@
 <meta property="og:site_name" content="ZombieBrand">
 <meta property="og:description" content="Promise的重要性我认为我没有必要多讲，概括起来说就是必须得掌握，而且还要掌握透彻。这篇文章的开头，主要跟大家分析一下，为什么会有Promise出现。 在实际的使用当中，有非常多的应用场景我们不能立即知道应该如何继续往下执行。最重要也是最主要的一个场景就是ajax请求。通俗来说，由于网速的不同，可能你得到返回值的时间也是不同的，这个时候我们就需要等待，结果出来了之后才知道怎么样继续下去。 12">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄Promise/assets/599584-e41310ad7d0461e5.png">
-<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄Promise/assets/599584-84f1bc8b234fb1c9.png">
-<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄Promise/assets/599584-722d781aa74a2306.png">
-<meta property="og:updated_time" content="2019-03-17T13:54:55.931Z">
+<meta property="og:image" content="https://zombrbrand.github.io/assets/599584-e41310ad7d0461e5.png">
+<meta property="og:image" content="https://zombrbrand.github.io/assets/599584-84f1bc8b234fb1c9.png">
+<meta property="og:image" content="https://zombrbrand.github.io/assets/599584-722d781aa74a2306.png">
+<meta property="og:updated_time" content="2019-03-17T14:08:54.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="摘抄Promise">
 <meta name="twitter:description" content="Promise的重要性我认为我没有必要多讲，概括起来说就是必须得掌握，而且还要掌握透彻。这篇文章的开头，主要跟大家分析一下，为什么会有Promise出现。 在实际的使用当中，有非常多的应用场景我们不能立即知道应该如何继续往下执行。最重要也是最主要的一个场景就是ajax请求。通俗来说，由于网速的不同，可能你得到返回值的时间也是不同的，这个时候我们就需要等待，结果出来了之后才知道怎么样继续下去。 12">
-<meta name="twitter:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄Promise/assets/599584-e41310ad7d0461e5.png">
+<meta name="twitter:image" content="https://zombrbrand.github.io/assets/599584-e41310ad7d0461e5.png">
 
 
 
@@ -454,7 +454,7 @@
                 
               
 
-              <time title="创建时间：2019-03-17 16:12:25 / 修改时间：21:54:55" itemprop="dateCreated datePublished" datetime="2019-03-17T16:12:25+08:00">2019-03-17</time>
+              <time title="创建时间：2019-03-17 16:12:25 / 修改时间：22:08:54" itemprop="dateCreated datePublished" datetime="2019-03-17T16:12:25+08:00">2019-03-17</time>
             
 
             
@@ -613,7 +613,7 @@
 <blockquote>
 <p>requirejs中文文档 <a href="http://www.requirejs.cn/" target="_blank" rel="noopener">http://www.requirejs.cn/</a></p>
 </blockquote>
-<p><img src="./assets/599584-e41310ad7d0461e5.png" alt="代码结构"></p>
+<p><img src="/assets/599584-e41310ad7d0461e5.png" alt="代码结构"></p>
 <p>项目的代码结果如上图所示，所有的html文件都放在根目录下。</p>
 <ul>
 <li>pages: html直接引入的js</li>
@@ -658,9 +658,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">// components/imageCenter.js</span><br><span class="line">define(function(require) &#123;</span><br><span class="line"></span><br><span class="line">    // 利用Promise封装一个加载函数，这里也是可以单独放在一个功能模块中进一步优化</span><br><span class="line">    var imageLoad = function(img) &#123;</span><br><span class="line">        return new Promise(function(resolve, reject) &#123;</span><br><span class="line">            if (img.complete) &#123;</span><br><span class="line">                resolve();</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                img.onload = function(event) &#123;</span><br><span class="line">                    resolve(event);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                img.onerror = function(err) &#123;</span><br><span class="line">                    reject(err);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var imageCenter = function(domList, mode) &#123;</span><br><span class="line"></span><br><span class="line">        domList.forEach(function(item) &#123;</span><br><span class="line">            var img = item.children[0];</span><br><span class="line">            var itemW = item.offsetWidth;</span><br><span class="line">            var itemH = item.offsetHeight;</span><br><span class="line">            var itemR = itemW / itemH;</span><br><span class="line"></span><br><span class="line">            imageLoad(img).then(function() &#123;</span><br><span class="line">                var imgW = img.naturalWidth;</span><br><span class="line">                var imgH = img.naturalHeight;</span><br><span class="line">                var imgR = imgW / imgH;</span><br><span class="line"></span><br><span class="line">                var resultMode = null;</span><br><span class="line"></span><br><span class="line">                switch (mode) &#123;</span><br><span class="line">                    // 这样写是因为期待未来可以扩展其他的展示方式</span><br><span class="line">                    case &apos;aspectFill&apos;:</span><br><span class="line">                        resultMode = imgR &gt; 1 ? &apos;aspectFill-x&apos; : &apos;aspectFill-y&apos;;</span><br><span class="line">                        break;</span><br><span class="line">                    case &apos;wspectFill&apos;:</span><br><span class="line">                        resultMode = itemR &gt; imgR ? &apos;aspectFill-x&apos; : &apos;aspectFill-y&apos;</span><br><span class="line">                        break;</span><br><span class="line">                    default:</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                $(img).addClass(resultMode);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return imageCenter;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>那么在使用时，直接引入这个模块并调用imageCenter方法即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line">var imageCenter = require(&apos;imageCenter&apos;);</span><br><span class="line">var imageWrapList = document.querySelectorAll(&apos;.img-center&apos;);</span><br><span class="line">imageCenter(imageWrapList, &apos;wspectFill&apos;);</span><br></pre></td></tr></table></figure>
-<p><img src="./assets/599584-84f1bc8b234fb1c9.png" alt="一堆尺寸乱七八糟的图片就这样被驯服了"></p>
+<p><img src="/assets/599584-84f1bc8b234fb1c9.png" alt="一堆尺寸乱七八糟的图片就这样被驯服了"></p>
 <p>第三个应用场景，则是自定义弹窗的处理。</p>
-<p><img src="./assets/599584-722d781aa74a2306.png" alt="这种类型的弹窗随处可见，而且十分常用"></p>
+<p><img src="/assets/599584-722d781aa74a2306.png" alt="这种类型的弹窗随处可见，而且十分常用"></p>
 <p>因此自己专门定义一个常用的弹窗就变得非常有必要，这对于我们开发效率的提高非常有帮助。当然，我这里只是简单的写了一个简陋的，仅供参考。</p>
 <p>我们期望的是利用Promise，当我们点击确认时，状态变成resolved，点击取消时，状态变成rejected。这样也方便将弹窗生成与后续的操作处理区分开来。</p>
 <p>先定义一个Dialog模块。使用的是最简单的方式定义，应该不会有什么理解上的困难。主要提供了show和hide2个方法，用于展示和隐藏。</p>
