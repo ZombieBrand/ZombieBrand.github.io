@@ -151,14 +151,14 @@
 <meta property="og:site_name" content="ZombieBrand">
 <meta property="og:description" content="如果要我总结一下学习前端以来我遇到了哪些瓶颈，那么面向对象一定是第一个毫不犹豫想到的。尽管我现在对于面向对象有了一些的了解，但是当初的那种似懂非懂的痛苦，依然历历在目。 为了帮助大家能够更加直观的学习和了解面向对象，我会用尽量简单易懂的描述来展示面向对象的相关知识。并且也准备了一些实用的例子帮助大家更加快速的掌握面向对象的真谛。  jQuery的面向对象实现 封装拖拽 简易版运动框架封装  这可能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-2fc7dad23d112791.png">
-<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-f4ca22c5db668eaf.png">
-<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-c77eb714f66b8185.png">
-<meta property="og:updated_time" content="2019-03-17T08:27:17.327Z">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象/assets/599584-2fc7dad23d112791.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象/assets/599584-f4ca22c5db668eaf.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象/assets/599584-c77eb714f66b8185.png">
+<meta property="og:updated_time" content="2019-03-17T13:54:55.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="摘抄面向对象">
 <meta name="twitter:description" content="如果要我总结一下学习前端以来我遇到了哪些瓶颈，那么面向对象一定是第一个毫不犹豫想到的。尽管我现在对于面向对象有了一些的了解，但是当初的那种似懂非懂的痛苦，依然历历在目。 为了帮助大家能够更加直观的学习和了解面向对象，我会用尽量简单易懂的描述来展示面向对象的相关知识。并且也准备了一些实用的例子帮助大家更加快速的掌握面向对象的真谛。  jQuery的面向对象实现 封装拖拽 简易版运动框架封装  这可能">
-<meta name="twitter:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-2fc7dad23d112791.png">
+<meta name="twitter:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象/assets/599584-2fc7dad23d112791.png">
 
 
 
@@ -454,7 +454,7 @@
                 
               
 
-              <time title="创建时间：2019-03-17 16:20:09 / 修改时间：16:27:17" itemprop="dateCreated datePublished" datetime="2019-03-17T16:20:09+08:00">2019-03-17</time>
+              <time title="创建时间：2019-03-17 16:20:09 / 修改时间：21:54:55" itemprop="dateCreated datePublished" datetime="2019-03-17T16:20:09+08:00">2019-03-17</time>
             
 
             
@@ -616,7 +616,7 @@
 <p>由于每个函数都可以是构造函数，每个对象都可以是原型对象，因此如果在理解原型之初就想的太多太复杂的话，反而会阻碍你的理解，这里我们要学会先简化它们。就单纯的剖析这三者的关系。</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明构造函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过prototye属性，将方法挂载到原型对象上</span></span><br><span class="line">Person.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'tim'</span>, <span class="number">10</span>);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'jak'</span>, <span class="number">22</span>);</span><br><span class="line"><span class="built_in">console</span>.log(p1.getName === p2.getName); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-2fc7dad23d112791.png" alt="图示"></p>
+<p><img src="./assets/599584-2fc7dad23d112791.png" alt="图示"></p>
 <p>通过图示我们可以看出，构造函数的prototype与所有实例对象的<code>__proto__</code>都指向原型对象。而原型对象的constructor指向构造函数。</p>
 <p>除此之外，还可以从图中看出，实例对象实际上对前面我们所说的中间对象的复制，而中间对象中的属性与方法都在构造函数中添加。于是根据构造函数与原型的特性，我们就可以将在构造函数中，通过this声明的属性与方法称为私有变量与方法，它们被当前被某一个实例对象所独有。而通过原型声明的属性与方法，我们可以称之为共有属性与方法，它们可以被所有的实例对象访问。</p>
 <p><strong>当我们访问实例对象中的属性或者方法时，会优先访问实例对象自身的属性和方法。</strong></p>
@@ -637,7 +637,7 @@
 <p>先随意声明一个函数：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>那么我们可以用如下的图来表示这个函数的原型链。</p>
-<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-f4ca22c5db668eaf.png" alt="原型链"></p>
+<p><img src="./assets/599584-f4ca22c5db668eaf.png" alt="原型链"></p>
 <p>其中add是Function对象的实例。而Function的原型对象同时又是Object原型的实例。这样就构成了一条原型链。原型链的访问，其实跟作用域链有很大的相似之处，他们都是一次单向的查找过程。因此实例对象能够通过原型链，访问到处于原型链上对象的所有属性与方法。这也是foo最终能够访问到处于Object原型对象上的toString方法的原因。</p>
 <p>基于原型链的特性，我们可以很轻松的实现<strong>继承</strong>。</p>
 <h5 id="六、继承"><a href="#六、继承" class="headerlink" title="六、继承"></a>六、继承</h5><p>我们常常结合构造函数与原型来创建一个对象。因为构造函数与原型的不同特性，分别解决了我们不同的困扰。因此当我们想要实现继承时，就必须得根据构造函数与原型的不同而采取不同的策略。</p>
@@ -647,7 +647,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数的继承</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cPerson</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">    Person.call(<span class="keyword">this</span>, name, age);</span><br><span class="line">    <span class="keyword">this</span>.job = job;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>而原型的继承，则只需要将子级的原型对象设置为父级的一个实例，加入到原型链中即可。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承原型</span></span><br><span class="line">cPerson.prototype = <span class="keyword">new</span> Person(name, age);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加更多方法</span></span><br><span class="line">cPerson.prototype.getLive = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-c77eb714f66b8185.png" alt="原型链"></p>
+<p><img src="./assets/599584-c77eb714f66b8185.png" alt="原型链"></p>
 <p>当然关于继承还有更好的方式。</p>
 <h5 id="七、更好的继承"><a href="#七、更好的继承" class="headerlink" title="七、更好的继承"></a>七、更好的继承</h5><p>假设原型链的终点<code>Object.prototype</code>为原型链的E(end)端，原型链的起点为S(start)端。</p>
 <p>通过前面原型链的学习我们知道，处于S端的对象，可以通过S -&gt; E的单向查找，访问到原型链上的所有方法与属性。因此这给继承提供了理论基础。我们只需要在S端添加新的对象，那么新对象就能够通过原型链访问到父级的方法与属性。因此想要实现继承，是一件非常简单的事情。</p>

@@ -151,12 +151,12 @@
 <meta property="og:site_name" content="ZombieBrand">
 <meta property="og:description" content="前面几篇文章，我跟大家分享了JavaScript的一些基础知识，这篇文章，将会进入第一个实战环节：利用前面几章的所涉及到的知识，封装一个拖拽对象。为了能够帮助大家了解更多的方式与进行对比，我会使用三种不同的方式来实现拖拽。  不封装对象直接实现； 利用原生JavaScript封装拖拽对象； 通过扩展jQuery来实现拖拽对象。   本文的例子会放置于codepen.io中，供大家在阅读时直接查看。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-6137a359597879a5.png">
-<meta property="og:updated_time" content="2019-03-17T08:28:06.376Z">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象实战之拖拽对象封装/assets/599584-6137a359597879a5.png">
+<meta property="og:updated_time" content="2019-03-17T13:56:50.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="摘抄面向对象实战之拖拽对象封装">
 <meta name="twitter:description" content="前面几篇文章，我跟大家分享了JavaScript的一些基础知识，这篇文章，将会进入第一个实战环节：利用前面几章的所涉及到的知识，封装一个拖拽对象。为了能够帮助大家了解更多的方式与进行对比，我会使用三种不同的方式来实现拖拽。  不封装对象直接实现； 利用原生JavaScript封装拖拽对象； 通过扩展jQuery来实现拖拽对象。   本文的例子会放置于codepen.io中，供大家在阅读时直接查看。">
-<meta name="twitter:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-6137a359597879a5.png">
+<meta name="twitter:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象实战之拖拽对象封装/assets/599584-6137a359597879a5.png">
 
 
 
@@ -452,7 +452,7 @@
                 
               
 
-              <time title="创建时间：2019-03-17 16:20:30 / 修改时间：16:28:06" itemprop="dateCreated datePublished" datetime="2019-03-17T16:20:30+08:00">2019-03-17</time>
+              <time title="创建时间：2019-03-17 16:20:30 / 修改时间：21:56:50" itemprop="dateCreated datePublished" datetime="2019-03-17T16:20:30+08:00">2019-03-17</time>
             
 
             
@@ -592,7 +592,7 @@
 <p>而在鼠标松开(mouseup)结束拖拽时，我们需要处理一些收尾工作。详情见代码。</p>
 <h6 id="7、-我又来推荐思维导图辅助写代码了"><a href="#7、-我又来推荐思维导图辅助写代码了" class="headerlink" title="7、 我又来推荐思维导图辅助写代码了"></a>7、 我又来推荐思维导图辅助写代码了</h6><p>常常有新人朋友跑来问我，如果逻辑思维能力不强，能不能写代码做前端。我的答案是：能。因为借助思维导图，可以很轻松的弥补逻辑的短板。而且比在自己头脑中脑补逻辑更加清晰明了，不易出错。</p>
 <p>上面第六点我介绍了原理，因此如何做就显得不是那么难了，而具体的步骤，则在下面的思维导图中明确给出，我们只需要按照这个步骤来写代码即可，试试看，一定很轻松。</p>
-<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-6137a359597879a5.png" alt="使用思维导图清晰的表达出整个拖拽过程我们需要干的事情"></p>
+<p><img src="./assets/599584-6137a359597879a5.png" alt="使用思维导图清晰的表达出整个拖拽过程我们需要干的事情"></p>
 <h6 id="8、代码实现"><a href="#8、代码实现" class="headerlink" title="8、代码实现"></a>8、代码实现</h6><p><strong>part1、准备工作</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取目标元素对象</span></span><br><span class="line"><span class="keyword">var</span> oElem = <span class="built_in">document</span>.getElementById(<span class="string">'target'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明2个变量用来保存鼠标初始位置的x，y坐标</span></span><br><span class="line"><span class="keyword">var</span> startX = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> startY = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明2个变量用来保存目标元素初始位置的x，y坐标</span></span><br><span class="line"><span class="keyword">var</span> sourceX = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> sourceY = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
 <p><strong>part2、功能函数</strong></p>
