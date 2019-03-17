@@ -82,8 +82,8 @@
         <category>面向对象</category>
       </categories>
       <tags>
-        <tag>面向对象</tag>
         <tag>拖拽对象</tag>
+        <tag>面向对象</tag>
       </tags>
   </entry>
   <entry>
@@ -382,13 +382,13 @@
         <category>JavaScript</category>
       </categories>
       <tags>
+        <tag>JavaScript</tag>
         <tag>Ajax</tag>
         <tag>HTML</tag>
-        <tag>JavaScript</tag>
         <tag>CSS</tag>
         <tag>ES6</tag>
-        <tag>Nodejs</tag>
         <tag>BOM</tag>
+        <tag>Nodejs</tag>
         <tag>DOM</tag>
         <tag>动画</tag>
       </tags>
@@ -451,8 +451,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>HTML</tag>
         <tag>JavaScript</tag>
+        <tag>HTML</tag>
         <tag>input</tag>
       </tags>
   </entry>
@@ -641,9 +641,9 @@
         <category>Ajax</category>
       </categories>
       <tags>
+        <tag>JavaScript</tag>
         <tag>Ajax</tag>
         <tag>HTML</tag>
-        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -689,8 +689,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>HTML</tag>
         <tag>JavaScript</tag>
+        <tag>HTML</tag>
         <tag>CSS</tag>
       </tags>
   </entry>
@@ -903,8 +903,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>HTML</tag>
         <tag>JavaScript</tag>
+        <tag>HTML</tag>
         <tag>CSS</tag>
       </tags>
   </entry>
