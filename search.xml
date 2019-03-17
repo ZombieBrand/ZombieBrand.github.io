@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2FZombieBrand.github.io%2F2019%2F03%2F17%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[flex布局]]></title>
     <url>%2FZombieBrand.github.io%2F2019%2F03%2F17%2Fflex%E5%B8%83%E5%B1%80%2F</url>
     <content type="text"><![CDATA[常见布局 normal flow（正常流） float + clear（浮动+清楚浮动） position relative + absolute （相对定位+绝对定位） display inline-block （改变元素属性） -margin（负外边距） Flex布局特性 块级布局侧重垂直方向、行内布局侧重水平方向，flex布局是与方向无关的 flex布局可以实现空间自动分配、自动对齐（全称:the flexible box Module） flex适用于简单的线性布局，更复杂的布局要交给grid布局（目前还没发布） ​ 语法 display: flex; display: inline-flex; 设为Flex布局后，子元素的loat,clear和vertical-align属性将失效。 Flex基础概念采用Flex布局的元素，称为Flex容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称”项目”。 上图水平是主轴(main axis)垂直是侧轴(cross axis)。主轴的开始位置叫做main start，结束位置叫做main end；侧轴的开始位置叫做cross start，结束位置叫做cross end 。 项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的侧轴空间叫做cross size。 Flex container容器属性flex-direction: 决定了主轴的方向（即项目的排列方向)1234.box&#123; display:flex; flex-direction:column-revers|column|row-reverse|row; &#125; 属性名 说明 row(默认) 主轴方向为水平，起点在左端 row- reverse 主轴方向为水平，起点在右端 column 主轴方向为垂直，起点在上端 column-reverse 主轴方向为垂直，起点在下端 单独添加flex-direction: row; //默认是不会换行 flex-wrap: 定义如果一条轴线排不下，如何换行12345.box&#123; display:flex; flex-direction:now flex-wrap:wrap; &#125; 属性名 说明 nowrap(默认) 不换行 wrap 换行 wrap-reverse 换行反转 flex-flow（以上两个属性的简写） flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。 1234.box&#123; display:flex; flex-flow: row nowrap; &#125; justify-content:定义了项目在主轴上的对齐方式1234.box&#123; display:flex; justify-content:flex-start | flex-end | center | space-between | space-around;&#125; 属性名 说明 flex-start(默认) 项目沿着主轴方向的起始位置靠齐 flex-end 项目沿着主轴方向的结束位置靠齐，和flex-start相反 space-between 项目在主轴方向上两端对齐，其中的间隔相等 space-around 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍 align-items定义项目在交叉轴上如何对齐1234.box&#123; display:flex; align-items:flex-start | flex-end | center | baseline | stretch;&#125; 属性名 说明 flex-start 项目沿着侧轴上的起点对齐 flex-end 项目沿着侧轴上的终点对齐 center 项目在侧轴方向上居中对齐 stretch(默认) 如果项目未设置高度或高度为auto,将占满整个容器的高度。 align-content多行多列内容对齐方式注意如果项目只有一行，属性不起作用 1234.box&#123; display:flex; align-content:flex-start | flex-end | center | space-between | space-around | stretch;&#125; 属性名 说明 flex-start 项目与侧轴的起点对齐 flex-end 项目与侧轴的终点对齐 center 项目与侧轴的中点对齐 space-between 与侧轴两端对齐，轴线之间的间隔平均分布 space-around 每行轴线两侧的间隔都相等。所以轴线之间的间隔比轴线与边框的间隔大一倍 stretch（默认） 轴线占满整个测轴 flex item项目属性 order属性：定义项目的排列顺序。数值越小，排列越靠前，默认为0 .item{order: &lt;integer&gt;;} flex-grow属性:定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大 .item{flex-grow:&lt;number&gt;;} flex-grow为零的话则不变化，不能为負值。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项的2倍。 flex-shrink属性：定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小 .item{flex-shrink:&lt;number&gt;;} 如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。负值对该属性无效。 flex-basis属性:定义了在分配多余空间之前，项目占据的主轴空间（main size） 浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。它可以设为跟width或height属性一样的值，则项目将占据固定空间 .item{flex-basis: &lt;length&gt;| auto; flex属性：flex-grow,flex-shrink和flex-basis的简写 默认值为0 1 auto。后两个属性可选。该属性有两个快捷值：auto(1 1 auto) 和 none (0 0 auto)。 align-self属性：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性 默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。 .item{align-self:auto | flex-start | flex-end | center | baseline | stretch;} 该属性可能取6个值，除了auto，其他都与align-items属性完全一致。 最近发现一篇很详细关于flex box 布局的博客链接阮一峰flex实战布局教程]]></content>
@@ -392,8 +387,8 @@
         <tag>JavaScript</tag>
         <tag>CSS</tag>
         <tag>ES6</tag>
-        <tag>BOM</tag>
         <tag>Nodejs</tag>
+        <tag>BOM</tag>
         <tag>DOM</tag>
         <tag>动画</tag>
       </tags>
