@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/ZombieBrand.github.io/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/ZombieBrand.github.io/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/ZombieBrand.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/ZombieBrand.github.io/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ZombieBrand.github.io/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/ZombieBrand.github.io/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/ZombieBrand.github.io/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/ZombieBrand.github.io/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/ZombieBrand.github.io/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="对于新人朋友来说，想要自己去搞定一个ES6开发环境并不是一件容易的事情，因为构建工具的学习本身又是一个非常大的方向，我们需要花费不少的时间才能掌握它。 好在慢慢的开始有大神提供了一些非常简单易懂，学习成本非常低的解决方案来帮助大家学习。create-react-app就是这些解决方案中，个人认为最简单易懂的一种方式。 所以在学习ES6 modules之前，先跟大家介绍一下create-react-">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="摘抄详解ES6">
+<meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄详解ES6/index.html">
+<meta property="og:site_name" content="ZombieBrand">
+<meta property="og:description" content="对于新人朋友来说，想要自己去搞定一个ES6开发环境并不是一件容易的事情，因为构建工具的学习本身又是一个非常大的方向，我们需要花费不少的时间才能掌握它。 好在慢慢的开始有大神提供了一些非常简单易懂，学习成本非常低的解决方案来帮助大家学习。create-react-app就是这些解决方案中，个人认为最简单易懂的一种方式。 所以在学习ES6 modules之前，先跟大家介绍一下create-react-">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-76079222df7b34f7.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-6e8534894dfb4e4d.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-368f0d2ad8cafb5c.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-105e41643f770f96.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-f91ae7637fa70ed9.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-2524e23338728b89.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-258a86fe0e06b5f9.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-783481a63855b461.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-682a3aa05a20aad6.png">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-5f1b2cb69be63173.png">
+<meta property="og:updated_time" content="2019-03-17T08:26:48.191Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="摘抄详解ES6">
+<meta name="twitter:description" content="对于新人朋友来说，想要自己去搞定一个ES6开发环境并不是一件容易的事情，因为构建工具的学习本身又是一个非常大的方向，我们需要花费不少的时间才能掌握它。 好在慢慢的开始有大神提供了一些非常简单易懂，学习成本非常低的解决方案来帮助大家学习。create-react-app就是这些解决方案中，个人认为最简单易懂的一种方式。 所以在学习ES6 modules之前，先跟大家介绍一下create-react-">
+<meta name="twitter:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-76079222df7b34f7.png">
+
+
+
+  <link rel="alternate" href="/ZombieBrand.github.io/atom.xml" title="ZombieBrand" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄详解ES6/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>摘抄详解ES6 | ZombieBrand</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/ZombrBrand" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/ZombieBrand.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZombieBrand</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">前端</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zombrbrand.github.io/ZombieBrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄详解ES6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车勇志">
+      <meta itemprop="description" content="前端程序猿">
+      <meta itemprop="image" content="/ZombieBrand.github.io/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZombieBrand">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">摘抄详解ES6
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 16:19:56 / 修改时间：16:26:48" itemprop="dateCreated datePublished" datetime="2019-03-17T16:19:56+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">4.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">4 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对于新人朋友来说，想要自己去搞定一个ES6开发环境并不是一件容易的事情，因为构建工具的学习本身又是一个非常大的方向，我们需要花费不少的时间才能掌握它。</p>
+<p>好在慢慢的开始有大神提供了一些非常简单易懂，学习成本非常低的解决方案来帮助大家学习。<code>create-react-app</code>就是这些解决方案中，个人认为最简单易懂的一种方式。</p>
+<p>所以在学习ES6 modules之前，先跟大家介绍一下<code>create-react-app</code>的安装与使用。</p>
+<blockquote>
+<p>尽管<code>create-react-app</code>的目的是用于开发react程序，但是我们仅仅只用来学习ES6是再合适不过了。当然你也可以借助<code>vue-cli</code>来学习，同样十分简单。</p>
+</blockquote>
+<h5 id="1、确保自己的本地环境已经安装了node与npm"><a href="#1、确保自己的本地环境已经安装了node与npm" class="headerlink" title="1、确保自己的本地环境已经安装了node与npm"></a>1、确保自己的本地环境已经安装了node与npm</h5><p>通常安装的方式就是去node的官方网站下载安装，在安装node的时候，npm也会一起被安装。</p>
+<p>下载地址： <a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a></p>
+<h5 id="2、安装一个好用的命令行工具"><a href="#2、安装一个好用的命令行工具" class="headerlink" title="2、安装一个好用的命令行工具"></a>2、安装一个好用的命令行工具</h5><p>在windows环境下，系统默认的cmd非常难用，所以我个人比较推荐大家使用git.bash 或者 cmder。</p>
+<p>git 下载地址： <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a><br>在git安装目录下会有一个bash工具，找到安装目录直接使用即可。</p>
+<p>cmder下载地址： <a href="http://cmder.net/" target="_blank" rel="noopener">http://cmder.net/</a></p>
+<p>在mac上就方便很多了，你可以直接使用系统自带的terminal工具，就非常好用。但是一般我推荐大家使用iterm2，并安装oh my zsh插件。具体的配置大家可以自己去折腾，网上的教程应该足够帮助你搞定这一切了。</p>
+<ul>
+<li>iterm2 下载地址 <a href="http://www.iterm2.com/downloads.html" target="_blank" rel="noopener">http://www.iterm2.com/downloads.html</a></li>
+<li>oh my zsh 主题选择 <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes</a></li>
+</ul>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-76079222df7b34f7.png" alt></p>
+<p>另外还强烈推荐一款超高颜值的终端工具 <code>hyperTerm</code>。</p>
+<p>这款工具的特色就是颜值高，第一感觉就是惊艳，大家不妨一试。</p>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-6e8534894dfb4e4d.png" alt></p>
+<ul>
+<li>hyperTerm 下载地址 <a href="https://hyper.is/" target="_blank" rel="noopener">https://hyper.is/</a></li>
+</ul>
+<h5 id="3、安装create-react-app"><a href="#3、安装create-react-app" class="headerlink" title="3、安装create-react-app"></a>3、安装create-react-app</h5><p>在命令行工具中使用查看版本的方式确保node与npm都安装好之后，我们就可以安装<code>create-react-app</code>了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; node -v</span><br><span class="line"><span class="comment">// 输出node版本号</span></span><br><span class="line"></span><br><span class="line">&gt; npm -v</span><br><span class="line"><span class="comment">// 输出npm版本号</span></span><br></pre></td></tr></table></figure>
+<p>使用npm全局安装create-react-app</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm install create-react-app -g</span><br></pre></td></tr></table></figure>
+<p>然后我们就可以使用<code>create-react-app</code>来创建我们的第一个项目。</p>
+<p>找到一个你要存放项目的根目录，假设叫做<code>develop</code>，运行以下指令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; create-react-app es6app</span><br></pre></td></tr></table></figure>
+<p>create-react-app会自动帮助我们在develop目录下创建一个叫做es6app的文件夹，这就是我们新创建的项目。</p>
+<p>当项目创建完成之后，在命令行工具中，我们会看到如图所示的提示。这些提示告诉了我们如何运行项目<code>npm start</code> ，如何打包项目<code>npm run build</code>等，这里我就不再赘述。</p>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-368f0d2ad8cafb5c.png" alt></p>
+<p>项目创建完毕之后，进入该文件夹。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd es6app</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看文件夹里的内容</span></span><br><span class="line">&gt; ls</span><br></pre></td></tr></table></figure>
+<p>我们会发现里面有一个叫做<code>package.json</code>的文件，这个文件里包含了项目所需要的所有依赖。当我们第一次运行项目之前，还需要安装该文件里的依赖包。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm install</span><br></pre></td></tr></table></figure>
+<p>安装完毕之后，我们就可以启动该项目了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm start</span><br></pre></td></tr></table></figure>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-105e41643f770f96.png" alt="项目启动之后"></p>
+<p>一般来说，启动之后会自动在浏览器中打开。</p>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-f91ae7637fa70ed9.png" alt="项目首次启动的页面"></p>
+<blockquote>
+<p><code>create-react-app</code>已经自动帮助我们实现了热更新，因此当我们修改代码时，浏览器会自动更新。当然，如果我们仅仅只是修改页面样式时，热更新将会非常方便，但是如果你正在进行单页面的组件开发，可能热更新能够提供的帮助非常有限。</p>
+</blockquote>
+<h5 id="4、认识项目"><a href="#4、认识项目" class="headerlink" title="4、认识项目"></a>4、认识项目</h5><p>只要我们按照构建工具的规则进行开发，那么构建工具会自动帮助我们将代码进行整合，因此在该项目中开发时，我们并不需要自己来使用script或者link标签来引入js与css，所以认识create-react-app的规则就变得很重要。</p>
+<p>初次创建的项目下，会有3个文件夹。</p>
+<ul>
+<li>node_modules<br>项目依赖包存放位置。当我们运行<code>npm install</code>安装<code>package.json</code>中的依赖包时，该文件夹会自动创建，所有的依赖包会安装到该文件夹里。</li>
+<li>public<br>主要的作用是html入口文件的存放。当然我们也可以存放其他公用的静态资源，如图片，css等。其中的<code>index.html</code>就是我们项目的入口html文件</li>
+<li>src<br>组件的存放目录。在create-react-app创建的项目中，每一个单独的文件都可以被看成一个单独的模块，单独的image，单独的css，单独js等，而所有的组件都存放于src目录中，其中<code>index.js</code>则是js的入口文件。虽然我们并没有在<code>index.html</code>中使用script标签引入他，但是他的作用就和此一样。</li>
+</ul>
+<p>当然，如果我们要进一步进行react的学习，那么肯定需要了解多一点的规则，但是在学习react之前，我们还是先把ES6 modules的知识搞定在说吧，所以，接下来你要做的事情就是，删掉src目录里的除了index.js之外的所有文件，并清空index.js，我们从0开始学习ES6 modules。</p>
+<p>为了确保程序仍然能够正常运行，我们在index.js中随便写点代码测试一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="built_in">document</span>.querySelector(<span class="string">'#root'</span>)</span><br><span class="line">app.innerHTML = <span class="string">'啊，全部被清空啦，准备工作终于做完了，可以开始学习ES6啦'</span></span><br></pre></td></tr></table></figure>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-2524e23338728b89.png" alt="一切正常，程序变得普通了，我们更容易理解"></p>
+<p>那么我们就可以在这个环境下学习ES6的所有知识了，当然也包括ES6 modules。</p>
+<h4 id="ES6-modules"><a href="#ES6-modules" class="headerlink" title="ES6 modules"></a>ES6 modules</h4><h5 id="1-引入模块"><a href="#1-引入模块" class="headerlink" title="1. 引入模块"></a>1. 引入模块</h5><p>首先在<code>src</code>目录下创建一个<code>test.js</code>，在<code>test.js</code>中我们随便干点什么简单的事情即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/test.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'your first module'</span>);</span><br></pre></td></tr></table></figure>
+<p>在index.js中通过<code>import</code>引入test.js，这是我们要学会的第一个语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.js</span></span><br><span class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">'./test'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(test);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>import</code>表示引入一个模块，</li>
+<li>test 我们暂时理解为引入模块的名字，</li>
+<li>from表示从哪里引入</li>
+<li><code>./test</code>为<code>./test.js</code>的简写，表示将要引入模块的路径</li>
+</ul>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-258a86fe0e06b5f9.png" alt="结果是test中的代码执行，index.js中模块test为一个空对象"></p>
+<p>引入这个动作执行时，test.js中的代码也执行了。由于在<code>test.js</code>中并没有对外暴露任何接口，因此<code>index.js</code>中的<code>test</code>为一个空对象，那么对外暴露接口的方式，则是我们要学习的第二个语法。</p>
+<h5 id="2-对外提供接口"><a href="#2-对外提供接口" class="headerlink" title="2. 对外提供接口"></a>2. 对外提供接口</h5><p>ES6 modules使用<code>export</code>关键字对外提供接口，在我们刚才创建的<code>test.js</code>中，我们添加如下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.js</span></span><br><span class="line"><span class="keyword">const</span> num = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    a: <span class="number">0</span>,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> b = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    num,</span><br><span class="line">    arr,</span><br><span class="line">    obj,</span><br><span class="line">    foo</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-783481a63855b461.png" alt="运行结果"></p>
+<p>在<code>test.js</code>中，我们使用<code>export default</code>对包暴露了一个对象。他的意思就是当我们使用<code>import test from &#39;./test&#39;</code>时，这个test对象就默认等于<code>export default</code>暴露的对象。</p>
+<p>我们还可以在test.js中，仅仅通过<code>export</code>暴露几个方法与属性，我们来看看index.js中test会变成什么样子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/test.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> bar = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> zcar = <span class="number">12345</span>;</span><br></pre></td></tr></table></figure>
+<p>保存运行后，我们发现，index.js中的test对象并没有变化，因为它仅仅等于<code>export default</code>抛出的对象，因此，为了获得模块<code>test.js</code>暴露的所有接口，我们得通过如下的方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.js</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> test <span class="keyword">from</span> <span class="string">'./test'</span>;</span><br></pre></td></tr></table></figure>
+<p>其中的 <code>*</code> 表示所有，这是比较常用的通配符，as表示别名，<code>* as test</code>的意思是将test.js暴露的所有接口组成的对象，命名为test。那么我们在index.js中log出test，结果就如下。</p>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-682a3aa05a20aad6.png" alt="看到结果，我们就很容易清楚的知道export与export default的区别与作用了，并且如何使用他们就变得很简单了"></p>
+<p>如果大家还记得前面一篇文章里，我所讲的ES6解析结构的语法，那么对于如下的用法相信就不难理解。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.js</span></span><br><span class="line"><span class="keyword">import</span> test, &#123; bar, zcar &#125; <span class="keyword">from</span> <span class="string">'./test'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(test);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'bar:'</span>, bar);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'zcar:'</span>, zcar);</span><br></pre></td></tr></table></figure>
+<p>test，仍然表示为<code>export default</code>暴露的对象，而 <code>{ bar, zcar }</code>则表示利用解析结构的语法，从整个返回对象中去取得对应的接口。输出结果也就很清晰了。</p>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-5f1b2cb69be63173.png" alt="result"></p>
+<p>这种方式还是比较常见，比如我们在使用react时，常常这样使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br></pre></td></tr></table></figure>
+<p>它其实暗示了React的封装方式，也暗示了我们应该如何去封装我们的模块。</p>
+<blockquote>
+<p>这里我们能够直接引入<code>react</code>的原因，是因为我们将它安装到了文件夹<code>node_modules</code>中，该文件夹中安装的所有模块都可以这样直接引用。例如我们安装一个jquery。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装jquery</span></span><br><span class="line">&gt; npm install jquery</span><br></pre></td></tr></table></figure>
+<p>然后在其他模块中就可以直接引入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'jquery'</span></span><br></pre></td></tr></table></figure>
+<p>这样，我们可以和往常一样使用jquery。<br>通过这样方式，我们还可以扩展更多的库，这就使得我们这个开发环境不仅仅能够用于react的开发，怎么用，完全取决与你自己。</p>
+<p>OK，ES6 模块的基础语法大概就这些吧，他告诉了我们在ES6中，一个模块应该如何对外暴露接口与如何引入其他模块暴露的接口，这个知识点在实际开发中非常常用，因此虽然简单，但是不得不掌握，这也是大家进一步学习react或者vue的基础，主要的难点大概在于本地开发环境的折腾，如果你是初次折腾这些，可能会遇到一些小问题，所以一定要有一点耐心。</p>
+<blockquote>
+<p>通常来说，一个知识点，在完全理解之前还是有点难度的，但是理解之后就变得非常简单，所以如果你在学习这个知识点时感觉有点困难，也不要过于担心，多多动手尝试，并在实践中运用起来，相信很快就能掌握。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/ZombieBrand.github.io/tags/ES6/" rel="tag"><i class="fa fa-tag"></i> ES6</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ZombieBrand.github.io/2019/03/17/摘抄浅析jQuery/" rel="next" title="摘抄浅析jQuery">
+                <i class="fa fa-chevron-left"></i> 摘抄浅析jQuery
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ZombieBrand.github.io/2019/03/17/摘抄面向对象/" rel="prev" title="摘抄面向对象">
+                摘抄面向对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE2OS8xOTcxNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/ZombieBrand.github.io/images/avatar.jpg" alt="车勇志">
+            
+              <p class="site-author-name" itemprop="name">车勇志</p>
+              <div class="site-description motion-element" itemprop="description">前端程序猿</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/ZombieBrand.github.io/archives/">
+                
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/ZombieBrand.github.io/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/ZombieBrand.github.io/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/ZombieBrand.github.io/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ZombrBrand" title="GitHub &rarr; https://github.com/ZombrBrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/ZombieBrand.github.io/zombiebrandg@gmail.com" title="E-Mail &rarr; zombiebrandg@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/f1d1e6e12974" title="简书 &rarr; https://www.jianshu.com/u/f1d1e6e12974" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://juejin.im/user/59ae5a3d6fb9a0248c2e0e94" title="掘金 &rarr; https://juejin.im/user/59ae5a3d6fb9a0248c2e0e94" rel="noopener" target="_blank"><i class="fa fa-fw fa-spinner"></i>掘金</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/1693410731" title="Weibo &rarr; https://weibo.com/u/1693410731" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://segmentfault.com/u/zombiebrand" title="SegmentFault &rarr; https://segmentfault.com/u/zombiebrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-user-secret"></i>SegmentFault</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/9595109/zombiebrand" title="StackOverflow &rarr; https://stackoverflow.com/users/9595109/zombiebrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、确保自己的本地环境已经安装了node与npm"><span class="nav-number">1.</span> <span class="nav-text">1、确保自己的本地环境已经安装了node与npm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、安装一个好用的命令行工具"><span class="nav-number">2.</span> <span class="nav-text">2、安装一个好用的命令行工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、安装create-react-app"><span class="nav-number">3.</span> <span class="nav-text">3、安装create-react-app</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、认识项目"><span class="nav-number">4.</span> <span class="nav-text">4、认识项目</span></a></li></ol><li class="nav-item nav-level-4"><a class="nav-link" href="#ES6-modules"><span class="nav-number"></span> <span class="nav-text">ES6 modules</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-引入模块"><span class="nav-number">1.</span> <span class="nav-text">1. 引入模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-对外提供接口"><span class="nav-number">2.</span> <span class="nav-text">2. 对外提供接口</span></a></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">车勇志</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">593k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">8:59</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共232.6k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-everyone"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,0" opacity="0.3" zindex="-1" count="99" src="/ZombieBrand.github.io/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/ZombieBrand.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/ZombieBrand.github.io/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/ZombieBrand.github.io/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/ZombieBrand.github.io/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/03/17/摘抄详解ES6/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/ZombieBrand.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -143,18 +143,18 @@
 
 
 
-  <meta name="description" content="前端程序猿">
-<meta name="keywords" content="前端 javascript html css vue react es6 webpack">
+  <meta name="description" content="目录： 概述 作为属性名的 Symbol 实例：消除魔术字符串 属性名的遍历 Symbol.for()，Symbol.keyFor() 实例：模块的 Singleton 模式 内置的Symbol值  概述ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，">
+<meta name="keywords" content="JavaScript,ES6,Symbol">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6-Symbol">
 <meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/14/ES6-Symbol/index.html">
 <meta property="og:site_name" content="ZombieBrand">
-<meta property="og:description" content="前端程序猿">
+<meta property="og:description" content="目录： 概述 作为属性名的 Symbol 实例：消除魔术字符串 属性名的遍历 Symbol.for()，Symbol.keyFor() 实例：模块的 Singleton 模式 内置的Symbol值  概述ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-14T11:44:38.260Z">
+<meta property="og:updated_time" content="2019-03-15T08:10:46.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6-Symbol">
-<meta name="twitter:description" content="前端程序猿">
+<meta name="twitter:description" content="目录： 概述 作为属性名的 Symbol 实例：消除魔术字符串 属性名的遍历 Symbol.for()，Symbol.keyFor() 实例：模块的 Singleton 模式 内置的Symbol值  概述ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，">
 
 
 
@@ -454,8 +454,49 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-15 16:10:46" itemprop="dateModified" datetime="2019-03-15T16:10:46+08:00">2019-03-15</time>
+              
+            
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/JavaScript/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -486,7 +527,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">0</span>
+                <span title="本文字数">13k</span>
               
 
               
@@ -500,7 +541,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">12 分钟</span>
               
             </div>
           
@@ -520,7 +561,191 @@
       
 
       
-        
+        <h2 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h2><ol>
+<li>概述</li>
+<li>作为属性名的 Symbol</li>
+<li>实例：消除魔术字符串</li>
+<li>属性名的遍历</li>
+<li>Symbol.for()，Symbol.keyFor()</li>
+<li>实例：模块的 Singleton 模式</li>
+<li>内置的Symbol值</li>
+</ol>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入Symbol的原因。</p>
+<p>ES6 引入了一种新的<strong>原始数据类型Symbol</strong>，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。</p>
+<h3 id="Symbol其实解决了两个问题："><a href="#Symbol其实解决了两个问题：" class="headerlink" title="Symbol其实解决了两个问题："></a>Symbol其实解决了两个问题：</h3><ol>
+<li>唯一性</li>
+<li>通过Symbol的属性来操作JavaScript内部的逻辑</li>
+</ol>
+<hr>
+<p>Symbol 值通过Symbol函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 Symbol 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let s = Symbol();</span><br><span class="line"></span><br><span class="line">typeof s</span><br><span class="line">// &quot;symbol&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，变量s就是一个独一无二的值。typeof运算符的结果，表明变量s是 Symbol 数据类型，而不是字符串之类的其他类型。</p>
+<blockquote>
+<p>注意，Symbol函数前不能使用new命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 Symbol 值不是对象，所以不能添加属性。基本上，它是一种类似于字符串的数据类型。</p>
+</blockquote>
+<p>Symbol函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">var s2 = Symbol(&apos;bar&apos;);</span><br><span class="line"></span><br><span class="line">s1 // Symbol(foo)</span><br><span class="line">s2 // Symbol(bar)</span><br><span class="line"></span><br><span class="line">s1.toString() // &quot;Symbol(foo)&quot;</span><br><span class="line">s2.toString() // &quot;Symbol(bar)&quot;</span><br></pre></td></tr></table></figure>
+<p>如果 Symbol 的参数是一个对象，就会调用该对象的toString方法，将其转为字符串，然后才生成一个 Symbol 值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  toString() &#123;</span><br><span class="line">    return &apos;abc&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">const sym = Symbol(obj);</span><br><span class="line">sym // Symbol(abc)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，Symbol函数的参数只是表示对当前 Symbol 值的描述，因此相同参数的Symbol函数的返回值是不相等的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 没有参数的情况</span><br><span class="line">var s1 = Symbol();</span><br><span class="line">var s2 = Symbol();</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br><span class="line"></span><br><span class="line">// 有参数的情况</span><br><span class="line">var s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">var s2 = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br></pre></td></tr></table></figure>
+<p>Symbol 值不能与其他类型的值进行运算，会报错。</p>
+<p>但是，Symbol 值可以显式转为字符串。</p>
+<p>另外，Symbol 值也可以转为布尔值，但是不能转为数值。</p>
+<h2 id="作为属性名的-Symbol"><a href="#作为属性名的-Symbol" class="headerlink" title="作为属性名的 Symbol"></a>作为属性名的 Symbol</h2><p>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var mySymbol = Symbol();</span><br><span class="line"></span><br><span class="line">// 第一种写法</span><br><span class="line">var a = &#123;&#125;;</span><br><span class="line">a[mySymbol] = &apos;Hello!&apos;;</span><br><span class="line"></span><br><span class="line">// 第二种写法</span><br><span class="line">var a = &#123;</span><br><span class="line">  [mySymbol]: &apos;Hello!&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 第三种写法</span><br><span class="line">var a = &#123;&#125;;</span><br><span class="line">Object.defineProperty(a, mySymbol, &#123; value: &apos;Hello!&apos; &#125;);</span><br><span class="line"></span><br><span class="line">// 以上写法都得到同样结果</span><br><span class="line">a[mySymbol] // &quot;Hello!&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码通过方括号结构和Object.defineProperty，将对象的属性名指定为一个 Symbol 值。</p>
+<blockquote>
+<p>注意，Symbol 值作为对象属性名时，不能用点运算符。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var mySymbol = Symbol();</span><br><span class="line">var a = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">a.mySymbol = &apos;Hello!&apos;;</span><br><span class="line">a[mySymbol] // undefined</span><br><span class="line">a[&apos;mySymbol&apos;] // &quot;Hello!&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<strong>因为点运算符后面总是字符串，所以不会读取mySymbol作为标识名所指代的那个值，导致a的属性名实际上是一个字符串，而不是一个 Symbol 值。</strong></p>
+<p><strong>同理，在对象的内部，使用 Symbol 值定义属性时，Symbol 值必须放在方括号之中。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let s = Symbol();</span><br><span class="line"></span><br><span class="line">let obj = &#123;</span><br><span class="line">  [s]: function (arg) &#123; ... &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj[s](123);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，如果s不放在方括号中，该属性的键名就是字符串s，而不是s所代表的那个 Symbol 值。</p>
+<p>采用增强的对象写法，上面代码的obj对象可以写得更简洁一些。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  [s](arg) &#123; ... &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>还有一点需要注意，Symbol 值作为属性名时，该属性还是公开属性，不是私有属性。</p>
+</blockquote>
+<h2 id="实例：消除魔术字符串"><a href="#实例：消除魔术字符串" class="headerlink" title="实例：消除魔术字符串"></a>实例：消除魔术字符串</h2><p><strong>魔术字符串指的是，在代码之中多次出现、与代码形成强耦合的某一个具体的字符串或者数值</strong>。风格良好的代码，应该尽量消除魔术字符串，改由含义清晰的变量代替。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function getArea(shape, options) &#123;</span><br><span class="line">  var area = 0;</span><br><span class="line"></span><br><span class="line">  switch (shape) &#123;</span><br><span class="line">    case &apos;Triangle&apos;: // 魔术字符串</span><br><span class="line">      area = .5 * options.width * options.height;</span><br><span class="line">      break;</span><br><span class="line">    /* ... more code ... */</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return area;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getArea(&apos;Triangle&apos;, &#123; width: 100, height: 100 &#125;); // 魔术字符串</span><br></pre></td></tr></table></figure>
+<p>上面代码中，字符串Triangle就是一个魔术字符串。它多次出现，与代码形成“强耦合”，不利于将来的修改和维护。</p>
+<p>常用的消除魔术字符串的方法，就是把它写成一个变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var shapeType = &#123;</span><br><span class="line">  triangle: &apos;Triangle&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function getArea(shape, options) &#123;</span><br><span class="line">  var area = 0;</span><br><span class="line">  switch (shape) &#123;</span><br><span class="line">    case shapeType.triangle:</span><br><span class="line">      area = .5 * options.width * options.height;</span><br><span class="line">      break;</span><br><span class="line">  &#125;</span><br><span class="line">  return area;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getArea(shapeType.triangle, &#123; width: 100, height: 100 &#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，我们把Triangle写成shapeType对象的triangle属性，这样就消除了强耦合。</p>
+<p>如果仔细分析，可以发现shapeType.triangle等于哪个值并不重要，只要确保不会跟其他shapeType属性的值冲突即可。因此，这里就很适合改用 Symbol 值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const shapeType = &#123;</span><br><span class="line">  triangle: Symbol()</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，除了将shapeType.triangle的值设为一个Symbol，其他地方都不用修改</p>
+<h2 id="属性名的遍历"><a href="#属性名的遍历" class="headerlink" title="属性名的遍历"></a>属性名的遍历</h2><p><strong>Symbol 作为属性名，该属性不会出现在for…in、for…of循环中，也不会被Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回</strong>。但是，<strong>它也不是私有属性，有一个Object.getOwnPropertySymbols方法，可以获取指定对象的所有 Symbol 属性名。</strong></p>
+<p>Object.getOwnPropertySymbols方法返回一个数组，成员是当前对象的所有用作属性名的 Symbol 值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;&#125;;</span><br><span class="line">var a = Symbol(&apos;a&apos;);</span><br><span class="line">var b = Symbol(&apos;b&apos;);</span><br><span class="line"></span><br><span class="line">obj[a] = &apos;Hello&apos;;</span><br><span class="line">obj[b] = &apos;World&apos;;</span><br><span class="line"></span><br><span class="line">var objectSymbols = Object.getOwnPropertySymbols(obj);</span><br><span class="line"></span><br><span class="line">objectSymbols</span><br><span class="line">// [Symbol(a), Symbol(b)]</span><br></pre></td></tr></table></figure>
+<p>另一个新的API，<strong>Reflect.ownKeys方法可以返回所有类型的键名，包括常规键名和 Symbol 键名。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  [Symbol(&apos;my_key&apos;)]: 1,</span><br><span class="line">  enum: 2,</span><br><span class="line">  nonEnum: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Reflect.ownKeys(obj)</span><br><span class="line">//  [&quot;enum&quot;, &quot;nonEnum&quot;, Symbol(my_key)]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于以 Symbol 值作为名称的属性，不会被常规方法遍历得到。我们可以利用这个特性，为对象定义一些非私有的、但又希望只用于内部的方法。</p>
+</blockquote>
+<h2 id="Symbol-for-，Symbol-keyFor"><a href="#Symbol-for-，Symbol-keyFor" class="headerlink" title="Symbol.for()，Symbol.keyFor()"></a>Symbol.for()，Symbol.keyFor()</h2><p>有时，我们希望重新使用同一个Symbol值，Symbol.for方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的Symbol值。如果有，就返回这个Symbol值，否则就新建并返回一个以该字符串为名称的Symbol值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var s1 = Symbol.for(&apos;foo&apos;);</span><br><span class="line">var s2 = Symbol.for(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // true</span><br></pre></td></tr></table></figure>
+<p>上面代码中，s1和s2都是 Symbol 值，但是它们都是同样参数的Symbol.for方法生成的，所以实际上是同一个值。</p>
+<p>Symbol.for()与Symbol()这两种写法，都会生成新的Symbol。它们的区别是，前者会被登记在全局环境中供搜索，后者不会。Symbol.for()不会每次调用就返回一个新的 Symbol 类型的值，而是会先检查给定的key是否已经存在，如果不存在才会新建一个值。比如，如果你调用Symbol.for(“cat”)30次，每次都会返回同一个 Symbol 值，但是调用Symbol(“cat”)30次，会返回30个不同的Symbol值。</p>
+<p>Symbol.keyFor方法返回一个已登记的 Symbol 类型值的key。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var s1 = Symbol.for(&quot;foo&quot;);</span><br><span class="line">Symbol.keyFor(s1) // &quot;foo&quot;</span><br><span class="line"></span><br><span class="line">var s2 = Symbol(&quot;foo&quot;);</span><br><span class="line">Symbol.keyFor(s2) // undefined</span><br></pre></td></tr></table></figure>
+<p>上面代码中，变量s2属于未登记的Symbol值，所以返回undefined。</p>
+<blockquote>
+<p>需要注意的是，Symbol.for为Symbol值登记的名字，是全局环境的，可以在不同的 iframe 或 service worker 中取到同一个值。</p>
+</blockquote>
+<h2 id="实例：模块的-Singleton-模式"><a href="#实例：模块的-Singleton-模式" class="headerlink" title="实例：模块的 Singleton 模式"></a>实例：模块的 Singleton 模式</h2><p>Singleton模式指的是调用一个类，任何时候返回的都是同一个实例。</p>
+<p>对于Node来说，模块文件可以看成是一个类。怎么保证每次执行这个模块文件，返回的都是同一个实例呢？</p>
+<p>很容易想到，可以把实例放到顶层对象global。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// mod.js</span><br><span class="line">function A() &#123;</span><br><span class="line">  this.foo = &apos;hello&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!global._foo) &#123;</span><br><span class="line">  global._foo = new A();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = global._foo;</span><br><span class="line">然后，加载上面的mod.js。</span><br><span class="line"></span><br><span class="line">var a = require(&apos;./mod.js&apos;);</span><br><span class="line">console.log(a.foo);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，变量a任何时候加载的都是A的同一个实例。</p>
+<p>但是，这里有一个问题，全局变量global._foo是可写的，任何文件都可以修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = require(&apos;./mod.js&apos;);</span><br><span class="line">global._foo = 123;</span><br></pre></td></tr></table></figure>
+<p>上面的代码，会使得别的脚本加载mod.js都失真。</p>
+<p>为了防止这种情况出现，我们就可以使用Symbol。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// mod.js</span><br><span class="line">const FOO_KEY = Symbol.for(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">function A() &#123;</span><br><span class="line">  this.foo = &apos;hello&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!global[FOO_KEY]) &#123;</span><br><span class="line">  global[FOO_KEY] = new A();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = global[FOO_KEY];</span><br></pre></td></tr></table></figure>
+<p>上面代码中，可以保证global[FOO_KEY]不会被无意间覆盖，但还是可以被改写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = require(&apos;./mod.js&apos;);</span><br><span class="line">global[Symbol.for(&apos;foo&apos;)] = 123;</span><br></pre></td></tr></table></figure>
+<p>如果键名使用Symbol方法生成，那么外部将无法引用这个值，当然也就无法改写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// mod.js</span><br><span class="line">const FOO_KEY = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">// 后面代码相同 ……</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">上面代码将导致其他脚本都无法引用FOO_KEY。但这样也有一个问题，就是如果多次执行这个脚本，每次得到的FOO_KEY都是不一样的。虽然Node会将脚本的执行结果缓存，一般情况下，不会多次执行同一个脚本，但是用户可以手动清除缓存，所以也不是完全可靠。</span><br></pre></td></tr></table></figure>
+<h2 id="内置的Symbol值"><a href="#内置的Symbol值" class="headerlink" title="内置的Symbol值"></a>内置的Symbol值</h2><p>除了定义自己使用的Symbol值以外，ES6还提供了11个内置的Symbol值，指向语言内部使用的方法。目录：</p>
+<ol>
+<li>概述</li>
+<li>作为属性名的 Symbol</li>
+<li>实例：消除魔术字符串</li>
+<li>属性名的遍历</li>
+<li>Symbol.for()，Symbol.keyFor()</li>
+<li>实例：模块的 Singleton 模式</li>
+<li>内置的Symbol值</li>
+</ol>
+<h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入Symbol的原因。</p>
+<p>ES6 引入了一种新的<strong>原始数据类型Symbol</strong>，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，前六种是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。</p>
+<h3 id="Symbol其实解决了两个问题：-1"><a href="#Symbol其实解决了两个问题：-1" class="headerlink" title="Symbol其实解决了两个问题："></a>Symbol其实解决了两个问题：</h3><ol>
+<li>唯一性</li>
+<li>通过Symbol的属性来操作JavaScript内部的逻辑</li>
+</ol>
+<hr>
+<p>Symbol 值通过Symbol函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 Symbol 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let s = Symbol();</span><br><span class="line"></span><br><span class="line">typeof s</span><br><span class="line">// &quot;symbol&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，变量s就是一个独一无二的值。typeof运算符的结果，表明变量s是 Symbol 数据类型，而不是字符串之类的其他类型。</p>
+<blockquote>
+<p>注意，Symbol函数前不能使用new命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。也就是说，由于 Symbol 值不是对象，所以不能添加属性。基本上，它是一种类似于字符串的数据类型。</p>
+</blockquote>
+<p>Symbol函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">var s2 = Symbol(&apos;bar&apos;);</span><br><span class="line"></span><br><span class="line">s1 // Symbol(foo)</span><br><span class="line">s2 // Symbol(bar)</span><br><span class="line"></span><br><span class="line">s1.toString() // &quot;Symbol(foo)&quot;</span><br><span class="line">s2.toString() // &quot;Symbol(bar)&quot;</span><br></pre></td></tr></table></figure>
+<p>如果 Symbol 的参数是一个对象，就会调用该对象的toString方法，将其转为字符串，然后才生成一个 Symbol 值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">  toString() &#123;</span><br><span class="line">    return &apos;abc&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">const sym = Symbol(obj);</span><br><span class="line">sym // Symbol(abc)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，Symbol函数的参数只是表示对当前 Symbol 值的描述，因此相同参数的Symbol函数的返回值是不相等的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 没有参数的情况</span><br><span class="line">var s1 = Symbol();</span><br><span class="line">var s2 = Symbol();</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br><span class="line"></span><br><span class="line">// 有参数的情况</span><br><span class="line">var s1 = Symbol(&apos;foo&apos;);</span><br><span class="line">var s2 = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // false</span><br></pre></td></tr></table></figure>
+<p>Symbol 值不能与其他类型的值进行运算，会报错。</p>
+<p>但是，Symbol 值可以显式转为字符串。</p>
+<p>另外，Symbol 值也可以转为布尔值，但是不能转为数值。</p>
+<h2 id="作为属性名的-Symbol-1"><a href="#作为属性名的-Symbol-1" class="headerlink" title="作为属性名的 Symbol"></a>作为属性名的 Symbol</h2><p>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var mySymbol = Symbol();</span><br><span class="line"></span><br><span class="line">// 第一种写法</span><br><span class="line">var a = &#123;&#125;;</span><br><span class="line">a[mySymbol] = &apos;Hello!&apos;;</span><br><span class="line"></span><br><span class="line">// 第二种写法</span><br><span class="line">var a = &#123;</span><br><span class="line">  [mySymbol]: &apos;Hello!&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 第三种写法</span><br><span class="line">var a = &#123;&#125;;</span><br><span class="line">Object.defineProperty(a, mySymbol, &#123; value: &apos;Hello!&apos; &#125;);</span><br><span class="line"></span><br><span class="line">// 以上写法都得到同样结果</span><br><span class="line">a[mySymbol] // &quot;Hello!&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码通过方括号结构和Object.defineProperty，将对象的属性名指定为一个 Symbol 值。</p>
+<blockquote>
+<p>注意，Symbol 值作为对象属性名时，不能用点运算符。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var mySymbol = Symbol();</span><br><span class="line">var a = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">a.mySymbol = &apos;Hello!&apos;;</span><br><span class="line">a[mySymbol] // undefined</span><br><span class="line">a[&apos;mySymbol&apos;] // &quot;Hello!&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<strong>因为点运算符后面总是字符串，所以不会读取mySymbol作为标识名所指代的那个值，导致a的属性名实际上是一个字符串，而不是一个 Symbol 值。</strong></p>
+<p><strong>同理，在对象的内部，使用 Symbol 值定义属性时，Symbol 值必须放在方括号之中。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let s = Symbol();</span><br><span class="line"></span><br><span class="line">let obj = &#123;</span><br><span class="line">  [s]: function (arg) &#123; ... &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj[s](123);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，如果s不放在方括号中，该属性的键名就是字符串s，而不是s所代表的那个 Symbol 值。</p>
+<p>采用增强的对象写法，上面代码的obj对象可以写得更简洁一些。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  [s](arg) &#123; ... &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>还有一点需要注意，Symbol 值作为属性名时，该属性还是公开属性，不是私有属性。</p>
+</blockquote>
+<h2 id="实例：消除魔术字符串-1"><a href="#实例：消除魔术字符串-1" class="headerlink" title="实例：消除魔术字符串"></a>实例：消除魔术字符串</h2><p><strong>魔术字符串指的是，在代码之中多次出现、与代码形成强耦合的某一个具体的字符串或者数值</strong>。风格良好的代码，应该尽量消除魔术字符串，改由含义清晰的变量代替。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function getArea(shape, options) &#123;</span><br><span class="line">  var area = 0;</span><br><span class="line"></span><br><span class="line">  switch (shape) &#123;</span><br><span class="line">    case &apos;Triangle&apos;: // 魔术字符串</span><br><span class="line">      area = .5 * options.width * options.height;</span><br><span class="line">      break;</span><br><span class="line">    /* ... more code ... */</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return area;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getArea(&apos;Triangle&apos;, &#123; width: 100, height: 100 &#125;); // 魔术字符串</span><br></pre></td></tr></table></figure>
+<p>上面代码中，字符串Triangle就是一个魔术字符串。它多次出现，与代码形成“强耦合”，不利于将来的修改和维护。</p>
+<p>常用的消除魔术字符串的方法，就是把它写成一个变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var shapeType = &#123;</span><br><span class="line">  triangle: &apos;Triangle&apos;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function getArea(shape, options) &#123;</span><br><span class="line">  var area = 0;</span><br><span class="line">  switch (shape) &#123;</span><br><span class="line">    case shapeType.triangle:</span><br><span class="line">      area = .5 * options.width * options.height;</span><br><span class="line">      break;</span><br><span class="line">  &#125;</span><br><span class="line">  return area;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getArea(shapeType.triangle, &#123; width: 100, height: 100 &#125;);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，我们把Triangle写成shapeType对象的triangle属性，这样就消除了强耦合。</p>
+<p>如果仔细分析，可以发现shapeType.triangle等于哪个值并不重要，只要确保不会跟其他shapeType属性的值冲突即可。因此，这里就很适合改用 Symbol 值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const shapeType = &#123;</span><br><span class="line">  triangle: Symbol()</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，除了将shapeType.triangle的值设为一个Symbol，其他地方都不用修改</p>
+<h2 id="属性名的遍历-1"><a href="#属性名的遍历-1" class="headerlink" title="属性名的遍历"></a>属性名的遍历</h2><p><strong>Symbol 作为属性名，该属性不会出现在for…in、for…of循环中，也不会被Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回</strong>。但是，<strong>它也不是私有属性，有一个Object.getOwnPropertySymbols方法，可以获取指定对象的所有 Symbol 属性名。</strong></p>
+<p>Object.getOwnPropertySymbols方法返回一个数组，成员是当前对象的所有用作属性名的 Symbol 值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;&#125;;</span><br><span class="line">var a = Symbol(&apos;a&apos;);</span><br><span class="line">var b = Symbol(&apos;b&apos;);</span><br><span class="line"></span><br><span class="line">obj[a] = &apos;Hello&apos;;</span><br><span class="line">obj[b] = &apos;World&apos;;</span><br><span class="line"></span><br><span class="line">var objectSymbols = Object.getOwnPropertySymbols(obj);</span><br><span class="line"></span><br><span class="line">objectSymbols</span><br><span class="line">// [Symbol(a), Symbol(b)]</span><br></pre></td></tr></table></figure>
+<p>另一个新的API，<strong>Reflect.ownKeys方法可以返回所有类型的键名，包括常规键名和 Symbol 键名。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  [Symbol(&apos;my_key&apos;)]: 1,</span><br><span class="line">  enum: 2,</span><br><span class="line">  nonEnum: 3</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Reflect.ownKeys(obj)</span><br><span class="line">//  [&quot;enum&quot;, &quot;nonEnum&quot;, Symbol(my_key)]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于以 Symbol 值作为名称的属性，不会被常规方法遍历得到。我们可以利用这个特性，为对象定义一些非私有的、但又希望只用于内部的方法。</p>
+</blockquote>
+<h2 id="Symbol-for-，Symbol-keyFor-1"><a href="#Symbol-for-，Symbol-keyFor-1" class="headerlink" title="Symbol.for()，Symbol.keyFor()"></a>Symbol.for()，Symbol.keyFor()</h2><p>有时，我们希望重新使用同一个Symbol值，Symbol.for方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的Symbol值。如果有，就返回这个Symbol值，否则就新建并返回一个以该字符串为名称的Symbol值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var s1 = Symbol.for(&apos;foo&apos;);</span><br><span class="line">var s2 = Symbol.for(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // true</span><br></pre></td></tr></table></figure>
+<p>上面代码中，s1和s2都是 Symbol 值，但是它们都是同样参数的Symbol.for方法生成的，所以实际上是同一个值。</p>
+<p>Symbol.for()与Symbol()这两种写法，都会生成新的Symbol。它们的区别是，前者会被登记在全局环境中供搜索，后者不会。Symbol.for()不会每次调用就返回一个新的 Symbol 类型的值，而是会先检查给定的key是否已经存在，如果不存在才会新建一个值。比如，如果你调用Symbol.for(“cat”)30次，每次都会返回同一个 Symbol 值，但是调用Symbol(“cat”)30次，会返回30个不同的Symbol值。</p>
+<p>Symbol.keyFor方法返回一个已登记的 Symbol 类型值的key。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var s1 = Symbol.for(&quot;foo&quot;);</span><br><span class="line">Symbol.keyFor(s1) // &quot;foo&quot;</span><br><span class="line"></span><br><span class="line">var s2 = Symbol(&quot;foo&quot;);</span><br><span class="line">Symbol.keyFor(s2) // undefined</span><br></pre></td></tr></table></figure>
+<p>上面代码中，变量s2属于未登记的Symbol值，所以返回undefined。</p>
+<blockquote>
+<p>需要注意的是，Symbol.for为Symbol值登记的名字，是全局环境的，可以在不同的 iframe 或 service worker 中取到同一个值。</p>
+</blockquote>
+<h2 id="实例：模块的-Singleton-模式-1"><a href="#实例：模块的-Singleton-模式-1" class="headerlink" title="实例：模块的 Singleton 模式"></a>实例：模块的 Singleton 模式</h2><p>Singleton模式指的是调用一个类，任何时候返回的都是同一个实例。</p>
+<p>对于Node来说，模块文件可以看成是一个类。怎么保证每次执行这个模块文件，返回的都是同一个实例呢？</p>
+<p>很容易想到，可以把实例放到顶层对象global。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// mod.js</span><br><span class="line">function A() &#123;</span><br><span class="line">  this.foo = &apos;hello&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!global._foo) &#123;</span><br><span class="line">  global._foo = new A();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = global._foo;</span><br><span class="line">然后，加载上面的mod.js。</span><br><span class="line"></span><br><span class="line">var a = require(&apos;./mod.js&apos;);</span><br><span class="line">console.log(a.foo);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，变量a任何时候加载的都是A的同一个实例。</p>
+<p>但是，这里有一个问题，全局变量global._foo是可写的，任何文件都可以修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = require(&apos;./mod.js&apos;);</span><br><span class="line">global._foo = 123;</span><br></pre></td></tr></table></figure>
+<p>上面的代码，会使得别的脚本加载mod.js都失真。</p>
+<p>为了防止这种情况出现，我们就可以使用Symbol。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// mod.js</span><br><span class="line">const FOO_KEY = Symbol.for(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">function A() &#123;</span><br><span class="line">  this.foo = &apos;hello&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (!global[FOO_KEY]) &#123;</span><br><span class="line">  global[FOO_KEY] = new A();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = global[FOO_KEY];</span><br></pre></td></tr></table></figure>
+<p>上面代码中，可以保证global[FOO_KEY]不会被无意间覆盖，但还是可以被改写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = require(&apos;./mod.js&apos;);</span><br><span class="line">global[Symbol.for(&apos;foo&apos;)] = 123;</span><br></pre></td></tr></table></figure>
+<p>如果键名使用Symbol方法生成，那么外部将无法引用这个值，当然也就无法改写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// mod.js</span><br><span class="line">const FOO_KEY = Symbol(&apos;foo&apos;);</span><br><span class="line"></span><br><span class="line">// 后面代码相同 ……</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">上面代码将导致其他脚本都无法引用FOO_KEY。但这样也有一个问题，就是如果多次执行这个脚本，每次得到的FOO_KEY都是不一样的。虽然Node会将脚本的执行结果缓存，一般情况下，不会多次执行同一个脚本，但是用户可以手动清除缓存，所以也不是完全可靠。</span><br></pre></td></tr></table></figure>
+<h2 id="内置的Symbol值-1"><a href="#内置的Symbol值-1" class="headerlink" title="内置的Symbol值"></a>内置的Symbol值</h2><p>除了定义自己使用的Symbol值以外，ES6还提供了11个内置的Symbol值，指向语言内部使用的方法。</p>
+
       
     </div>
 
@@ -540,6 +765,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/ZombieBrand.github.io/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/ZombieBrand.github.io/tags/ES6/" rel="tag"><i class="fa fa-tag"></i> ES6</a>
+          
+            <a href="/ZombieBrand.github.io/tags/Symbol/" rel="tag"><i class="fa fa-tag"></i> Symbol</a>
+          
+        </div>
       
 
       
@@ -611,8 +846,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -629,7 +873,7 @@
                 
                   <a href="/ZombieBrand.github.io/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">85</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -656,7 +900,53 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -701,7 +991,149 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">85</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -817,6 +1249,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录："><span class="nav-number">1.</span> <span class="nav-text">目录：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol其实解决了两个问题："><span class="nav-number">2.1.</span> <span class="nav-text">Symbol其实解决了两个问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作为属性名的-Symbol"><span class="nav-number">3.</span> <span class="nav-text">作为属性名的 Symbol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例：消除魔术字符串"><span class="nav-number">4.</span> <span class="nav-text">实例：消除魔术字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性名的遍历"><span class="nav-number">5.</span> <span class="nav-text">属性名的遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol-for-，Symbol-keyFor"><span class="nav-number">6.</span> <span class="nav-text">Symbol.for()，Symbol.keyFor()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例：模块的-Singleton-模式"><span class="nav-number">7.</span> <span class="nav-text">实例：模块的 Singleton 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置的Symbol值"><span class="nav-number">8.</span> <span class="nav-text">内置的Symbol值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述-1"><span class="nav-number">9.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symbol其实解决了两个问题：-1"><span class="nav-number">9.1.</span> <span class="nav-text">Symbol其实解决了两个问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作为属性名的-Symbol-1"><span class="nav-number">10.</span> <span class="nav-text">作为属性名的 Symbol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例：消除魔术字符串-1"><span class="nav-number">11.</span> <span class="nav-text">实例：消除魔术字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性名的遍历-1"><span class="nav-number">12.</span> <span class="nav-text">属性名的遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol-for-，Symbol-keyFor-1"><span class="nav-number">13.</span> <span class="nav-text">Symbol.for()，Symbol.keyFor()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例：模块的-Singleton-模式-1"><span class="nav-number">14.</span> <span class="nav-text">实例：模块的 Singleton 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置的Symbol值-1"><span class="nav-number">15.</span> <span class="nav-text">内置的Symbol值</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -845,7 +1294,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">121k</span>
+    <span title="站点总字数">593k</span>
   
 
   
@@ -856,7 +1305,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:50</span>
+    <span title="站点阅读时长">8:59</span>
   
 </div>
 
@@ -876,7 +1325,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共45.4k字</span>
+  <span class="post-count">博客全站共232.6k字</span>
 </div>
         
 <div class="busuanzi-count">

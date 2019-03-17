@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/ZombieBrand.github.io/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/ZombieBrand.github.io/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/ZombieBrand.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/ZombieBrand.github.io/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ZombieBrand.github.io/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/ZombieBrand.github.io/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/ZombieBrand.github.io/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/ZombieBrand.github.io/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/ZombieBrand.github.io/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="关于移动端 rem 布局的一些总结先上一段代码原理下边 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909">
+<meta name="keywords" content="rem,移动端,适配,Flexible">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端rem适配">
+<meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/移动端rem适配/index.html">
+<meta property="og:site_name" content="ZombieBrand">
+<meta property="og:description" content="关于移动端 rem 布局的一些总结先上一段代码原理下边 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/896144/201707/896144-20170706233919628-231558146.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/896144/201707/896144-20170706233934425-712228411.png">
+<meta property="og:updated_time" content="2019-03-17T08:35:13.152Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端rem适配">
+<meta name="twitter:description" content="关于移动端 rem 布局的一些总结先上一段代码原理下边 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/896144/201707/896144-20170706233919628-231558146.png">
+
+
+
+  <link rel="alternate" href="/ZombieBrand.github.io/atom.xml" title="ZombieBrand" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/移动端rem适配/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>移动端rem适配 | ZombieBrand</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/ZombrBrand" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/ZombieBrand.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZombieBrand</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">前端</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zombrbrand.github.io/ZombieBrand.github.io/ZombieBrand.github.io/2019/03/17/移动端rem适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车勇志">
+      <meta itemprop="description" content="前端程序猿">
+      <meta itemprop="image" content="/ZombieBrand.github.io/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZombieBrand">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">移动端rem适配
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 16:31:59 / 修改时间：16:35:13" itemprop="dateCreated datePublished" datetime="2019-03-17T16:31:59+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/适配/" itemprop="url" rel="index"><span itemprop="name">适配</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/适配/移动端/" itemprop="url" rel="index"><span itemprop="name">移动端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">14k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">13 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="关于移动端-rem-布局的一些总结"><a href="#关于移动端-rem-布局的一些总结" class="headerlink" title="关于移动端 rem 布局的一些总结"></a>关于移动端 rem 布局的一些总结</h1><p><strong>先上一段代码原理下边</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params">win, lib</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timer,</span><br><span class="line">        doc     = win.document,</span><br><span class="line">        docElem = doc.documentElement,</span><br><span class="line"></span><br><span class="line">        vpMeta   = doc.querySelector(<span class="string">'meta[name="viewport"]'</span>),</span><br><span class="line">        flexMeta = doc.querySelector(<span class="string">'meta[name="flexible"]'</span>),</span><br><span class="line"> </span><br><span class="line">        dpr   = <span class="number">0</span>,</span><br><span class="line">        scale = <span class="number">0</span>,</span><br><span class="line"> </span><br><span class="line">        flexible = lib.flexible || (lib.flexible = &#123;&#125;);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 设置了 viewport meta</span></span><br><span class="line">    <span class="keyword">if</span> (vpMeta) &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="built_in">console</span>.warn(<span class="string">"将根据已有的meta标签来设置缩放比例"</span>);</span><br><span class="line">        <span class="keyword">var</span> initial = vpMeta.getAttribute(<span class="string">"content"</span>).match(<span class="regexp">/initial\-scale=([\d\.]+)/</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span> (initial) &#123;</span><br><span class="line">            scale = <span class="built_in">parseFloat</span>(initial[<span class="number">1</span>]); <span class="comment">// 已设置的 initialScale</span></span><br><span class="line">            dpr = <span class="built_in">parseInt</span>(<span class="number">1</span> / scale);      <span class="comment">// 设备像素比 devicePixelRatio</span></span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 设置了 flexible Meta</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (flexMeta) &#123;</span><br><span class="line">        <span class="keyword">var</span> flexMetaContent = flexMeta.getAttribute(<span class="string">"content"</span>);</span><br><span class="line">        <span class="keyword">if</span> (flexMetaContent) &#123;</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">var</span> initial = flexMetaContent.match(<span class="regexp">/initial\-dpr=([\d\.]+)/</span>),</span><br><span class="line">                maximum = flexMetaContent.match(<span class="regexp">/maximum\-dpr=([\d\.]+)/</span>);</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> (initial) &#123;</span><br><span class="line">                dpr = <span class="built_in">parseFloat</span>(initial[<span class="number">1</span>]);</span><br><span class="line">                scale = <span class="built_in">parseFloat</span>((<span class="number">1</span> / dpr).toFixed(<span class="number">2</span>));</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> (maximum) &#123;</span><br><span class="line">                dpr = <span class="built_in">parseFloat</span>(maximum[<span class="number">1</span>]);</span><br><span class="line">                scale = <span class="built_in">parseFloat</span>((<span class="number">1</span> / dpr).toFixed(<span class="number">2</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// viewport 或 flexible</span></span><br><span class="line">    <span class="comment">// meta 均未设置</span></span><br><span class="line">    <span class="keyword">if</span> (!dpr &amp;&amp; !scale) &#123;</span><br><span class="line">        <span class="comment">// QST</span></span><br><span class="line">        <span class="comment">// 这里的 第一句有什么用 ?</span></span><br><span class="line">        <span class="comment">// 和 Android 有毛关系 ?</span></span><br><span class="line">        <span class="keyword">var</span> u = (win.navigator.appVersion.match(<span class="regexp">/android/gi</span>), win.navigator.appVersion.match(<span class="regexp">/iphone/gi</span>)),</span><br><span class="line">            _dpr = win.devicePixelRatio;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 所以这里似乎是将所有 Android 设备都设置为 1 了</span></span><br><span class="line">        dpr = u ? ( (_dpr &gt;= <span class="number">3</span> &amp;&amp; (!dpr || dpr &gt;= <span class="number">3</span>))</span><br><span class="line">                        ? <span class="number">3</span></span><br><span class="line">                        : (_dpr &gt;= <span class="number">2</span> &amp;&amp; (!dpr || dpr &gt;= <span class="number">2</span>))</span><br><span class="line">                            ? <span class="number">2</span></span><br><span class="line">                            : <span class="number">1</span></span><br><span class="line">                  )</span><br><span class="line">                : <span class="number">1</span>;</span><br><span class="line"> </span><br><span class="line">        scale = <span class="number">1</span> / dpr;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    docElem.setAttribute(<span class="string">"data-dpr"</span>, dpr);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 插入 viewport meta</span></span><br><span class="line">    <span class="keyword">if</span> (!vpMeta) &#123;</span><br><span class="line">        vpMeta = doc.createElement(<span class="string">"meta"</span>);</span><br><span class="line">         </span><br><span class="line">        vpMeta.setAttribute(<span class="string">"name"</span>, <span class="string">"viewport"</span>);</span><br><span class="line">        vpMeta.setAttribute(<span class="string">"content"</span>,</span><br><span class="line">            <span class="string">"initial-scale="</span> + scale + <span class="string">", maximum-scale="</span> + scale + <span class="string">", minimum-scale="</span> + scale + <span class="string">", user-scalable=no"</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span> (docElem.firstElementChild) &#123;</span><br><span class="line">            docElem.firstElementChild.appendChild(vpMeta)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> div = doc.createElement(<span class="string">"div"</span>);</span><br><span class="line">            div.appendChild(vpMeta);</span><br><span class="line">            doc.write(div.innerHTML);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">setFontSize</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> winWidth = docElem.getBoundingClientRect().width;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span> (winWidth / dpr &gt; <span class="number">540</span>) &#123;</span><br><span class="line">            (winWidth = <span class="number">540</span> * dpr);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 根节点 fontSize 根据宽度决定</span></span><br><span class="line">        <span class="keyword">var</span> baseSize = winWidth / <span class="number">10</span>;</span><br><span class="line"> </span><br><span class="line">        docElem.style.fontSize = baseSize + <span class="string">"px"</span>;</span><br><span class="line">        flexible.rem = win.rem = baseSize;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 调整窗口时重置</span></span><br><span class="line">    win.addEventListener(<span class="string">"resize"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(setFontSize, <span class="number">300</span>);</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line"> </span><br><span class="line">     </span><br><span class="line">    <span class="comment">// 这一段是我自己加的</span></span><br><span class="line">    <span class="comment">// orientationchange 时也需要重算下吧</span></span><br><span class="line">    win.addEventListener(<span class="string">"orientationchange"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(setFontSize, <span class="number">300</span>);</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">// pageshow</span></span><br><span class="line">    <span class="comment">// keyword: 倒退 缓存相关</span></span><br><span class="line">    win.addEventListener(<span class="string">"pageshow"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e.persisted) &#123;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(setFontSize, <span class="number">300</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 设置基准字体</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="string">"complete"</span> === doc.readyState) &#123;</span><br><span class="line">        doc.body.style.fontSize = <span class="number">12</span> * dpr + <span class="string">"px"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        doc.addEventListener(<span class="string">"DOMContentLoaded"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            doc.body.style.fontSize = <span class="number">12</span> * dpr + <span class="string">"px"</span>;</span><br><span class="line">        &#125;, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    setFontSize();</span><br><span class="line"> </span><br><span class="line">    flexible.dpr = win.dpr = dpr;</span><br><span class="line"> </span><br><span class="line">    flexible.refreshRem = setFontSize;</span><br><span class="line"> </span><br><span class="line">    flexible.rem2px = <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> c = <span class="built_in">parseFloat</span>(d) * <span class="keyword">this</span>.rem;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"string"</span> == <span class="keyword">typeof</span> d &amp;&amp; d.match(<span class="regexp">/rem$/</span>)) &#123;</span><br><span class="line">            c += <span class="string">"px"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">    flexible.px2rem = <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> c = <span class="built_in">parseFloat</span>(d) / <span class="keyword">this</span>.rem;</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"string"</span> == <span class="keyword">typeof</span> d &amp;&amp; d.match(<span class="regexp">/px$/</span>)) &#123;</span><br><span class="line">            c += <span class="string">"rem"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="built_in">window</span>, <span class="built_in">window</span>.lib || (<span class="built_in">window</span>.lib = &#123;&#125;));</span><br></pre></td></tr></table></figure>
+<h2 id="视口"><a href="#视口" class="headerlink" title="视口"></a>视口</h2><p>在前一段时间，我曾经写过一篇关于viewport的文章。最近由于在接触移动端开发，对viewport有了新的理解。于是，打算重新写一篇文章，介绍移动端视口的相关概念。</p>
+<p>关于这篇文章说到的所有知识，本质上离不开以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no&quot; /&gt;</span><br><span class="line"></span><br><span class="line">@media all and (max-width: 320px) &#123;</span><br><span class="line">    // do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>了解过移动端开发的朋友，其实对以上的代码就不会陌生。上面的代码，主要涉及到meta视口标签与媒体查询。单单以上简短的代码就需要明白：</p>
+<ul>
+<li>像素(pixel)</li>
+<li>视口(viewport)</li>
+<li>分辨率(resolution)与设备像素比(device-pixel-ratio)</li>
+<li>meta视口标签</li>
+<li>媒体查询(media query)</li>
+<li>JavaScript相关的属性和方法</li>
+<li>如何实现移动端响应式适配的问题</li>
+</ul>
+<p>那就进入主题吧：）</p>
+<h3 id="像素"><a href="#像素" class="headerlink" title="像素"></a>像素</h3><p>在移动端上，所谓的像素分为两种</p>
+<ul>
+<li>CSS像素：CSS像素就是我们在编写CSS代码时的像素。</li>
+<li>设备像素：设备屏幕的物理像素，任何设备的物理像素的数量都是固定的。</li>
+</ul>
+<p>1个CSS像素等于多少个设备像素取决于屏幕特性(是否是高清屏)和用户缩放的比例。当用户将屏幕从100%放大到200%时，1个CSS像素等于2个设备像素，反之相反；当屏幕为Retina高清屏(如iPhone6，dpr=2)时，1个CSS像素就等于2个设备像素，反之相反。</p>
+<p>需要明白一点的是，2个设备像素并不是说它扩大了两倍，而是说在<strong>页面上仍然显示的是1px(1个CSS像素)</strong>，但是这1px是由2个设备像素组成。像素点变多了，因此图像会变得更加清晰。下面这幅图大致说明了CSS像素和设备像素的区别。<br><img src="https://images2015.cnblogs.com/blog/896144/201707/896144-20170706233919628-231558146.png" alt="img"></p>
+<h3 id="视口-1"><a href="#视口-1" class="headerlink" title="视口"></a>视口</h3><p>在移动端上，存在三种不同的视口。</p>
+<ul>
+<li>布局视口：在PC端上，布局视口等于浏览器窗口的宽度。而在移动端上，由于要使为PC端浏览器设计的网站能够完全显示在移动端的小屏幕里，此时的布局视口会远大于移动设备的屏幕。在移动端，默认情况下，布局视口等于浏览器窗口宽度。<strong>布局视口限制了CSS的布局。</strong>在<strong>JavaScirpt上获取布局视口的宽度</strong>可以通过<code>document.documentElement.clientWidth | document.body.clientWidth</code>得到。<br><img src="https://images2015.cnblogs.com/blog/896144/201707/896144-20170706233934425-712228411.png" alt="img"></li>
+<li>视觉视口：视觉视口是用户正在看到的区域。用户可以缩放来操作视觉视口，而不影响视觉视口的宽度。<strong>视觉视口决定了用户看到了什么</strong>。在<strong>JavaScript上获取视觉视口的宽度</strong>可以通过`window.innerWidth得到。</li>
+</ul>
+<p>在PC端上，视觉视口等于布局视口的宽度，无论用户是放大屏幕还是缩小屏幕，这两个视口的宽度仍然相等。但是，在移动端上，并非如此。<strong>缩放屏幕的过程实质上就是CSS像素缩放的过程</strong>。当用户将屏幕放到到两倍时，视觉视口变小了(因为视觉视口中CSS像素变少了)，而每单位的CSS像素却变大了，因此1px(1个CSS像素)等于2个设备像素。同理，当为iPhone6(dpr=2)时，视觉视口中CSS像素变少了，但是1px等于2个设备像素。当用户缩小屏幕时也是同样的道理。<strong>缩放的过程并不会影响布局视口的大小。</strong></p>
+<p>也就是说，高清屏(dpr&gt;=2)或屏幕放大时，视觉视口变小(CSS像素变少)，每单位的CSS像素等于更多的设备像素；非高清屏(dpr&lt;2)<br>或屏幕缩小时，视觉视口变大(CSS像素变多)，每单位的CSS像素等于更少的设备像素。<br>但是无论放大或缩小屏幕，布局视口的宽度仍然保持不变。</p>
+<ul>
+<li>理想视口：由于默认情况下布局视口等于浏览器窗口宽度，因此在移动端上需要通过放大或缩小视觉视口来查看页面内容，这当然体验糟糕啊！因此在移动端引入了理想视口的概念。理想视口的出现必须需要设置meta视口标签，此时布局视口等于理想视口的宽度。常见的，iPhone6的理想视口为375px <em> 667px，iPhon6 plus的理想视口为414px </em> 736px。在<strong>JavaScript上获取理想视口的宽度</strong><code>window.screen.width</code>得到。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>当设置了meta视口标签之后，iPhone6的布局视口宽度将等于375px，iPhone6plus布局视口的宽度等于414px。其他移动设备相似。</p>
+<p>理想视口会随着屏幕的旋转而改变。当iPhone6为肖像模式时(即竖屏)，此时理想视口为375px <em> 667px；但为横屏模式时，此时理想视口为667px </em> 375px。</p>
+<h3 id="分辨率与设备像素比"><a href="#分辨率与设备像素比" class="headerlink" title="分辨率与设备像素比"></a>分辨率与设备像素比</h3><p>分辨率是指每英寸内点的个数，单位是dpi或者dppx。设备像素比是指设备像素与理想视口宽度的比值，没有单位。</p>
+<p>分辨率在CSS上可以通过<code>resolution</code>属性设置。一般情况下会使用dpi作为分辨率的单位，因为dppx并非所有浏览器都支持。</p>
+<p>而设备像素比在CSS上可以通过<code>device-pixel-ratio</code>属性设置，而在JavaScript上可以通过<code>window.devicePixelRatio</code>属性获取。</p>
+<p>同时，<strong>1dpr=96dpi</strong>。举个例子。在iPhon6下，理想视口宽度为375px，而设备像素为750px，因此此时设备像素比为2，分辨率为192dpi。因此如果为iPhon6以下的设备写某个特定样式，可以这样写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 注意，device-pixel-ratio需要带上-webkit-前缀，保证浏览器兼容性问题。</span><br><span class="line">@media all and (max-width: 375px) and (-webkit-max-device-pixel-ratio: 2) &#123;</span><br><span class="line">    body &#123;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">或者</span><br><span class="line">@media all and (max-width: 375px) and (max-resolution: 192dpi) &#123;</span><br><span class="line">    body &#123;</span><br><span class="line">        background-color: red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="meta视口标签"><a href="#meta视口标签" class="headerlink" title="meta视口标签"></a>meta视口标签</h3><p>meta视口标签是是设置理想视口的重要元素，主要用于将布局视口的尺寸和理想视口的尺寸相匹配。meta视口标签存在5个指令</p>
+<ol>
+<li>width：设置布局视口的宽度，一般设为device-width。</li>
+<li>initial-scale：初始缩放比例。1即100%，2即200%，以此类推</li>
+<li>maximum=scale：最大缩放比例。</li>
+<li>minimum-scale：最小缩放比例。</li>
+<li>user-scalable：是否静止用户进行缩放，默认为no。</li>
+</ol>
+<p>需要注意的是，<strong>缩放是根据理想视口进行计算的。缩放程度与视觉视口的宽度是逆相关的。</strong>也就是说，当你将屏幕放到到2倍时，视觉视口为理想视口的一半，此时每单位的CSS像素等于2个设备像素。缩小时则相反。</p>
+<h2 id="响应式适配问题"><a href="#响应式适配问题" class="headerlink" title="响应式适配问题"></a>响应式适配问题</h2><p>理解了一些基本概念之后，我们来看看如何实现响应式适配。</p>
+<p>一般情况下，前端开发工程师会根据设计师给的设计稿进行开发。而设计稿一般是根据iPhon6手机进行页面的设计的。我们知道iPhone6的理想视口宽度为375px，同时iPhone6的设备像素比为2，设备像素为750px。我们需要在只有一份设计稿的情况下写出适应各种屏幕不一的终端设备，因此需要一些移动端响应式适配的方案。此时需要用到的一个单位是<code>REM</code>。简单的说，REM会根据HTML元素的<code>font-size</code>进行设置。当HTML元素的<code>font-size: 16px</code>时，<code>1rem = 16px, 1.5rem = 24px</code></p>
+<p>个人总结出了两套响应式适配的方案(前提是设置meta视口标签)。两套方案由一个共同点：给定一个<strong>基准值</strong>。</p>
+<p>假如现在拿到的设计稿是根据iPhone6进行设计的。</p>
+<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>方案一是设计稿给什么尺寸，我们就将其缩小100倍，最后换算成rem单位。比如，设计稿上某个title的<code>font-size</code>为32px，此时写CSS样式时就直接缩小100倍，即<code>0.32rem</code>。</p>
+<p>由于rem是根据根元素进行设置的，所以我们需要设置根元素的<code>font-size</code>。</p>
+<p>给HTML设置<code>font-size</code>的基本思路：</p>
+<ol>
+<li>通过<code>window.screen.width</code>获取不同移动设备的理想视口宽度。</li>
+<li>规定基准值为750px(此值为iPhon6的设备像素)。</li>
+<li>(1) / (2) * 100即得到HTML元素的<code>font-size</code>。(乘于100是因为我们在前面将字体缩小了100倍，此时要乘回来)</li>
+</ol>
+<p>换算成公式即：<strong>设计稿尺寸 / 100 * (不同设备的理想视口宽度 / 基准值 * 100)</strong></p>
+<p>举个例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 根据不同设备的理想视口宽度动态设置根元素的`font-size`。</span><br><span class="line">let idealViewWidth = window.screen.width;</span><br><span class="line">const BASICVALUE = 750;</span><br><span class="line">document.documentElement.style.fontSize = (idealViewWidth / BASICVALUE) * 100 + &apos;px&apos;;</span><br></pre></td></tr></table></figure>
+<p>因此，在不同设备下的HTML元素的<code>font-size</code>大小和实际像素如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">iPhone5 : (320 / 750) * 100 = 42.667px</span><br><span class="line">iPhone6 : (375 / 750) * 100 = 50px</span><br><span class="line">iPhone6+: (414 / 750) * 100 = 55.2px</span><br><span class="line"></span><br><span class="line">假如设计稿上标注.title类上的字体为32px，此时有</span><br><span class="line">iPhone5上的某字体:  42.667 * 0.32rem = 13.653px</span><br><span class="line">iPhone6上的某字体： 50 * 0.32rem = 16px</span><br><span class="line">iPhone6+上的某字体: 55.2 * 0.32rem = 17.664px</span><br></pre></td></tr></table></figure>
+<p>可以看出，在不同设备下，同一字号的字体使用rem单位可以实现不同设备的响应式适配。不单单在字体上可以使用，在移动端上的width、height等涉及单位的都可以使用。这样的话，就可以在不同设备下完美的复现设计稿的要求。</p>
+<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>此方案使用了SASS预处理器。基本思路：</p>
+<ol>
+<li>设置根元素的<code>font-size</code>。通过获取不同设备的理想视口宽度，再除以10。(除以10是因为不想<code>font-size</code>太大。)</li>
+<li>给定基准值，此时给的基准值为75px(此值为iPhone6的设备像素除以10)</li>
+<li>写SASS Function</li>
+</ol>
+<p>代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">SASS</span><br><span class="line">@function px2rem ($value) &#123;</span><br><span class="line">    $para: 75px;</span><br><span class="line">    @return $value / $para + rem;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">JS</span><br><span class="line">let idealViewWidth = window.screen.width;</span><br><span class="line">document.documentElement.style.fontSize = idealViewWidth / 10 + &apos;px&apos;;</span><br><span class="line"></span><br><span class="line">在不同设备下根元素的`font-size`：</span><br><span class="line"></span><br><span class="line">iPhone5 : 320px / 10 = 32px</span><br><span class="line">iPhone6 : 375px / 10 = 37.5px</span><br><span class="line">iPhone6+: 414px / 10 = 41.4px</span><br><span class="line"></span><br><span class="line">根据以上，可以看一个例子。某设计稿下5个li，横向排布，每个的宽度为200px</span><br><span class="line">CSS</span><br><span class="line">@import (路径名)</span><br><span class="line">iPhone5: li &#123; width: px2rem(200px) &#125; =&gt; width: 85.333px</span><br><span class="line">// 此时(200px / 75px = 2.667rem) 2.667rem = 2.667 * (320 / 10) = 85.3333px</span><br><span class="line">iPhone6: li &#123; width: px2rem(200px) &#125; =&gt; width: 100px</span><br><span class="line">// 此时(200px / 75px = 2.667rem) 2.667rem = 2.667 * (375 / 10) = 100px</span><br><span class="line">iPhone6+: li &#123; width: px2rem(200px) &#125; =&gt; width: 4138px</span><br><span class="line">// 此时(200px / 75px = 2.667rem) 2.667rem = 2.667 * (414 / 10) = 110.4138px</span><br><span class="line"></span><br><span class="line">因此，一个200px的(实际只有100px)的li元素的宽度在不同设备下显示了不同的宽度，实现了响应式适配的问题。</span><br></pre></td></tr></table></figure>
+<h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p>方案三与前两个方案不相同，此方案并不需要给根元素设置<code>font-size</code>，不需要基准值。此方案是根据不同设备的dpr来实现页面的缩放的。</p>
+<p>基本思路如下：</p>
+<ol>
+<li>通过window.devicePixelRatio获取设备的dpr</li>
+<li>根据不同的dpr缩放页面，动态设置meta视口标签。(缩放是放大或缩小CSS的过程，根据理想视口进行缩放，与视觉视口方向相反)</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let dpr = window.devicePixelRatio;</span><br><span class="line">let meta = document.createElement(&apos;meta&apos;);</span><br><span class="line">let initialScale = 1 / dpr;</span><br><span class="line">let maximumScale = 1 / dpr;</span><br><span class="line">let minimumScale = 1 / dpr;</span><br><span class="line">meta.setAttribute(&apos;name&apos;, &apos;viewport&apos;);</span><br><span class="line">meta.setAttribute(&apos;content&apos;, `width=device-width, user-scalable=no, initial-scale=$&#123;initialScale&#125;, maximum-scale=$&#123;maximumScale&#125;, minimum-scale=$&#123;minimumScale&#125;`);</span><br><span class="line">document.head.appendChild(meta);</span><br><span class="line"></span><br><span class="line">因此，可以直接根据设计稿的尺寸写CSS样式，如设计稿下有5个li元素，宽度为200px，此时不同设备下li的宽度</span><br><span class="line"></span><br><span class="line">iPhone5 : li &#123; width: 200px &#125; 实际宽度为：100px</span><br><span class="line">iPhone6 : li &#123; width: 200px &#125; 实际宽度为：100px</span><br><span class="line">iPhone6+: li &#123; width: 200px &#125; 实际宽度为：66.667px</span><br></pre></td></tr></table></figure>
+<p>以上三种方法解决了大部分移动端响应式适配的问题，但是在1px问题上，使用以上的方法仍然(除了第三个方案)，都不能很好的解决1px的问题。有时间写一篇文章介绍如何解决1px的问题。</p>
+<hr>
+<h1 id="淘宝flexible适配方法"><a href="#淘宝flexible适配方法" class="headerlink" title="淘宝flexible适配方法"></a>淘宝flexible适配方法</h1><p><a href="https://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html" target="_blank" rel="noopener">原文来源</a></p>
+<p>直接插入到HTML中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">! <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = f.getBoundingClientRect().width;</span><br><span class="line">        b / i &gt; <span class="number">540</span> &amp;&amp; (b = <span class="number">540</span> * i);</span><br><span class="line">        <span class="keyword">var</span> c = b / <span class="number">10</span>;</span><br><span class="line">        f.style.fontSize = c + <span class="string">"px"</span>, k.rem = a.rem = c</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> d, e = a.document,</span><br><span class="line">        f = e.documentElement,</span><br><span class="line">        g = e.querySelector(<span class="string">'meta[name="viewport"]'</span>),</span><br><span class="line">        h = e.querySelector(<span class="string">'meta[name="flexible"]'</span>),</span><br><span class="line">        i = <span class="number">0</span>,</span><br><span class="line">        j = <span class="number">0</span>,</span><br><span class="line">        k = b.flexible || (b.flexible = &#123;&#125;);</span><br><span class="line">    <span class="keyword">if</span> (g) &#123;</span><br><span class="line">        <span class="built_in">console</span>.warn(<span class="string">"将根据已有的meta标签来设置缩放比例"</span>);</span><br><span class="line">        <span class="keyword">var</span> l = g.getAttribute(<span class="string">"content"</span>).match(<span class="regexp">/initial\-scale=([\d\.]+)/</span>);</span><br><span class="line">        l &amp;&amp; (j = <span class="built_in">parseFloat</span>(l[<span class="number">1</span>]), i = <span class="built_in">parseInt</span>(<span class="number">1</span> / j))</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (h) &#123;</span><br><span class="line">        <span class="keyword">var</span> m = h.getAttribute(<span class="string">"content"</span>);</span><br><span class="line">        <span class="keyword">if</span> (m) &#123;</span><br><span class="line">            <span class="keyword">var</span> n = m.match(<span class="regexp">/initial\-dpr=([\d\.]+)/</span>),</span><br><span class="line">                o = m.match(<span class="regexp">/maximum\-dpr=([\d\.]+)/</span>);</span><br><span class="line">            n &amp;&amp; (i = <span class="built_in">parseFloat</span>(n[<span class="number">1</span>]), j = <span class="built_in">parseFloat</span>((<span class="number">1</span> / i).toFixed(<span class="number">2</span>))), o &amp;&amp; (i = <span class="built_in">parseFloat</span>(o[<span class="number">1</span>]), j = <span class="built_in">parseFloat</span>((<span class="number">1</span> / i).toFixed(<span class="number">2</span>)))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!i &amp;&amp; !j) &#123;</span><br><span class="line">        <span class="keyword">var</span> p = a.navigator.userAgent,</span><br><span class="line">            q = (!!p.match(<span class="regexp">/android/gi</span>), !!p.match(<span class="regexp">/iphone/gi</span>)),</span><br><span class="line">            r = q &amp;&amp; !!p.match(<span class="regexp">/OS 9_3/</span>),</span><br><span class="line">            s = a.devicePixelRatio;</span><br><span class="line">        i = q &amp;&amp; !r ? s &gt;= <span class="number">3</span> &amp;&amp; (!i || i &gt;= <span class="number">3</span>) ? <span class="number">3</span> : s &gt;= <span class="number">2</span> &amp;&amp; (!i || i &gt;= <span class="number">2</span>) ? <span class="number">2</span> : <span class="number">1</span> : <span class="number">1</span>, j = <span class="number">1</span> / i</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (f.setAttribute(<span class="string">"data-dpr"</span>, i), !g)</span><br><span class="line">        <span class="keyword">if</span> (g = e.createElement(<span class="string">"meta"</span>), g.setAttribute(<span class="string">"name"</span>, <span class="string">"viewport"</span>), g.setAttribute(<span class="string">"content"</span>, <span class="string">"initial-scale="</span> + j + <span class="string">", maximum-scale="</span> + j + <span class="string">", minimum-scale="</span> + j + <span class="string">", user-scalable=no"</span>), f.firstElementChild) f.firstElementChild.appendChild(g);</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> t = e.createElement(<span class="string">"div"</span>);</span><br><span class="line">            t.appendChild(g), e.write(t.innerHTML)</span><br><span class="line">        &#125; a.addEventListener(<span class="string">"resize"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(d), d = setTimeout(c, <span class="number">300</span>)</span><br><span class="line">    &#125;, !<span class="number">1</span>), a.addEventListener(<span class="string">"pageshow"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">        a.persisted &amp;&amp; (clearTimeout(d), d = setTimeout(c, <span class="number">300</span>))</span><br><span class="line">    &#125;, !<span class="number">1</span>), <span class="string">"complete"</span> === e.readyState ? e.body.style.fontSize = <span class="number">12</span> * i + <span class="string">"px"</span> : e.addEventListener(<span class="string">"DOMContentLoaded"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        e.body.style.fontSize = <span class="number">12</span> * i + <span class="string">"px"</span></span><br><span class="line">    &#125;, !<span class="number">1</span>), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="built_in">parseFloat</span>(a) * <span class="keyword">this</span>.rem;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"string"</span> == <span class="keyword">typeof</span> a &amp;&amp; a.match(<span class="regexp">/rem$/</span>) &amp;&amp; (b += <span class="string">"px"</span>), b</span><br><span class="line">    &#125;, k.px2rem = <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="built_in">parseFloat</span>(a) / <span class="keyword">this</span>.rem;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"string"</span> == <span class="keyword">typeof</span> a &amp;&amp; a.match(<span class="regexp">/px$/</span>) &amp;&amp; (b += <span class="string">"rem"</span>), b</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="built_in">window</span>, <span class="built_in">window</span>.lib || (<span class="built_in">window</span>.lib = &#123;&#125;));</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/ZombieBrand.github.io/tags/rem/" rel="tag"><i class="fa fa-tag"></i> rem</a>
+          
+            <a href="/ZombieBrand.github.io/tags/移动端/" rel="tag"><i class="fa fa-tag"></i> 移动端</a>
+          
+            <a href="/ZombieBrand.github.io/tags/适配/" rel="tag"><i class="fa fa-tag"></i> 适配</a>
+          
+            <a href="/ZombieBrand.github.io/tags/Flexible/" rel="tag"><i class="fa fa-tag"></i> Flexible</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ZombieBrand.github.io/2019/03/17/正则表达式实例/" rel="next" title="正则表达式实例">
+                <i class="fa fa-chevron-left"></i> 正则表达式实例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ZombieBrand.github.io/2019/03/17/移动端入门常见适配问题/" rel="prev" title="移动端入门常见适配问题">
+                移动端入门常见适配问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE2OS8xOTcxNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/ZombieBrand.github.io/images/avatar.jpg" alt="车勇志">
+            
+              <p class="site-author-name" itemprop="name">车勇志</p>
+              <div class="site-description motion-element" itemprop="description">前端程序猿</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/ZombieBrand.github.io/archives/">
+                
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/ZombieBrand.github.io/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/ZombieBrand.github.io/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/ZombieBrand.github.io/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ZombrBrand" title="GitHub &rarr; https://github.com/ZombrBrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/ZombieBrand.github.io/zombiebrandg@gmail.com" title="E-Mail &rarr; zombiebrandg@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/f1d1e6e12974" title="简书 &rarr; https://www.jianshu.com/u/f1d1e6e12974" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://juejin.im/user/59ae5a3d6fb9a0248c2e0e94" title="掘金 &rarr; https://juejin.im/user/59ae5a3d6fb9a0248c2e0e94" rel="noopener" target="_blank"><i class="fa fa-fw fa-spinner"></i>掘金</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/1693410731" title="Weibo &rarr; https://weibo.com/u/1693410731" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://segmentfault.com/u/zombiebrand" title="SegmentFault &rarr; https://segmentfault.com/u/zombiebrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-user-secret"></i>SegmentFault</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/9595109/zombiebrand" title="StackOverflow &rarr; https://stackoverflow.com/users/9595109/zombiebrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于移动端-rem-布局的一些总结"><span class="nav-number">1.</span> <span class="nav-text">关于移动端 rem 布局的一些总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#视口"><span class="nav-number">1.1.</span> <span class="nav-text">视口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#像素"><span class="nav-number">1.1.1.</span> <span class="nav-text">像素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视口-1"><span class="nav-number">1.1.2.</span> <span class="nav-text">视口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分辨率与设备像素比"><span class="nav-number">1.1.3.</span> <span class="nav-text">分辨率与设备像素比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta视口标签"><span class="nav-number">1.1.4.</span> <span class="nav-text">meta视口标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式适配问题"><span class="nav-number">1.2.</span> <span class="nav-text">响应式适配问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一"><span class="nav-number">1.2.1.</span> <span class="nav-text">方案一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二"><span class="nav-number">1.2.2.</span> <span class="nav-text">方案二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案三"><span class="nav-number">1.2.3.</span> <span class="nav-text">方案三</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#淘宝flexible适配方法"><span class="nav-number">2.</span> <span class="nav-text">淘宝flexible适配方法</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">车勇志</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">593k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">8:59</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共232.6k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-everyone"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,0" opacity="0.3" zindex="-1" count="99" src="/ZombieBrand.github.io/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/ZombieBrand.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/ZombieBrand.github.io/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/ZombieBrand.github.io/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/ZombieBrand.github.io/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/03/17/移动端rem适配/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/ZombieBrand.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

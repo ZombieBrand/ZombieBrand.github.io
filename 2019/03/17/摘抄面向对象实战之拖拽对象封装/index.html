@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/ZombieBrand.github.io/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/ZombieBrand.github.io/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/ZombieBrand.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/ZombieBrand.github.io/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ZombieBrand.github.io/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/ZombieBrand.github.io/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/ZombieBrand.github.io/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/ZombieBrand.github.io/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/ZombieBrand.github.io/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前面几篇文章，我跟大家分享了JavaScript的一些基础知识，这篇文章，将会进入第一个实战环节：利用前面几章的所涉及到的知识，封装一个拖拽对象。为了能够帮助大家了解更多的方式与进行对比，我会使用三种不同的方式来实现拖拽。  不封装对象直接实现； 利用原生JavaScript封装拖拽对象； 通过扩展jQuery来实现拖拽对象。   本文的例子会放置于codepen.io中，供大家在阅读时直接查看。">
+<meta name="keywords" content="面向对象,拖拽对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="摘抄面向对象实战之拖拽对象封装">
+<meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象实战之拖拽对象封装/index.html">
+<meta property="og:site_name" content="ZombieBrand">
+<meta property="og:description" content="前面几篇文章，我跟大家分享了JavaScript的一些基础知识，这篇文章，将会进入第一个实战环节：利用前面几章的所涉及到的知识，封装一个拖拽对象。为了能够帮助大家了解更多的方式与进行对比，我会使用三种不同的方式来实现拖拽。  不封装对象直接实现； 利用原生JavaScript封装拖拽对象； 通过扩展jQuery来实现拖拽对象。   本文的例子会放置于codepen.io中，供大家在阅读时直接查看。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-6137a359597879a5.png">
+<meta property="og:updated_time" content="2019-03-17T08:28:06.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="摘抄面向对象实战之拖拽对象封装">
+<meta name="twitter:description" content="前面几篇文章，我跟大家分享了JavaScript的一些基础知识，这篇文章，将会进入第一个实战环节：利用前面几章的所涉及到的知识，封装一个拖拽对象。为了能够帮助大家了解更多的方式与进行对比，我会使用三种不同的方式来实现拖拽。  不封装对象直接实现； 利用原生JavaScript封装拖拽对象； 通过扩展jQuery来实现拖拽对象。   本文的例子会放置于codepen.io中，供大家在阅读时直接查看。">
+<meta name="twitter:image" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-6137a359597879a5.png">
+
+
+
+  <link rel="alternate" href="/ZombieBrand.github.io/atom.xml" title="ZombieBrand" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象实战之拖拽对象封装/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>摘抄面向对象实战之拖拽对象封装 | ZombieBrand</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/ZombrBrand" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/ZombieBrand.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZombieBrand</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">前端</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zombrbrand.github.io/ZombieBrand.github.io/ZombieBrand.github.io/2019/03/17/摘抄面向对象实战之拖拽对象封装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车勇志">
+      <meta itemprop="description" content="前端程序猿">
+      <meta itemprop="image" content="/ZombieBrand.github.io/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZombieBrand">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">摘抄面向对象实战之拖拽对象封装
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-17 16:20:30 / 修改时间：16:28:06" itemprop="dateCreated datePublished" datetime="2019-03-17T16:20:30+08:00">2019-03-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/面向对象/" itemprop="url" rel="index"><span itemprop="name">面向对象</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">11k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">10 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面几篇文章，我跟大家分享了JavaScript的一些基础知识，这篇文章，将会进入第一个实战环节：利用前面几章的所涉及到的知识，封装一个拖拽对象。为了能够帮助大家了解更多的方式与进行对比，我会使用三种不同的方式来实现拖拽。</p>
+<ul>
+<li>不封装对象直接实现；</li>
+<li>利用原生JavaScript封装拖拽对象；</li>
+<li>通过扩展jQuery来实现拖拽对象。</li>
+</ul>
+<blockquote>
+<p>本文的例子会放置于<a href="http://codepen.io/" target="_blank" rel="noopener">codepen.io</a>中，供大家在阅读时直接查看。如果对于codepen不了解的同学，可以花点时间稍微了解一下。</p>
+</blockquote>
+<p>拖拽的实现过程会涉及到非常多的实用小知识，因此为了巩固我自己的知识积累，也为了大家能够学到更多的知识，我会尽量详细的将一些细节分享出来，相信大家认真阅读之后，一定能学到一些东西。</p>
+<h6 id="1、如何让一个DOM元素动起来"><a href="#1、如何让一个DOM元素动起来" class="headerlink" title="1、如何让一个DOM元素动起来"></a>1、如何让一个DOM元素动起来</h6><p>我们常常会通过修改元素的<code>top，left，translate</code>来其的位置发生改变。在下面的例子中，每点击一次按钮，对应的元素就会移动5px。大家可点击查看。</p>
+<p><a href="http://codepen.io/yangbo5207/pen/YZxGpO" target="_blank" rel="noopener">点击查看一个让元素动起来的小例子</a></p>
+<blockquote>
+<p>由于修改一个元素top/left值会引起页面重绘，而translate不会，因此从性能优化上来判断，我们会优先使用translate属性。</p>
+</blockquote>
+<h6 id="2、如何获取当前浏览器支持的transform兼容写法"><a href="#2、如何获取当前浏览器支持的transform兼容写法" class="headerlink" title="2、如何获取当前浏览器支持的transform兼容写法"></a>2、如何获取当前浏览器支持的transform兼容写法</h6><p>transform是css3的属性，当我们使用它时就不得不面对兼容性的问题。不同版本浏览器的兼容写法大致有如下几种：</p>
+<p><code>[&#39;transform&#39;, &#39;webkitTransform&#39;, &#39;MozTransform&#39;, &#39;msTransform&#39;, &#39;OTransform&#39;]</code></p>
+<p>因此我们需要判断当前浏览器环境支持的transform属性是哪一种，方法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前浏览器支持的transform兼容写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTransform</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> transform = <span class="string">''</span>,</span><br><span class="line">        divStyle = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>).style,</span><br><span class="line">        <span class="comment">// 可能涉及到的几种兼容性写法，通过循环找出浏览器识别的那一个</span></span><br><span class="line">        transformArr = [<span class="string">'transform'</span>, <span class="string">'webkitTransform'</span>, <span class="string">'MozTransform'</span>, <span class="string">'msTransform'</span>, <span class="string">'OTransform'</span>],</span><br><span class="line"></span><br><span class="line">        i = <span class="number">0</span>,</span><br><span class="line">        len = transformArr.length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(; i &lt; len; i++)  &#123;</span><br><span class="line">        <span class="keyword">if</span>(transformArr[i] <span class="keyword">in</span> divStyle) &#123;</span><br><span class="line">            <span class="comment">// 找到之后立即返回，结束函数</span></span><br><span class="line">            <span class="keyword">return</span> transform = transformArr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果没有找到，就直接返回空字符串</span></span><br><span class="line">    <span class="keyword">return</span> transform;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该方法用于获取浏览器支持的transform属性。如果返回的为空字符串，则表示当前浏览器并不支持transform，这个时候我们就需要使用left，top值来改变元素的位置。如果支持，就改变transform的值。</p>
+<h6 id="3、-如何获取元素的初始位置"><a href="#3、-如何获取元素的初始位置" class="headerlink" title="3、 如何获取元素的初始位置"></a>3、 如何获取元素的初始位置</h6><p>我们首先需要获取到目标元素的初始位置，因此这里我们需要一个专门用来获取元素样式的功能函数。</p>
+<p>但是获取元素样式在IE浏览器与其他浏览器有一些不同，因此我们需要一个兼容性的写法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span>(<span class="params">elem, property</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ie通过currentStyle来获取元素的样式，其他浏览器通过getComputedStyle来获取</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.defaultView.getComputedStyle ? <span class="built_in">document</span>.defaultView.getComputedStyle(elem, <span class="literal">false</span>)[property] : elem.currentStyle[property];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了这个方法之后，就可以开始动手写获取目标元素初始位置的方法了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTargetPos</span>(<span class="params">elem</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> pos = &#123;<span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">var</span> transform = getTransform();</span><br><span class="line">    <span class="keyword">if</span>(transform) &#123;</span><br><span class="line">        <span class="keyword">var</span> transformValue = getStyle(elem, transform);</span><br><span class="line">        <span class="keyword">if</span>(transformValue == <span class="string">'none'</span>) &#123;</span><br><span class="line">            elem.style[transform] = <span class="string">'translate(0, 0)'</span>;</span><br><span class="line">            <span class="keyword">return</span> pos;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> temp = transformValue.match(<span class="regexp">/-?\d+/g</span>);</span><br><span class="line">            <span class="keyword">return</span> pos = &#123;</span><br><span class="line">                x: <span class="built_in">parseInt</span>(temp[<span class="number">4</span>].trim()),</span><br><span class="line">                y: <span class="built_in">parseInt</span>(temp[<span class="number">5</span>].trim())</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(getStyle(elem, <span class="string">'position'</span>) == <span class="string">'static'</span>) &#123;</span><br><span class="line">            elem.style.position = <span class="string">'relative'</span>;</span><br><span class="line">            <span class="keyword">return</span> pos;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> x = <span class="built_in">parseInt</span>(getStyle(elem, <span class="string">'left'</span>) ? getStyle(elem, <span class="string">'left'</span>) : <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">var</span> y = <span class="built_in">parseInt</span>(getStyle(elem, <span class="string">'top'</span>) ? getStyle(elem, <span class="string">'top'</span>) : <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">return</span> pos = &#123;</span><br><span class="line">                x: x,</span><br><span class="line">                y: y</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在拖拽过程中，我们需要不停的设置目标元素的新位置，这样它才会移动起来，因此我们需要一个设置目标元素位置的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pos = &#123; x: 200, y: 100 &#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setTargetPos</span>(<span class="params">elem, pos</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> transform = getTransform();</span><br><span class="line">    <span class="keyword">if</span>(transform) &#123;</span><br><span class="line">        elem.style[transform] = <span class="string">'translate('</span>+ pos.x +<span class="string">'px, '</span>+ pos.y +<span class="string">'px)'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        elem.style.left = pos.x + <span class="string">'px'</span>;</span><br><span class="line">        elem.style.top = pos.y + <span class="string">'px'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> elem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="5、我们需要用到哪些事件？"><a href="#5、我们需要用到哪些事件？" class="headerlink" title="5、我们需要用到哪些事件？"></a>5、我们需要用到哪些事件？</h6><p>在pc上的浏览器中，结合<code>mousedown、mousemove、mouseup</code>这三个事件可以帮助我们实现拖拽。</p>
+<ul>
+<li><code>mousedown</code> 鼠标按下时触发</li>
+<li><code>mousemove</code> 鼠标按下后拖动时触发</li>
+<li><code>mouseup</code> 鼠标松开时触发</li>
+</ul>
+<blockquote>
+<p>而在移动端，分别与之对应的则是<code>touchstart、touchmove、touchend</code>。</p>
+</blockquote>
+<p>当我们将元素绑定这些事件时，有一个事件对象将会作为参数传递给回调函数，通过事件对象，我们可以获取到当前鼠标的精确位置，鼠标位置信息是实现拖拽的关键。</p>
+<blockquote>
+<p>事件对象十分重要，其中包含了非常多的有用的信息，这里我就不扩展了，大家可以在函数中将事件对象打印出来查看其中的具体属性，这个方法对于记不清事件对象重要属性的童鞋非常有用。</p>
+</blockquote>
+<h6 id="6、拖拽的原理"><a href="#6、拖拽的原理" class="headerlink" title="6、拖拽的原理"></a>6、拖拽的原理</h6><p>当事件触发时，我们可以通过事件对象获取到鼠标的精切位置。这是实现拖拽的关键。当鼠标按下(mousedown触发)时，我们需要记住鼠标的初始位置与目标元素的初始位置，我们的目标就是实现当鼠标移动时，目标元素也跟着移动，根据常理我们可以得出如下关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">移动后的鼠标位置 - 鼠标初始位置 = 移动后的目标元素位置 - 目标元素的初始位置</span><br></pre></td></tr></table></figure>
+<p>如果鼠标位置的差值我们用dis来表示，那么目标元素的位置就等于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">移动后目标元素的位置 = dis + 目标元素的初始位置</span><br></pre></td></tr></table></figure>
+<p>通过事件对象，我们可以精确的知道鼠标的当前位置，因此当鼠标拖动(mousemove)时，我们可以不停的计算出鼠标移动的差值，以此来求出目标元素的当前位置。这个过程，就实现了拖拽。</p>
+<p>而在鼠标松开(mouseup)结束拖拽时，我们需要处理一些收尾工作。详情见代码。</p>
+<h6 id="7、-我又来推荐思维导图辅助写代码了"><a href="#7、-我又来推荐思维导图辅助写代码了" class="headerlink" title="7、 我又来推荐思维导图辅助写代码了"></a>7、 我又来推荐思维导图辅助写代码了</h6><p>常常有新人朋友跑来问我，如果逻辑思维能力不强，能不能写代码做前端。我的答案是：能。因为借助思维导图，可以很轻松的弥补逻辑的短板。而且比在自己头脑中脑补逻辑更加清晰明了，不易出错。</p>
+<p>上面第六点我介绍了原理，因此如何做就显得不是那么难了，而具体的步骤，则在下面的思维导图中明确给出，我们只需要按照这个步骤来写代码即可，试试看，一定很轻松。</p>
+<p><img src="../../../Desktop/%E5%8D%9A%E5%AE%A2/%E6%91%98%E6%8A%84%E7%B2%BE%E9%80%89/assets/599584-6137a359597879a5.png" alt="使用思维导图清晰的表达出整个拖拽过程我们需要干的事情"></p>
+<h6 id="8、代码实现"><a href="#8、代码实现" class="headerlink" title="8、代码实现"></a>8、代码实现</h6><p><strong>part1、准备工作</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取目标元素对象</span></span><br><span class="line"><span class="keyword">var</span> oElem = <span class="built_in">document</span>.getElementById(<span class="string">'target'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明2个变量用来保存鼠标初始位置的x，y坐标</span></span><br><span class="line"><span class="keyword">var</span> startX = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> startY = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明2个变量用来保存目标元素初始位置的x，y坐标</span></span><br><span class="line"><span class="keyword">var</span> sourceX = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> sourceY = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>part2、功能函数</strong></p>
+<p>因为之前已经贴过代码，就不再重复</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前浏览器支持的transform兼容写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTransform</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取元素属性</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span>(<span class="params">elem, property</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取元素的初始位置</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTargetPos</span>(<span class="params">elem</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置元素的初始位置</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setTargetPos</span>(<span class="params">elem, potions</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>part3、声明三个事件的回调函数</strong></p>
+<p>这三个方法就是实现拖拽的核心所在，我将严格按照上面思维导图中的步骤来完成我们的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绑定在mousedown上的回调，event为传入的事件对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 获取鼠标初始位置</span></span><br><span class="line">    startX = event.pageX;</span><br><span class="line">    startY = event.pageY;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取元素初始位置</span></span><br><span class="line">    <span class="keyword">var</span> pos = getTargetPos(oElem);</span><br><span class="line"></span><br><span class="line">    sourceX = pos.x;</span><br><span class="line">    sourceY = pos.y;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 绑定</span></span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>, move, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">'mouseup'</span>, end, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 获取鼠标当前位置</span></span><br><span class="line">    <span class="keyword">var</span> currentX = event.pageX;</span><br><span class="line">    <span class="keyword">var</span> currentY = event.pageY;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算差值</span></span><br><span class="line">    <span class="keyword">var</span> distanceX = currentX - startX;</span><br><span class="line">    <span class="keyword">var</span> distanceY = currentY - startY;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算并设置元素当前位置</span></span><br><span class="line">    setTargetPos(oElem, &#123;</span><br><span class="line">        x: (sourceX + distanceX).toFixed(),</span><br><span class="line">        y: (sourceY + distanceY).toFixed()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">end</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.removeEventListener(<span class="string">'mousemove'</span>, move);</span><br><span class="line">    <span class="built_in">document</span>.removeEventListener(<span class="string">'mouseup'</span>, end);</span><br><span class="line">    <span class="comment">// do other things</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OK，一个简单的拖拽，就这样愉快的实现了。点击下面的链接，可以在线查看该例子的demo。</p>
+<p><a href="http://codepen.io/yangbo5207/pen/WpEoyd" target="_blank" rel="noopener">使用原生js实现拖拽</a></p>
+<h6 id="9、封装拖拽对象"><a href="#9、封装拖拽对象" class="headerlink" title="9、封装拖拽对象"></a>9、封装拖拽对象</h6><p>在前面一章我给大家分享了面向对象如何实现，基于那些基础知识，我们来将上面实现的拖拽封装为一个拖拽对象。我们的目标是，只要我们声明一个拖拽实例，那么传入的目标元素将自动具备可以被拖拽的功能。</p>
+<p>在实际开发中，一个对象我们常常会单独放在一个js文件中，这个js文件将单独作为一个模块，利用各种模块的方式组织起来使用。当然这里没有复杂的模块交互，因为这个例子，我们只需要一个模块即可。</p>
+<p>为了避免变量污染，我们需要将模块放置于一个函数自执行方式模拟的块级作用域中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在普通的模块组织中，我们只是单纯的将许多js文件压缩成为一个js文件，因此此处的第一个分号则是为了防止上一个模块的结尾不用分号导致报错。必不可少。当然在通过require或者ES6模块等方式就不会出现这样的情况。</p>
+</blockquote>
+<p>我们知道，在封装一个对象的时候，我们可以将属性与方法放置于构造函数或者原型中，而在增加了自执行函数之后，我们又可以将属性和方法防止与模块的内部作用域。这是闭包的知识。</p>
+<p><strong>那么我们面临的挑战就在于，如何合理的处理属性与方法的位置。</strong></p>
+<p>当然，每一个对象的情况都不一样，不能一概而论，我们需要清晰的知道这三种位置的特性才能做出最适合的决定。</p>
+<ul>
+<li>构造函数中： 属性与方法为当前实例单独拥有，只能被当前实例访问，并且每声明一个实例，其中的方法都会被重新创建一次。</li>
+<li>原型中： 属性与方法为所有实例共同拥有，可以被所有实例访问，新声明实例不会重复创建方法。</li>
+<li>模块作用域中：属性和方法不能被任何实例访问，但是能被内部方法访问，新声明的实例，不会重复创建相同的方法。</li>
+</ul>
+<p>对于方法的判断比较简单。</p>
+<p>因为在构造函数中的方法总会在声明一个新的实例时被重复创建，因此我们声明的方法都尽量避免出现在构造函数中。</p>
+<p>而如果你的方法中需要用到构造函数中的变量，或者想要公开，那就需要放在原型中。</p>
+<p>如果方法需要私有不被外界访问，那么就放置在模块作用域中。</p>
+<p>对于属性放置于什么位置有的时候很难做出正确的判断，因此我很难给出一个准确的定义告诉你什么属性一定要放在什么位置，这需要在实际开发中不断的总结经验。但是总的来说，仍然要结合这三个位置的特性来做出最合适的判断。</p>
+<p>如果属性值只能被实例单独拥有，比如person对象的name，只能属于某一个person实例，又比如这里拖拽对象中，某一个元素的初始位置，也仅仅只是这个元素的当前位置，这个属性，则适合放在构造函数中。</p>
+<p>而如果一个属性仅仅供内部方法访问，这个属性就适合放在模块作用域中。</p>
+<blockquote>
+<p>关于面向对象，上面的几点思考我认为是这篇文章最值得认真思考的精华。如果在封装时没有思考清楚，很可能会遇到很多你意想不到的bug，所以建议大家结合自己的开发经验，多多思考，总结出自己的观点。</p>
+</blockquote>
+<p>根据这些思考，大家可以自己尝试封装一下。然后与我的做一些对比，看看我们的想法有什么不同，在下面例子的注释中，我将自己的想法表达出来。</p>
+<p><a href="http://codepen.io/yangbo5207/pen/LWjWpe" target="_blank" rel="noopener">点击查看已经封装好的demo</a></p>
+<p>js 源码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line">;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 这是一个私有属性，不需要被实例访问</span></span><br><span class="line">    <span class="keyword">var</span> transform = getTransform();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Drag</span>(<span class="params">selector</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 放在构造函数中的属性，都是属于每一个实例单独拥有</span></span><br><span class="line">        <span class="keyword">this</span>.elem = <span class="keyword">typeof</span> selector == <span class="string">'Object'</span> ? selector : <span class="built_in">document</span>.getElementById(selector);</span><br><span class="line">        <span class="keyword">this</span>.startX = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.startY = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.sourceX = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.sourceY = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 原型</span></span><br><span class="line">    Drag.prototype = &#123;</span><br><span class="line">        <span class="keyword">constructor</span>: Drag,</span><br><span class="line"></span><br><span class="line">        init: function() &#123;</span><br><span class="line">            <span class="comment">// 初始时需要做些什么事情</span></span><br><span class="line">            <span class="keyword">this</span>.setDrag();</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 稍作改造，仅用于获取当前元素的属性，类似于getName</span></span><br><span class="line">        getStyle: <span class="function"><span class="keyword">function</span>(<span class="params">property</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">document</span>.defaultView.getComputedStyle ? <span class="built_in">document</span>.defaultView.getComputedStyle(<span class="keyword">this</span>.elem, <span class="literal">false</span>)[property] : <span class="keyword">this</span>.elem.currentStyle[property];</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 用来获取当前元素的位置信息，注意与之前的不同之处</span></span><br><span class="line">        getPosition: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> pos = &#123;<span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span>&#125;;</span><br><span class="line">            <span class="keyword">if</span>(transform) &#123;</span><br><span class="line">                <span class="keyword">var</span> transformValue = <span class="keyword">this</span>.getStyle(transform);</span><br><span class="line">                <span class="keyword">if</span>(transformValue == <span class="string">'none'</span>) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.elem.style[transform] = <span class="string">'translate(0, 0)'</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">var</span> temp = transformValue.match(<span class="regexp">/-?\d+/g</span>);</span><br><span class="line">                    pos = &#123;</span><br><span class="line">                        x: <span class="built_in">parseInt</span>(temp[<span class="number">4</span>].trim()),</span><br><span class="line">                        y: <span class="built_in">parseInt</span>(temp[<span class="number">5</span>].trim())</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">this</span>.getStyle(<span class="string">'position'</span>) == <span class="string">'static'</span>) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.elem.style.position = <span class="string">'relative'</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    pos = &#123;</span><br><span class="line">                        x: <span class="built_in">parseInt</span>(<span class="keyword">this</span>.getStyle(<span class="string">'left'</span>) ? <span class="keyword">this</span>.getStyle(<span class="string">'left'</span>) : <span class="number">0</span>),</span><br><span class="line">                        y: <span class="built_in">parseInt</span>(<span class="keyword">this</span>.getStyle(<span class="string">'top'</span>) ? <span class="keyword">this</span>.getStyle(<span class="string">'top'</span>) : <span class="number">0</span>)</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> pos;</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 用来设置当前元素的位置</span></span><br><span class="line">        setPostion: <span class="function"><span class="keyword">function</span>(<span class="params">pos</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(transform) &#123;</span><br><span class="line">                <span class="keyword">this</span>.elem.style[transform] = <span class="string">'translate('</span>+ pos.x +<span class="string">'px, '</span>+ pos.y +<span class="string">'px)'</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>.elem.style.left = pos.x + <span class="string">'px'</span>;</span><br><span class="line">                <span class="keyword">this</span>.elem.style.top = pos.y + <span class="string">'px'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 该方法用来绑定事件</span></span><br><span class="line">        setDrag: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">            <span class="keyword">this</span>.elem.addEventListener(<span class="string">'mousedown'</span>, start, <span class="literal">false</span>);</span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">                self.startX = event.pageX;</span><br><span class="line">                self.startY = event.pageY;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">var</span> pos = self.getPosition();</span><br><span class="line"></span><br><span class="line">                self.sourceX = pos.x;</span><br><span class="line">                self.sourceY = pos.y;</span><br><span class="line"></span><br><span class="line">                <span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>, move, <span class="literal">false</span>);</span><br><span class="line">                <span class="built_in">document</span>.addEventListener(<span class="string">'mouseup'</span>, end, <span class="literal">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> currentX = event.pageX;</span><br><span class="line">                <span class="keyword">var</span> currentY = event.pageY;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">var</span> distanceX = currentX - self.startX;</span><br><span class="line">                <span class="keyword">var</span> distanceY = currentY - self.startY;</span><br><span class="line"></span><br><span class="line">                self.setPostion(&#123;</span><br><span class="line">                    x: (self.sourceX + distanceX).toFixed(),</span><br><span class="line">                    y: (self.sourceY + distanceY).toFixed()</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">function</span> <span class="title">end</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">document</span>.removeEventListener(<span class="string">'mousemove'</span>, move);</span><br><span class="line">                <span class="built_in">document</span>.removeEventListener(<span class="string">'mouseup'</span>, end);</span><br><span class="line">                <span class="comment">// do other things</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 私有方法，仅仅用来获取transform的兼容写法</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getTransform</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> transform = <span class="string">''</span>,</span><br><span class="line">            divStyle = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>).style,</span><br><span class="line">            transformArr = [<span class="string">'transform'</span>, <span class="string">'webkitTransform'</span>, <span class="string">'MozTransform'</span>, <span class="string">'msTransform'</span>, <span class="string">'OTransform'</span>],</span><br><span class="line"></span><br><span class="line">            i = <span class="number">0</span>,</span><br><span class="line">            len = transformArr.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(; i &lt; len; i++)  &#123;</span><br><span class="line">            <span class="keyword">if</span>(transformArr[i] <span class="keyword">in</span> divStyle) &#123;</span><br><span class="line">                <span class="keyword">return</span> transform = transformArr[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> transform;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 一种对外暴露的方式</span></span><br><span class="line">    <span class="built_in">window</span>.Drag = Drag;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用：声明2个拖拽实例</span></span><br><span class="line"><span class="keyword">new</span> Drag(<span class="string">'target'</span>);</span><br><span class="line"><span class="keyword">new</span> Drag(<span class="string">'target2'</span>);</span><br></pre></td></tr></table></figure>
+<p>这样一个拖拽对象就封装完毕了。</p>
+<p>建议大家根据我提供的思维方式，多多尝试封装一些组件。比如封装一个弹窗，封装一个循环轮播等。练得多了，面向对象就不再是问题了。这种思维方式，在未来任何时候都是能够用到的。</p>
+<p>下一章分析jQuery对象的实现，与如何将我们这里封装的拖拽对象扩展为jQuery插件。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/ZombieBrand.github.io/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+          
+            <a href="/ZombieBrand.github.io/tags/拖拽对象/" rel="tag"><i class="fa fa-tag"></i> 拖拽对象</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ZombieBrand.github.io/2019/03/17/摘抄面向对象/" rel="next" title="摘抄面向对象">
+                <i class="fa fa-chevron-left"></i> 摘抄面向对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ZombieBrand.github.io/2019/03/17/常用正则表达式/" rel="prev" title="常用正则表达式">
+                常用正则表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE2OS8xOTcxNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/ZombieBrand.github.io/images/avatar.jpg" alt="车勇志">
+            
+              <p class="site-author-name" itemprop="name">车勇志</p>
+              <div class="site-description motion-element" itemprop="description">前端程序猿</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/ZombieBrand.github.io/archives/">
+                
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/ZombieBrand.github.io/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/ZombieBrand.github.io/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/ZombieBrand.github.io/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ZombrBrand" title="GitHub &rarr; https://github.com/ZombrBrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/ZombieBrand.github.io/zombiebrandg@gmail.com" title="E-Mail &rarr; zombiebrandg@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/f1d1e6e12974" title="简书 &rarr; https://www.jianshu.com/u/f1d1e6e12974" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://juejin.im/user/59ae5a3d6fb9a0248c2e0e94" title="掘金 &rarr; https://juejin.im/user/59ae5a3d6fb9a0248c2e0e94" rel="noopener" target="_blank"><i class="fa fa-fw fa-spinner"></i>掘金</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/1693410731" title="Weibo &rarr; https://weibo.com/u/1693410731" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://segmentfault.com/u/zombiebrand" title="SegmentFault &rarr; https://segmentfault.com/u/zombiebrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-user-secret"></i>SegmentFault</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/9595109/zombiebrand" title="StackOverflow &rarr; https://stackoverflow.com/users/9595109/zombiebrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、如何让一个DOM元素动起来"><span class="nav-number">1.</span> <span class="nav-text">1、如何让一个DOM元素动起来</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、如何获取当前浏览器支持的transform兼容写法"><span class="nav-number">2.</span> <span class="nav-text">2、如何获取当前浏览器支持的transform兼容写法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、-如何获取元素的初始位置"><span class="nav-number">3.</span> <span class="nav-text">3、 如何获取元素的初始位置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5、我们需要用到哪些事件？"><span class="nav-number">4.</span> <span class="nav-text">5、我们需要用到哪些事件？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6、拖拽的原理"><span class="nav-number">5.</span> <span class="nav-text">6、拖拽的原理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7、-我又来推荐思维导图辅助写代码了"><span class="nav-number">6.</span> <span class="nav-text">7、 我又来推荐思维导图辅助写代码了</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8、代码实现"><span class="nav-number">7.</span> <span class="nav-text">8、代码实现</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#9、封装拖拽对象"><span class="nav-number">8.</span> <span class="nav-text">9、封装拖拽对象</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">车勇志</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">593k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">8:59</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共232.6k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-everyone"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,0" opacity="0.3" zindex="-1" count="99" src="/ZombieBrand.github.io/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/ZombieBrand.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/ZombieBrand.github.io/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/ZombieBrand.github.io/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/ZombieBrand.github.io/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/03/17/摘抄面向对象实战之拖拽对象封装/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/ZombieBrand.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

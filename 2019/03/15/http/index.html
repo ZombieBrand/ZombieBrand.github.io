@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/ZombieBrand.github.io/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/ZombieBrand.github.io/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/ZombieBrand.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/ZombieBrand.github.io/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ZombieBrand.github.io/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/ZombieBrand.github.io/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/ZombieBrand.github.io/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/ZombieBrand.github.io/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/ZombieBrand.github.io/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="http全过程输入域名(url)–&amp;gt;DNS映射为IP–&amp;gt;TCP三次握手–&amp;gt;HTTP请求–&amp;gt;HTTP响应–&amp;gt;(浏览器跟踪重定向地址)–&amp;gt;服务器处理请求–&amp;gt;服务器返回一个html响应–&amp;gt;(视情况决定释放TCP连接)–&amp;gt;客户端解析HTML–&amp;gt;获取嵌入在HTML中的对象重新发起http请求 输入域名(url)在域名这里有很多可以聊的：域名级数判别">
+<meta name="keywords" content="HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http">
+<meta property="og:url" content="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/15/http/index.html">
+<meta property="og:site_name" content="ZombieBrand">
+<meta property="og:description" content="http全过程输入域名(url)–&amp;gt;DNS映射为IP–&amp;gt;TCP三次握手–&amp;gt;HTTP请求–&amp;gt;HTTP响应–&amp;gt;(浏览器跟踪重定向地址)–&amp;gt;服务器处理请求–&amp;gt;服务器返回一个html响应–&amp;gt;(视情况决定释放TCP连接)–&amp;gt;客户端解析HTML–&amp;gt;获取嵌入在HTML中的对象重新发起http请求 输入域名(url)在域名这里有很多可以聊的：域名级数判别">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-15T08:25:03.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http">
+<meta name="twitter:description" content="http全过程输入域名(url)–&amp;gt;DNS映射为IP–&amp;gt;TCP三次握手–&amp;gt;HTTP请求–&amp;gt;HTTP响应–&amp;gt;(浏览器跟踪重定向地址)–&amp;gt;服务器处理请求–&amp;gt;服务器返回一个html响应–&amp;gt;(视情况决定释放TCP连接)–&amp;gt;客户端解析HTML–&amp;gt;获取嵌入在HTML中的对象重新发起http请求 输入域名(url)在域名这里有很多可以聊的：域名级数判别">
+
+
+
+  <link rel="alternate" href="/ZombieBrand.github.io/atom.xml" title="ZombieBrand" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://zombrbrand.github.io/ZombieBrand.github.io/2019/03/15/http/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>http | ZombieBrand</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/ZombrBrand" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/ZombieBrand.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZombieBrand</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">前端</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/ZombieBrand.github.io/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zombrbrand.github.io/ZombieBrand.github.io/ZombieBrand.github.io/2019/03/15/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="车勇志">
+      <meta itemprop="description" content="前端程序猿">
+      <meta itemprop="image" content="/ZombieBrand.github.io/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZombieBrand">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">http
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-15 16:24:24 / 修改时间：16:25:03" itemprop="dateCreated datePublished" datetime="2019-03-15T16:24:24+08:00">2019-03-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/ZombieBrand.github.io/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">5.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">5 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="http全过程"><a href="#http全过程" class="headerlink" title="http全过程"></a>http全过程</h1><p>输入域名(url)–&gt;DNS映射为IP–&gt;TCP三次握手–&gt;HTTP请求–&gt;HTTP响应–&gt;(浏览器跟踪重定向地址)–&gt;服务器处理请求–&gt;服务器返回一个html响应–&gt;(视情况决定释放TCP连接)–&gt;客户端解析HTML–&gt;获取嵌入在HTML中的对象重新发起http请求</p>
+<h2 id="输入域名-url"><a href="#输入域名-url" class="headerlink" title="输入域名(url)"></a>输入域名(url)</h2><p>在域名这里有很多可以聊的：<br><strong>域名级数判别</strong><br><a href="https://books.google.com/books?id=aEYuuKOzktAC&amp;pg=PA263&amp;lpg=PA263&amp;dq=%E4%B8%80%E7%BA%A7%E5%9F%9F%E5%90%8D+www%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D&amp;source=bl&amp;ots=vdMaKdL0PZ&amp;sig=rpDqhUVq3bzz0zscWMrEIhxa6dE&amp;hl=zh-CN&amp;sa=X&amp;ved=0ahUKEwifrsOHiLHPAhWBE5QKHbb9AnAQ6AEIPDAE#v=onepage&amp;q=%E4%B8%80%E7%BA%A7%E5%9F%9F%E5%90%8D%20www%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D&amp;f=false" target="_blank" rel="noopener">域名服务器及域名</a>这里有详细解释，即“计算机网络技术”的第九章Domain Name System<br>一个点分隔一级（域名由分量组成，一级为一个分量），通俗易懂如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...三级域名.二级域名.顶级域名</span><br><span class="line">WWW.baidu.com  com为顶级域名(通常依据组织和地理分为两类)，baidu为二级域名，WWW网站</span><br><span class="line">www.pic.baidu.com pic为三级域名</span><br><span class="line">所谓降域，如pic.baidu.com/a.txt  baidu.com/b.txt中a和b在不同的域下面，都降域为baidu.com..如下详细解释</span><br></pre></td></tr></table></figure>
+<p><strong>同源策略</strong><br>同源需满足的条件：</p>
+<ul>
+<li>协议相同</li>
+<li>域名相同:a.b.c.com a.b.d.com域名相同吗</li>
+<li>端口相同</li>
+</ul>
+<p>非同源受限制的行为：</p>
+<ul>
+<li>cookie localStorage indexDB无法获取</li>
+<li>DOM无法获得</li>
+<li>ajax请求不能发送<br>跨域方法：</li>
+</ul>
+<p><em>双向跨域</em><br>1.降域(二级和以上有共同部分)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">所谓降域就是寻找到最后面的域名相同的部分留下</span><br><span class="line">a.b.c.com</span><br><span class="line">d.b.c.com</span><br><span class="line">降域后统统改为b.c.com或者c.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>存在的问题：<ul>
+<li>安全性，当一个站点被攻击，相同域名的站点也会被攻击</li>
+<li>重复性，所有需要跨域的都要修改document.domain=””</li>
+<li>ajax不受降域影响，还是需要iframe在一个页面引入另一页面的形式</li>
+<li>不可更改性，一旦降域就无法回去</li>
+</ul>
+</li>
+</ul>
+<p>2.location.hash(FIM—fragment itentitier messaging)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a向b传送数据</span><br><span class="line">    baidu.com/a.html中的iframe的src=&quot;google.com/b.html#paco&quot;,b.html监听到   url发生变化触发相应操作</span><br><span class="line">b向a传送数据</span><br><span class="line">    google.com/b.html中隐藏一个iframe,设置src=&quot;baidu.com/proxy.html#data&quot; data为要传输的数据,proxy.html是和a.html同域名下的，是a b之间的代理，负责监听utl变化就修改a的url，a监听到url变化了就做出相应操作</span><br></pre></td></tr></table></figure>
+<p>b.html:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try &#123;  </span><br><span class="line">    parent.location.hash = &apos;data&apos;;  </span><br><span class="line">&#125; catch (e) &#123;  </span><br><span class="line">    // ie、chrome的安全机制无法修改parent.location.hash，  </span><br><span class="line">    var ifrproxy = document.createElement(&apos;iframe&apos;);  </span><br><span class="line">    ifrproxy.style.display = &apos;none&apos;;  </span><br><span class="line">    ifrproxy.src = &quot;http://www.baidu.com/proxy.html#data&quot;;  </span><br><span class="line">    document.body.appendChild(ifrproxy);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>proxy.html:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//因为parent.parent（即baidu.com/a.html）和baidu.com/proxy.html属于同一个域，所以可以改变其location.hash的值  </span><br><span class="line">parent.parent.location.hash = self.location.hash.substring(1);  </span><br><span class="line">问题：数据暴露在URL中，数据大小格式受限</span><br></pre></td></tr></table></figure>
+<p>3.HTML5的postMessage方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a向b发送数据</span><br></pre></td></tr></table></figure>
+<p>baidu.com/a.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function() &#123;  </span><br><span class="line">    var ifr = document.getElementById(&apos;ifr&apos;);  </span><br><span class="line">    var targetOrigin = &quot;http://www.google.com&quot;;  </span><br><span class="line">    ifr.contentWindow.postMessage(&apos;hello world!&apos;, targetOrigin);  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>google.com/b.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var onmessage = function (event) &#123;  </span><br><span class="line">  var data = event.data;//消息  </span><br><span class="line">  var origin = event.origin;//消息来源地址  </span><br><span class="line">  var source = event.source;//源Window对象  </span><br><span class="line">  if(origin==&quot;http://www.baidu.com&quot;)&#123;  </span><br><span class="line">console.log(data);//hello world!  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;;  </span><br><span class="line">if (typeof window.addEventListener != &apos;undefined&apos;) &#123;  </span><br><span class="line">  window.addEventListener(&apos;message&apos;, onmessage, false);  </span><br><span class="line">&#125; else if (typeof window.attachEvent != &apos;undefined&apos;) &#123;  </span><br><span class="line">  //for ie  </span><br><span class="line">  window.attachEvent(&apos;onmessage&apos;, onmessage);  </span><br><span class="line">&#125; </span><br><span class="line">同理可以b向a postMessage</span><br></pre></td></tr></table></figure>
+<p><em>单向跨域</em></p>
+<p>1.jsonp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">先看两种用法</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function foo(data)&#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;http://www.google.com/getUsers.js?callback=foo&quot;&gt;&lt;/script&gt;</span><br><span class="line">回调函数</span><br><span class="line">&lt;script src=&quot;http://www.google.com/getUsers.php?flag=do&amp;time=1&quot;&gt;&lt;/script&gt;</span><br><span class="line">参数</span><br><span class="line">问题：只支持get请求</span><br></pre></td></tr></table></figure>
+<p>2.服务器代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">服务器没有同源策略，在数据提供方没有jsonp,window.name协议的支持下，使用服务器代理。</span><br><span class="line">在baidu.com下配置一个代理proxy即baidu.com/proxy/将ajax绑定到代理下发送http请求，此时http请求是在服务端进行的，无同源限制</span><br></pre></td></tr></table></figure>
+<p>3.CORS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var url = &apos;http://api.alice.com/cors&apos;;  </span><br><span class="line">var xhr = createCORSRequest(&apos;GET&apos;, url);  </span><br><span class="line">xhr.send();</span><br><span class="line">//非简单请求</span><br><span class="line">var url = &apos;http://api.alice.com/cors&apos;;  </span><br><span class="line">var xhr = createCORSRequest(&apos;PUT&apos;, url);  </span><br><span class="line">xhr.setRequestHeader(  </span><br><span class="line">    &apos;X-Custom-Header&apos;, &apos;value&apos;);</span><br><span class="line">xhr.send(); </span><br><span class="line">另外：对于CORS的支持需要服务器和客户端之间的协调</span><br></pre></td></tr></table></figure>
+<p>4.window.name</p>
+<p>5.webSocket</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">需要服务器的支持，源在白名单</span><br></pre></td></tr></table></figure>
+<p>6.Access-Controll-Allow-Origin</p>
+<p><strong>http和https协议有什么区别，重点解释https</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http+加密+认证+完整性保护=https</span><br></pre></td></tr></table></figure>
+<ul>
+<li>http:应用层的无状态，超文本传输协议。端口为80</li>
+<li>HTTPS：只是http通信接口部分用SSL和TLS协议替代。http直接和TCP通信，而HTTPS使用SSL所以是先和SSL通信，再由SSL和TCP通信。端口为443</li>
+</ul>
+<p><strong>cookie sessionStorage localStorage有什么不同</strong></p>
+<ul>
+<li>cookie存储在客户端，可以发送给服务器，数据大小限制为4K</li>
+<li>sessionStorage,localStorage存储在本地，不可以发送给服务器，数据大小为5M</li>
+<li>localStorage只能手动清除数据</li>
+<li>sessionStorage关闭会话窗，数据就被清除了</li>
+</ul>
+<p><strong>HTML5本地存储分为</strong></p>
+<ul>
+<li>webStorage(localStorage,sessionStorage)</li>
+<li>indexDB</li>
+</ul>
+<h2 id="DNS解析域名为IP"><a href="#DNS解析域名为IP" class="headerlink" title="DNS解析域名为IP"></a>DNS解析域名为IP</h2><ul>
+<li>浏览器缓存中找</li>
+<li>系统缓存中找</li>
+<li>路由器缓存中找</li>
+<li>ISP DNS缓存中找</li>
+</ul>
+<h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><ul>
+<li>client—–&gt;server:SYN(发起一个TCP连接，同步报文)</li>
+<li>server—–&gt;client:SYN+ACK(应答报文，表示已创建连接)</li>
+<li>client—–&gt;server:ACK(应答报文，表示收到已连接)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">四次挥手：</span><br><span class="line">    由客户端发起的关闭连接</span><br><span class="line">        * client-----&gt;server:FIN(请求关闭连接)</span><br><span class="line">        * server-----&gt;client:ACK(收到了连接，但不会立即关闭，等到报文都发送完再回复一个FIN)</span><br><span class="line">        * server-----&gt;client:FIN</span><br><span class="line">        * client-----&gt;server:ACK(收到关闭)</span><br><span class="line"></span><br><span class="line">    由服务端发起的关闭连接</span><br><span class="line">        * 当http设置了keepalive定时关闭，服务端会在结束数据传送后关闭TCP连接</span><br></pre></td></tr></table></figure>
+<h2 id="http请求"><a href="#http请求" class="headerlink" title="http请求"></a>http请求</h2><ul>
+<li>请求行</li>
+<li>请求头</li>
+<li>空行</li>
+<li>请求包体(只有POST请求有包体)</li>
+</ul>
+<p><strong>get/post区别</strong></p>
+<ul>
+<li>请求参数：get参数附在URL后面?隔开，POST参数放在包体中</li>
+<li>大小限制：GET限制为2048字符，post无限制</li>
+<li>安全问题：GET参数暴露在URL中，不如POST安全</li>
+<li>浏览器历史记录：GET可以记录，POST无记录</li>
+<li>缓存：GET可被缓存，post无</li>
+<li>书签：GET可被收藏为书签，post不可</li>
+<li>数据类型：GET只能ASCII码，post无限制</li>
+</ul>
+<h2 id="http响应"><a href="#http响应" class="headerlink" title="http响应"></a>http响应</h2><ul>
+<li>状态行</li>
+<li>响应头</li>
+<li>响应包体</li>
+</ul>
+<p><strong>http状态码</strong><br>1XX：表示可续发请求<br>2XX：表示成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 202成功</span><br><span class="line">* 204成功 不返回实体主体</span><br><span class="line">* 206成功 执行了一个范围请求</span><br></pre></td></tr></table></figure>
+<p>3XX：表示重定向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* 301永久重定向，增加SEO排名</span><br><span class="line">* 302临时重定向 禁止POST变为GET</span><br><span class="line">* 303另外一个URI</span><br><span class="line">* 304判断是否要更新缓存 请求头部携带if-modified-since自从上次更新距这次多久</span><br><span class="line">* 307临时重定向</span><br></pre></td></tr></table></figure>
+<p>4XX：表示客户端错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* 400客户端语法错误</span><br><span class="line">* 401请求未经授权</span><br><span class="line">* 403服务器拒绝服务</span><br><span class="line">* 404请求资源不存在</span><br></pre></td></tr></table></figure>
+<p>5XX：服务端错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 500不可预期的错误</span><br><span class="line">* 503此时不能提供服务 稍后恢复正常</span><br></pre></td></tr></table></figure>
+<h2 id="释放TCP连接"><a href="#释放TCP连接" class="headerlink" title="释放TCP连接"></a>释放TCP连接</h2><ul>
+<li><p>header中的connecton:close</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">服务器主动关闭TCP连接，客户端被动关闭连接</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>header中的connecton:keepalive</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">连接保持一段时间，可以连续发送http请求</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="客户端解析HTML"><a href="#客户端解析HTML" class="headerlink" title="客户端解析HTML"></a>客户端解析HTML</h2><p><strong>onload ready区别：</strong></p>
+<ul>
+<li>ready表示文档加载完毕，不包括图片</li>
+<li>onload表示都加载完毕</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/ZombieBrand.github.io/tags/HTML/" rel="tag"><i class="fa fa-tag"></i> HTML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ZombieBrand.github.io/2019/03/15/常见命名/" rel="next" title="常见命名">
+                <i class="fa fa-chevron-left"></i> 常见命名
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ZombieBrand.github.io/2019/03/15/jQuery事件/" rel="prev" title="jQuery事件">
+                jQuery事件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzE2OS8xOTcxNQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/ZombieBrand.github.io/images/avatar.jpg" alt="车勇志">
+            
+              <p class="site-author-name" itemprop="name">车勇志</p>
+              <div class="site-description motion-element" itemprop="description">前端程序猿</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/ZombieBrand.github.io/archives/">
+                
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/ZombieBrand.github.io/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/ZombieBrand.github.io/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/ZombieBrand.github.io/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ZombrBrand" title="GitHub &rarr; https://github.com/ZombrBrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/ZombieBrand.github.io/zombiebrandg@gmail.com" title="E-Mail &rarr; zombiebrandg@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/f1d1e6e12974" title="简书 &rarr; https://www.jianshu.com/u/f1d1e6e12974" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://juejin.im/user/59ae5a3d6fb9a0248c2e0e94" title="掘金 &rarr; https://juejin.im/user/59ae5a3d6fb9a0248c2e0e94" rel="noopener" target="_blank"><i class="fa fa-fw fa-spinner"></i>掘金</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/u/1693410731" title="Weibo &rarr; https://weibo.com/u/1693410731" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://segmentfault.com/u/zombiebrand" title="SegmentFault &rarr; https://segmentfault.com/u/zombiebrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-user-secret"></i>SegmentFault</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/9595109/zombiebrand" title="StackOverflow &rarr; https://stackoverflow.com/users/9595109/zombiebrand" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#http全过程"><span class="nav-number">1.</span> <span class="nav-text">http全过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入域名-url"><span class="nav-number">1.1.</span> <span class="nav-text">输入域名(url)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS解析域名为IP"><span class="nav-number">1.2.</span> <span class="nav-text">DNS解析域名为IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP三次握手"><span class="nav-number">1.3.</span> <span class="nav-text">TCP三次握手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http请求"><span class="nav-number">1.4.</span> <span class="nav-text">http请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http响应"><span class="nav-number">1.5.</span> <span class="nav-text">http响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#释放TCP连接"><span class="nav-number">1.6.</span> <span class="nav-text">释放TCP连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端解析HTML"><span class="nav-number">1.7.</span> <span class="nav-text">客户端解析HTML</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">车勇志</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">593k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">8:59</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共232.6k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-everyone"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,0" opacity="0.3" zindex="-1" count="99" src="/ZombieBrand.github.io/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/ZombieBrand.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/ZombieBrand.github.io/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/ZombieBrand.github.io/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/ZombieBrand.github.io/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/ZombieBrand.github.io/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/ZombieBrand.github.io/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/03/15/http/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/ZombieBrand.github.io/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+        // ref: https://github.com/ForbesLindesay/unescape-html
+        var unescapeHtml = function(html) {
+          return String(html)
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, '\'')
+            .replace(/&#x3A;/g, ':')
+            // replace all the other &#x; chars
+            .replace(/&#(\d+);/g, function (m, p) { return String.fromCharCode(p); })
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+        };
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                content = unescapeHtml(content);
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
