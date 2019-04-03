@@ -406,13 +406,13 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>Ajax</tag>
         <tag>HTML</tag>
+        <tag>JavaScript</tag>
         <tag>CSS</tag>
         <tag>ES6</tag>
-        <tag>Nodejs</tag>
         <tag>BOM</tag>
+        <tag>Nodejs</tag>
         <tag>DOM</tag>
         <tag>动画</tag>
       </tags>
@@ -475,15 +475,15 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>HTML</tag>
+        <tag>JavaScript</tag>
         <tag>input</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[去重计数]]></title>
     <url>%2FZombieBrand.github.io%2F2019%2F03%2F15%2F%E5%8E%BB%E9%87%8D%E8%AE%A1%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[数组对象去重并且增加相同ID数量(购物车累积添加功能)123456789101112let usedCart = [&#123;id: 4, number: 2, data: &#123;&#125;&#125;, &#123;id: 4, number: 25, data: &#123;&#125;&#125;, &#123;id: 5, number: 2, data: &#123;&#125;&#125;,]for (let i = 0; i &lt; usedCart.length; i++) &#123; for (let j = i + 1; j &lt; usedCart.length; j++) &#123; if (usedCart[i].id === usedCart[j].id) &#123; usedCart[i].number += usedCart[j].number usedCart.splice(j, 1); j = j - 1; // 关键，因为splice()删除元素之后，会使得数组长度减小，此时如果没有j=j-1的话，会导致相同id项在重复两次以上之后无法进行去重，且会错误删除id没有重复的项。 &#125; &#125;&#125;console.log(usedCart)//[ &#123; id: 4, number: 27, data: &#123;&#125; &#125;,&#123; id: 5, number: 2, data: &#123;&#125; &#125; ] ES6去重计数方法123456789101112131415161718192021var arr = [1, 2, 3, 1, 2, 4];function arrayCnt(arr) &#123; var newArr = []; //使用set进行数组去重 newArr = [...new Set(arr)]; var newarr2 = new Array(newArr.length); for(var t = 0; t &lt; newarr2.length; t++) &#123; newarr2[t] = 0; &#125; for(var p = 0; p &lt; newArr.length; p++) &#123; for(var j = 0; j &lt; arr.length; j++) &#123; if(newArr[p] == arr[j]) &#123; newarr2[p]++; &#125; &#125; &#125; for(var m = 0; m &lt; newArr.length; m++) &#123; console.log(newArr[m] + "重复的次数为：" + newarr2[m]); &#125;&#125;arrayCnt(arr); ES5去重计数方法123456789101112131415161718192021222324var arr = [1, 2, 3, 1, 2, 4]; function arrayCnt(arr) &#123; var newArr = []; for(var i = 0; i &lt; arr.length; i++) &#123; if(newArr.indexOf(arr[i]) == -1) &#123; newArr.push(arr[i]) &#125; &#125; var newarr2 = new Array(newArr.length); for(var t = 0; t &lt; newarr2.length; t++) &#123; newarr2[t] = 0; &#125; for(var p = 0; p &lt; newArr.length; p++) &#123; for(var j = 0; j &lt; arr.length; j++) &#123; if(newArr[p] == arr[j]) &#123; newarr2[p]++; &#125; &#125; &#125; for(var m = 0; m &lt; newArr.length; m++) &#123; console.log(newArr[m] + "重复的次数为：" + newarr2[m]); &#125; &#125; arrayCnt(arr); 数组对象格式去重12345678910111213141516function arrayCnt(data) &#123; var arr = []; for (let val of data) &#123; arr.push(val.id) &#125; console.log(arr) var newArr = []; var newArr2 = []; for (let i= 0; i &lt; arr.length; i++) &#123; if (newArr.indexOf(arr[i]) === -1) &#123; newArr.push(arr[i]); newArr2.push(data[i]); &#125; &#125; return newArr2&#125; reduce去重标记12345678910111213141516let data = [ &#123; id: 201801, name: '张三', age: 15, &#125;, &#123; id: 201804, name: 'John', age: 18, &#125;, &#123; id: 201802, name: '李四', age: 18, &#125;, &#123; id: 201801, name: '张三', age: 15, &#125;, &#123; id: 201805, name: 'Jack', age: 18, &#125;, &#123; id: 201803, name: '王五', age: 10, &#125;, &#123; id: 201805, name: 'Jack', age: 18, &#125;, &#123; id: 201804, name: 'John', age: 18, &#125;, &#123; id: 201805, name: 'Jack', age: 18, &#125;, ];let hash = &#123;&#125;; data = data.reduce((preVal, curVal) =&gt; &#123; hash[curVal.id] ? '' : hash[curVal.id] = true &amp;&amp; preVal.push(curVal); return preVal &#125;, []) reduce实现原理]]></content>
+    <content type="text"><![CDATA[普通双循环去重12345678910function unique(arr)&#123; for(var i = 0;i&lt;arr.length;i++)&#123; for(var j=i+1;j&lt;arr.length;j++)&#123; if(arr[i]===arr[j])&#123; arr.splice(j,1); j-- &#125; &#125; &#125;&#125; 去重的多种方法 数组对象去重并且增加相同ID数量(购物车累积添加功能)123456789101112let usedCart = [&#123;id: 4, number: 2, data: &#123;&#125;&#125;, &#123;id: 4, number: 25, data: &#123;&#125;&#125;, &#123;id: 5, number: 2, data: &#123;&#125;&#125;,]for (let i = 0; i &lt; usedCart.length; i++) &#123; for (let j = i + 1; j &lt; usedCart.length; j++) &#123; if (usedCart[i].id === usedCart[j].id) &#123; usedCart[i].number += usedCart[j].number usedCart.splice(j, 1); j = j - 1; // 关键，因为splice()删除元素之后，会使得数组长度减小，此时如果没有j=j-1的话，会导致相同id项在重复两次以上之后无法进行去重，且会错误删除id没有重复的项。 &#125; &#125;&#125;console.log(usedCart)//[ &#123; id: 4, number: 27, data: &#123;&#125; &#125;,&#123; id: 5, number: 2, data: &#123;&#125; &#125; ] ES6去重计数方法123456789101112131415161718192021var arr = [1, 2, 3, 1, 2, 4];function arrayCnt(arr) &#123; var newArr = []; //使用set进行数组去重 newArr = [...new Set(arr)]; var newarr2 = new Array(newArr.length); for(var t = 0; t &lt; newarr2.length; t++) &#123; newarr2[t] = 0; &#125; for(var p = 0; p &lt; newArr.length; p++) &#123; for(var j = 0; j &lt; arr.length; j++) &#123; if(newArr[p] == arr[j]) &#123; newarr2[p]++; &#125; &#125; &#125; for(var m = 0; m &lt; newArr.length; m++) &#123; console.log(newArr[m] + "重复的次数为：" + newarr2[m]); &#125;&#125;arrayCnt(arr); ES5去重计数方法123456789101112131415161718192021222324var arr = [1, 2, 3, 1, 2, 4]; function arrayCnt(arr) &#123; var newArr = []; for(var i = 0; i &lt; arr.length; i++) &#123; if(newArr.indexOf(arr[i]) == -1) &#123; newArr.push(arr[i]) &#125; &#125; var newarr2 = new Array(newArr.length); for(var t = 0; t &lt; newarr2.length; t++) &#123; newarr2[t] = 0; &#125; for(var p = 0; p &lt; newArr.length; p++) &#123; for(var j = 0; j &lt; arr.length; j++) &#123; if(newArr[p] == arr[j]) &#123; newarr2[p]++; &#125; &#125; &#125; for(var m = 0; m &lt; newArr.length; m++) &#123; console.log(newArr[m] + "重复的次数为：" + newarr2[m]); &#125; &#125; arrayCnt(arr); 数组对象格式去重12345678910111213141516function arrayCnt(data) &#123; var arr = []; for (let val of data) &#123; arr.push(val.id) &#125; console.log(arr) var newArr = []; var newArr2 = []; for (let i= 0; i &lt; arr.length; i++) &#123; if (newArr.indexOf(arr[i]) === -1) &#123; newArr.push(arr[i]); newArr2.push(data[i]); &#125; &#125; return newArr2&#125; reduce去重标记12345678910111213141516let data = [ &#123; id: 201801, name: '张三', age: 15, &#125;, &#123; id: 201804, name: 'John', age: 18, &#125;, &#123; id: 201802, name: '李四', age: 18, &#125;, &#123; id: 201801, name: '张三', age: 15, &#125;, &#123; id: 201805, name: 'Jack', age: 18, &#125;, &#123; id: 201803, name: '王五', age: 10, &#125;, &#123; id: 201805, name: 'Jack', age: 18, &#125;, &#123; id: 201804, name: 'John', age: 18, &#125;, &#123; id: 201805, name: 'Jack', age: 18, &#125;, ];let hash = &#123;&#125;; data = data.reduce((preVal, curVal) =&gt; &#123; hash[curVal.id] ? '' : hash[curVal.id] = true &amp;&amp; preVal.push(curVal); return preVal &#125;, []) reduce实现原理]]></content>
       <categories>
         <category>JavaScript</category>
         <category>ES6</category>
@@ -665,9 +665,9 @@
         <category>Ajax</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>Ajax</tag>
         <tag>HTML</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -713,8 +713,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>HTML</tag>
+        <tag>JavaScript</tag>
         <tag>CSS</tag>
       </tags>
   </entry>
@@ -927,8 +927,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
         <tag>HTML</tag>
+        <tag>JavaScript</tag>
         <tag>CSS</tag>
       </tags>
   </entry>
@@ -1048,18 +1048,6 @@
   </entry>
   <entry>
     <title><![CDATA[常见布局居中]]></title>
-    <url>%2FZombieBrand.github.io%2F2019%2F03%2F13%2F%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80%E5%B1%85%E4%B8%AD%2F</url>
-    <content type="text"><![CDATA[两栏布局左侧固定宽度右边自适应负margin方法：1234567891011121314151617181920&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.left&#123; width:200px; height:300px; margin-right:10px; background:red; float:left;&#125;.right&#123; width:100%; height:400px; float:right; margin-right:-210px; background:blue;&#125;&lt;/style&gt; overflow方法:123456789101112131415161718&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.left&#123; width:200px; height:300px; margin-right:10px; background:red; float:left;&#125;.right&#123; height:400px; background:blue; overflow:hidden;&#125;&lt;/style&gt; position方法:12345678910111213141516171819202122232425&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.container&#123; position:relative;&#125;.left&#123; position:absolute; top:0; left:0; width:200px; height:300px; background:red;&#125;.right&#123; position:absolute; top:0; left:210px; right:0; height:400px; background:blue;&#125;&lt;/style&gt; flex方法:1234567891011121314151617181920&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.container&#123; display:flex;&#125;.left&#123; width:200px; height:300px; background:red; margin-right:10px;&#125;.right&#123; flex:1; height:400px; background:blue;&#125;&lt;/style&gt; 三栏布局margin方法1234567891011121314151617181920212223242526&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt; &lt;div class="center"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.left&#123; width:200px; height:300px; background:red; margin:0 10px; float:left;&#125;.center&#123; height:400px; background:pink; overflow:auto;&#125;.right&#123; width:200px; height:300px; background:blue; float:right; margin:0 10px;&#125;&lt;/style&gt; overflow方法1234567891011121314151617181920212223242526&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt; &lt;div class="center"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.left&#123; width:200px; height:300px; background:red; margin:0 10px; float:left;&#125;.center&#123; height:400px; background:pink; overflow:auto;&#125;.right&#123; width:200px; height:300px; background:blue; float:right; margin:0 10px;&#125;&lt;/style&gt; position方法12345678910111213141516171819202122232425262728293031323334353637383940414243&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="center"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt; &lt;/div&gt;&lt;style&gt;*&#123; box-sizing:border-box; margin:0; padding:0;&#125;.container&#123; position:relative;&#125;.left&#123; width:200px; height:300px; background:red; margin:0 10px; position:absolute; top:0; left:0;&#125;.center&#123; width:calc(100% - 440px); height:400px; background:pink; position:absolute; top:0; left:50%; transform:translateX(-50%);&#125;.right&#123; width:200px; height:300px; background:blue; position:absolute; top:0; right:0; margin:0 10px;&#125;&lt;/style&gt; flex方法123456789101112131415161718192021222324252627282930313233&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="center"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;*&#123; box-sizing:border-box; padding:0; margin:0;&#125;.container&#123; display:flex;&#125;.left&#123; width:200px; height:300px; background:red; margin:0 10px; &#125;.center&#123; height:400px; background:pink; flex:1;&#125;.right&#123; width:200px; height:300px; background:blue; margin:0 10px;&#125;&lt;/style&gt; 块级元素居中margin方法123456789.container&#123; background:grey;&#125;.item&#123; width:300px; height:200px; background:red; margin:0 auto;&#125; position方法12345678910111213.container&#123; background:grey; position:relative;&#125;.item&#123; width:300px; height:200px; background:red; position:absolute; top:0; left:50%; transform:translateX(-50%)&#125; display:flex12345678910.container&#123; background:grey; display:flex; justify-content:center;&#125;.item&#123; width:300px; height:200px; background:red;&#125; text-align:center 12345678910.container&#123; background:grey; text-align:center;&#125;.item&#123; width:300px; height:200px; background:red; display:inline-block;&#125; 多行文字水平垂直居中123456789101112131415161718192021&lt;section&gt; &lt;div class="container"&gt; &lt;h1 class="title"&gt;这是标题&lt;/h1&gt; &lt;p class="content"&gt;这是一大段文字内容这是一大段文字内容这是一大段文字内容这是一大段文字内容这是一大段文字内容这是一大段文字内容&lt;/p&gt; &lt;/div&gt;&lt;/section&gt;&lt;style&gt;section&#123; margin:0 auto; width:600px;&#125;.container&#123; padding:0 100px; width:600px; height:600px; background:grey; text-align:center; display:table-cell; vertical-align:middle;&#125;&lt;/style&gt; image水平垂直居中123456789101112131415161718 &lt;div class="container"&gt; &lt;img src="" alt="图片"&gt; &lt;/div&gt;.container&#123; width:300px; height:300px; border:1px solid red; text-align:center;&#125;.container::after&#123; content:''; height:100%; display:inline-block; vertical-align:middle;&#125;img&#123; vertical-align:middle;&#125; 浏览器固定水平垂直居中12345678.box&#123; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#ccc; text-align:center;&#125; 水平居中SVG和font/img1234567svg&#123;vertical-align:middle&#125;span&#123;vertical-align:middle&#125;img&#123; vertical-align:middle&#125; 经典文章:https://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-        <tag>布局</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[常见布局居中]]></title>
     <url>%2FZombieBrand.github.io%2F2019%2F03%2F13%2F%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E5%8A%A0-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%2F</url>
     <content type="text"><![CDATA[文本溢出加 … 如何实现单行12345span&#123;overflow:hidden;text-overflow:ellipsis;white-space:nowarp;&#125; 多行1234567span&#123;width:100px,display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3; //行数overflow:hidden;&#125;]]></content>
       <categories>
@@ -1069,6 +1057,18 @@
         <tag>CSS</tag>
         <tag>布局</tag>
         <tag>FONT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常见布局居中]]></title>
+    <url>%2FZombieBrand.github.io%2F2019%2F03%2F13%2F%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80%E5%B1%85%E4%B8%AD%2F</url>
+    <content type="text"><![CDATA[两栏布局左侧固定宽度右边自适应负margin方法：1234567891011121314151617181920&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.left&#123; width:200px; height:300px; margin-right:10px; background:red; float:left;&#125;.right&#123; width:100%; height:400px; float:right; margin-right:-210px; background:blue;&#125;&lt;/style&gt; overflow方法:123456789101112131415161718&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.left&#123; width:200px; height:300px; margin-right:10px; background:red; float:left;&#125;.right&#123; height:400px; background:blue; overflow:hidden;&#125;&lt;/style&gt; position方法:12345678910111213141516171819202122232425&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.container&#123; position:relative;&#125;.left&#123; position:absolute; top:0; left:0; width:200px; height:300px; background:red;&#125;.right&#123; position:absolute; top:0; left:210px; right:0; height:400px; background:blue;&#125;&lt;/style&gt; flex方法:1234567891011121314151617181920&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.container&#123; display:flex;&#125;.left&#123; width:200px; height:300px; background:red; margin-right:10px;&#125;.right&#123; flex:1; height:400px; background:blue;&#125;&lt;/style&gt; 三栏布局margin方法1234567891011121314151617181920212223242526&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt; &lt;div class="center"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.left&#123; width:200px; height:300px; background:red; margin:0 10px; float:left;&#125;.center&#123; height:400px; background:pink; overflow:auto;&#125;.right&#123; width:200px; height:300px; background:blue; float:right; margin:0 10px;&#125;&lt;/style&gt; overflow方法1234567891011121314151617181920212223242526&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt; &lt;div class="center"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;.left&#123; width:200px; height:300px; background:red; margin:0 10px; float:left;&#125;.center&#123; height:400px; background:pink; overflow:auto;&#125;.right&#123; width:200px; height:300px; background:blue; float:right; margin:0 10px;&#125;&lt;/style&gt; position方法12345678910111213141516171819202122232425262728293031323334353637383940414243&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="center"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt; &lt;/div&gt;&lt;style&gt;*&#123; box-sizing:border-box; margin:0; padding:0;&#125;.container&#123; position:relative;&#125;.left&#123; width:200px; height:300px; background:red; margin:0 10px; position:absolute; top:0; left:0;&#125;.center&#123; width:calc(100% - 440px); height:400px; background:pink; position:absolute; top:0; left:50%; transform:translateX(-50%);&#125;.right&#123; width:200px; height:300px; background:blue; position:absolute; top:0; right:0; margin:0 10px;&#125;&lt;/style&gt; flex方法123456789101112131415161718192021222324252627282930313233&lt;div class="container"&gt; &lt;div class="left"&gt;&lt;/div&gt; &lt;div class="center"&gt;&lt;/div&gt; &lt;div class="right"&gt;&lt;/div&gt;&lt;/div&gt;&lt;style&gt;*&#123; box-sizing:border-box; padding:0; margin:0;&#125;.container&#123; display:flex;&#125;.left&#123; width:200px; height:300px; background:red; margin:0 10px; &#125;.center&#123; height:400px; background:pink; flex:1;&#125;.right&#123; width:200px; height:300px; background:blue; margin:0 10px;&#125;&lt;/style&gt; 块级元素居中margin方法123456789.container&#123; background:grey;&#125;.item&#123; width:300px; height:200px; background:red; margin:0 auto;&#125; position方法12345678910111213.container&#123; background:grey; position:relative;&#125;.item&#123; width:300px; height:200px; background:red; position:absolute; top:0; left:50%; transform:translateX(-50%)&#125; display:flex12345678910.container&#123; background:grey; display:flex; justify-content:center;&#125;.item&#123; width:300px; height:200px; background:red;&#125; text-align:center 12345678910.container&#123; background:grey; text-align:center;&#125;.item&#123; width:300px; height:200px; background:red; display:inline-block;&#125; 多行文字水平垂直居中123456789101112131415161718192021&lt;section&gt; &lt;div class="container"&gt; &lt;h1 class="title"&gt;这是标题&lt;/h1&gt; &lt;p class="content"&gt;这是一大段文字内容这是一大段文字内容这是一大段文字内容这是一大段文字内容这是一大段文字内容这是一大段文字内容&lt;/p&gt; &lt;/div&gt;&lt;/section&gt;&lt;style&gt;section&#123; margin:0 auto; width:600px;&#125;.container&#123; padding:0 100px; width:600px; height:600px; background:grey; text-align:center; display:table-cell; vertical-align:middle;&#125;&lt;/style&gt; image水平垂直居中123456789101112131415161718 &lt;div class="container"&gt; &lt;img src="" alt="图片"&gt; &lt;/div&gt;.container&#123; width:300px; height:300px; border:1px solid red; text-align:center;&#125;.container::after&#123; content:''; height:100%; display:inline-block; vertical-align:middle;&#125;img&#123; vertical-align:middle;&#125; 浏览器固定水平垂直居中12345678.box&#123; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#ccc; text-align:center;&#125; 水平居中SVG和font/img1234567svg&#123;vertical-align:middle&#125;span&#123;vertical-align:middle&#125;img&#123; vertical-align:middle&#125; 经典文章:https://www.zhangxinxu.com/wordpress/2015/08/css-deep-understand-vertical-align-and-line-height/]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+        <tag>布局</tag>
       </tags>
   </entry>
 </search>
