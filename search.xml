@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[jQuery基础]]></title>
+    <url>%2FZombieBrand.github.io%2F2019%2F04%2F08%2FjQuery%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[选择器12345678910111213$('li').eq(1) //选择li中键值是1的element$('.a').next() //从class="a"的元素相邻下一个元素$('.a').prev() //从class="a"的元素相邻下上一个元素$('.a').nextAll() //从class="a"的元素同辈之后的所有元素集合$('.a').prevAll() //从class="a"的元素相邻之前的所有元素集合$('.a').siblings() //从class="a"的元素相邻的所有元素集合$('.a').parent() //从class="a"的元素的上一级父元素$('.a').parents() //从class="a"的元素的所有父元素祖元素 parents(''selector") 这样的话就会查找class="a"的父元素包含selector选择器的元素$('.a').children() //从class="a"的元素向下一层的所有元素$('.a').find('.b') //从class="a"的元素后代子元素class="b"的元素合集$('.a').filter('.b') //从class="a"的元素集合中满足class="b"的元素$('.a').has('.b') //从class="a"的元素集合中含有class="b"的元素$('.a').is('.b') //从class="a"的元素集合众是否含有class="b"的元素返回布尔值\ 利用选择器制作tab切换123456789$('.tabs-top&gt;li').on('click',function(e)&#123; //对tabs-top&gt;li进行点击事件监听 let li=e.currentTarget //获取点击的元素 let Index=$(li).index() //li是排行第几 $(li).addClass('active') //点击事件li添加'active' $(li).siblings('.active').removeClass('active') //点击事件li的兄弟含有'.active'的删除'active' let liIndex =$(li).parent().parent().siblings().children().children().eq(Index) //找到panes的对应li元素 liIndex.addClass('active') //给panes对应的li添加'active' liIndex.siblings('.active').removeClass('active') //给panes对应的li的兄弟含有'.active'删除'active'&#125;) 常用方法each()123$('li').each(function(index,element)&#123; console.log(index+":"+this)&#125;) //函数内部的this总是指向当前的li元素 $.extend()12345678910var obj1 = &#123;'name':'cheche','age':20&#125;var obj2 = &#123;'name':'xiaopei','apple':0&#125;var newobj = $.extend(&#123;&#125;,obj1,obj2)console.log(newobj) [object Object] &#123; age: 20, apple: 0, name: "xiaopei"&#125;//将两个对向合并成一个新的对象返回，如果第一个参数设置的是true那么会进行递归合并,如果有相同的属性和值那么obj2的值会覆盖obj1 clone()1$('selector').clone() //这个方法会进行深拷贝匹配的元素合集 index()1$('selector').index() //如果index参数没有设置那么会返回匹配元素合集第一个元素相对于同级兄弟元素自己是第几的位置，如果参数设置那么会从返回合集中与参数匹配的元素位置 ready()1$(document).ready(function()&#123;&#125;) //当页面DOM元素加载完成后立即执行 toggleClass()1$(this).toggleClass('active') //如果存在就删除如果不存在就添加 hasClass()1$(this).hasClass('active') === true //判断是否class中有active ajax1234567891011121314$.ajax(&#123; url:"www.baidu.com", //发送地址 type:"post", //类型 data:&#123;"name":"che","age":"18"&#125;, //发送附带参数 dataType:"json", //发送参数类型 async:false, //同步还是异步 cache:false, //是否禁用缓存&#125;).done(function(res)&#123;console.log(res)&#125;).fail(function()&#123;console.log('失败')&#125;).always(function()&#123;console.log('请求完成')&#125;)$.get('text.js',&#123;'name':'che'&#125;,function(data)&#123;console.log(data)&#125;)$.getJSON('text.json',function(data)&#123;console.log(data)&#125;) 动画直接看这个DEMO 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;Document&lt;/title&gt; &lt;style&gt; .box &#123; width: 100px; height: 100px; background: red; position: relative; top: 100px; left: 0; &#125; &lt;/style&gt;&lt;/head&gt;&lt;body&gt; &lt;div class="continer"&gt; &lt;button&gt;show&lt;/button&gt; &lt;button&gt;hide&lt;/button&gt; &lt;button&gt;slidUp&lt;/button&gt; &lt;button&gt;slidDown&lt;/button&gt; &lt;button&gt;fadeIn&lt;/button&gt; &lt;button&gt;fadeout&lt;/button&gt; &lt;button&gt;animate&lt;/button&gt; &lt;/div&gt; &lt;div class="box"&gt;&lt;/div&gt; &lt;script&gt; var $box = $('.box') $('.continer').on('click', ':nth-child(1)', function(e) &#123; $box.show('fast', function() &#123; console.log('执行了show') &#125;) &#125;) $('.continer').on('click', ':nth-child(2)', function(e) &#123; $box.hide('fast', function() &#123; console.log('执行了hide') &#125;) &#125;) $('.continer').on('click', ':nth-child(3)', function(e) &#123; $box.slideUp('fast', function() &#123; console.log('执行了slideUp') &#125;) &#125;) $('.continer').on('click', ':nth-child(4)', function(e) &#123; $box.slideDown('fast', function() &#123; console.log('执行了slideDown') &#125;) &#125;) $('.continer').on('click', ':nth-child(5)', function(e) &#123; $box.fadeIn('fast', function() &#123; console.log('执行了fadeIn') &#125;) &#125;) $('.continer').on('click', ':nth-child(6)', function(e) &#123; $box.fadeOut('fast', function() &#123; console.log('执行了fadeOut') &#125;) &#125;) $('.continer').on('click', ':nth-child(7)', function(e) &#123; $box.animate(&#123; opacity: 0.2, left: '+=50', width: ['toggle', 'swing'], height: ['toggle', 'swing'] &#125;, 1000, function() &#123; console.log('执行了animate') &#125;) &#125;) &lt;/script&gt;&lt;/body&gt;&lt;/html&gt;]]></content>
+      <categories>
+        <category>jQuery</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[vue-axios拦截器实现loading]]></title>
     <url>%2FZombieBrand.github.io%2F2019%2F04%2F08%2Fvue-axios%E6%8B%A6%E6%88%AA%E5%99%A8%E5%AE%9E%E7%8E%B0loading%2F</url>
     <content type="text"><![CDATA[原文地址 准备 利用vue-cli脚手架创建项目 进入项目安装vuex、axios（npm install vuex,npm install axios） axios配置项目中安装axios模块（npm install axios）完成后，进行以下配置： main.js 12345//引入axiosimport Axios from &apos;axios&apos;//修改原型链，全局使用axios,这样之后可在每个组件的methods中调用$axios命令完成数据请求Vue.prototype.$axios=Axios loading组件我这里就选择使用iview提供的loading组件， 123456npm install iviewmain.jsimport iView from &apos;iview&apos;;import &apos;iview/dist/styles/iview.css&apos;;Vue.use(iView); 安装引入后，将loading写成一个组件loading.vue Vuex state状态设置控制loading的显隐store.js(Vuex) 12345export const store = new Vuex.Store(&#123; state:&#123; isShow:false &#125;&#125;) 在state中定义isShow属性，默认false隐藏 1v-if=&quot;this.$store.state.isShow&quot; 为loading组件添加v-if绑定state中的isShow 组件使用axios请求数据123456789101112&lt;button @click=&quot;getData&quot;&gt;请求数据&lt;/button&gt;methods:&#123; getData()&#123; this.$axios.get(&apos;https://www.apiopen.top/journalismApi&apos;) .then(res=&gt;&#123; console.log(res)//返回请求的结果 &#125;) .catch(err=&gt;&#123; console.log(err) &#125;) &#125; &#125; 我这里使用一个按钮进行触发事件，利用get请求网上随便找的一个api接口,.then中返回请求的整个结果（不仅仅包括数据） Axios拦截器配置main.js 12345678910//定义一个请求拦截器Axios.interceptors.request.use(function(config)&#123; store.state.isShow=true; //在请求发出之前进行一些操作 return config&#125;)//定义一个响应拦截器Axios.interceptors.response.use(function(config)&#123; store.state.isShow=false;//在这里对返回的数据进行处理 return config&#125;) 分别定义一个请求拦截器（请求开始时执行某些操作）、响应拦截器（接受到数据后执行某些操作），之间分别设置拦截时执行的操作，改变state内isShow的布尔值从而控制loading组件在触发请求数据开始时显示loading，返回数据时隐藏loading特别注意：这里有一个语法坑（我可是来来回回踩了不少次）main.js中调取、操作vuex state中的数据不同于组件中的this.$store.state，而是直接store.state 同上面代码 效果展示 本文作者：茅野zhy博客链接：www.zhysama.xyz版权声明： 该文章由博主编辑 , 转发请注明出处谢谢！]]></content>
@@ -420,13 +431,13 @@
         <category>JavaScript</category>
       </categories>
       <tags>
+        <tag>JavaScript</tag>
         <tag>Ajax</tag>
         <tag>HTML</tag>
-        <tag>JavaScript</tag>
         <tag>CSS</tag>
         <tag>ES6</tag>
-        <tag>Nodejs</tag>
         <tag>BOM</tag>
+        <tag>Nodejs</tag>
         <tag>DOM</tag>
         <tag>动画</tag>
       </tags>
@@ -489,8 +500,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>HTML</tag>
         <tag>JavaScript</tag>
+        <tag>HTML</tag>
         <tag>input</tag>
       </tags>
   </entry>
@@ -679,9 +690,9 @@
         <category>Ajax</category>
       </categories>
       <tags>
+        <tag>JavaScript</tag>
         <tag>Ajax</tag>
         <tag>HTML</tag>
-        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -727,8 +738,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>HTML</tag>
         <tag>JavaScript</tag>
+        <tag>HTML</tag>
         <tag>CSS</tag>
       </tags>
   </entry>
@@ -941,8 +952,8 @@
         <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>HTML</tag>
         <tag>JavaScript</tag>
+        <tag>HTML</tag>
         <tag>CSS</tag>
       </tags>
   </entry>
