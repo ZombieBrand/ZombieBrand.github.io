@@ -153,7 +153,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:////upload-images.jianshu.io/upload_images/6555104-2938ecae4e58d13c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000">
 <meta property="og:image" content="https:////upload-images.jianshu.io/upload_images/6555104-7edcad4fb0b58095.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/988">
-<meta property="og:updated_time" content="2019-04-09T04:36:44.901Z">
+<meta property="og:updated_time" content="2019-05-12T06:25:03.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端入门常见适配问题">
 <meta name="twitter:description" content="这个项目收集移动端开发所需要的一些资源与小技巧移动端开发分为4类  Native（原生 APP）使用 Java/Objective-C/Swift 开发 Webapp在手机浏览器上展示的网页 Hybird（混合应用）Native + Html 微信小程序https://www.zhihu.com/topic/20061410/hot  比较  开发成本开发App成本比较大：android + io">
@@ -470,7 +470,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-09 12:36:44" itemprop="dateModified" datetime="2019-04-09T12:36:44+08:00">2019-04-09</time>
+                <time title="修改时间：2019-05-12 14:25:03" itemprop="dateModified" datetime="2019-05-12T14:25:03+08:00">2019-05-12</time>
               
             
           </span>
@@ -530,7 +530,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.2k</span>
+                <span title="本文字数">5.4k</span>
               
 
               
@@ -641,6 +641,10 @@
 <h4 id="7-开发调试"><a href="#7-开发调试" class="headerlink" title="7.开发调试"></a>7.开发调试</h4><p>PC端：采用本地编写，浏览器查看，dev-tools调试<br> 移动端：<code>npm install browser-sync</code> 用于在手机端验证和调试。手机通过连接局域网地址也可以访问页面。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ browser-sync</span><br><span class="line">[Browsersync] Access URLs:</span><br><span class="line"> ---------------------------------------</span><br><span class="line">       Local: http://localhost:3000</span><br><span class="line">    External: http://192.168.10.101:3000</span><br><span class="line"> ---------------------------------------</span><br><span class="line">          UI: http://localhost:3001   (调试地址)</span><br><span class="line"> UI External: http://192.168.10.101:3001</span><br></pre></td></tr></table></figure>
 <h4 id="8-移动端解决方法收集"><a href="#8-移动端解决方法收集" class="headerlink" title="8.移动端解决方法收集"></a>8.移动端解决方法收集</h4><p><a href="https://github.com/jtyjty99999/mobileTech/blob/master/README.md" target="_blank" rel="noopener">https://github.com/jtyjty99999/mobileTech/blob/master/README.md</a><br> <a href="https://placeholder.com/" target="_blank" rel="noopener">image place holder占位图片定制化</a></p>
+<h4 id="9-安卓只会出发一次touchstart-touchmove-不处罚touchend"><a href="#9-安卓只会出发一次touchstart-touchmove-不处罚touchend" class="headerlink" title="9.安卓只会出发一次touchstart,touchmove,不处罚touchend"></a>9.安卓只会出发一次touchstart,touchmove,不处罚touchend</h4><p>解决方案是touchmove中加入:<code>event.preventDefault</code></p>
+<h4 id="10-局部滚动开启弹性滚动"><a href="#10-局部滚动开启弹性滚动" class="headerlink" title="10.局部滚动开启弹性滚动:"></a>10.局部滚动开启弹性滚动:</h4><p>解决方案是:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>:scroll;</span><br><span class="line">    <span class="attribute">-webkit-overflow-scrolling</span>:touch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="11-Web移动端Fixed布局的解决方案"><a href="#11-Web移动端Fixed布局的解决方案" class="headerlink" title="11.Web移动端Fixed布局的解决方案"></a>11.Web移动端Fixed布局的解决方案</h4><p><a href="https://efe.baidu.com/blog/mobile-fixed-layout/" target="_blank" rel="noopener">解决方案连接</a></p>
 
       
     </div>
@@ -767,7 +771,7 @@
                 
                   <a href="/ZombieBrand.github.io/archives/">
                 
-                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -850,7 +854,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1051,7 +1067,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">92</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1177,7 +1197,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#这个项目收集移动端开发所需要的一些资源与小技巧"><span class="nav-number">1.</span> <span class="nav-text">这个项目收集移动端开发所需要的一些资源与小技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端开发分为4类"><span class="nav-number">2.</span> <span class="nav-text">移动端开发分为4类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较"><span class="nav-number">3.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端和-PC-的区别"><span class="nav-number">4.</span> <span class="nav-text">移动端和 PC 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-触摸事件"><span class="nav-number">4.1.</span> <span class="nav-text">1.触摸事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-移动端-300ms-延时"><span class="nav-number">4.2.</span> <span class="nav-text">2.移动端 300ms 延时</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#避免300ms延时的方法"><span class="nav-number">4.2.1.</span> <span class="nav-text">避免300ms延时的方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-常见手势"><span class="nav-number">4.3.</span> <span class="nav-text">3.常见手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-滚动"><span class="nav-number">4.4.</span> <span class="nav-text">4.滚动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-需要设置viewport来控制屏幕全屏显示，禁止缩放"><span class="nav-number">4.5.</span> <span class="nav-text">5.需要设置viewport来控制屏幕全屏显示，禁止缩放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-页面适配-动态-rem-（移动端方案，不是响应式）"><span class="nav-number">4.6.</span> <span class="nav-text">6.页面适配-动态 rem （移动端方案，不是响应式）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#响应式方案"><span class="nav-number">4.6.1.</span> <span class="nav-text">响应式方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#动态-rem方案"><span class="nav-number">4.6.2.</span> <span class="nav-text">动态 rem方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-开发调试"><span class="nav-number">4.7.</span> <span class="nav-text">7.开发调试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-移动端解决方法收集"><span class="nav-number">4.8.</span> <span class="nav-text">8.移动端解决方法收集</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#这个项目收集移动端开发所需要的一些资源与小技巧"><span class="nav-number">1.</span> <span class="nav-text">这个项目收集移动端开发所需要的一些资源与小技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端开发分为4类"><span class="nav-number">2.</span> <span class="nav-text">移动端开发分为4类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较"><span class="nav-number">3.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端和-PC-的区别"><span class="nav-number">4.</span> <span class="nav-text">移动端和 PC 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-触摸事件"><span class="nav-number">4.1.</span> <span class="nav-text">1.触摸事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-移动端-300ms-延时"><span class="nav-number">4.2.</span> <span class="nav-text">2.移动端 300ms 延时</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#避免300ms延时的方法"><span class="nav-number">4.2.1.</span> <span class="nav-text">避免300ms延时的方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-常见手势"><span class="nav-number">4.3.</span> <span class="nav-text">3.常见手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-滚动"><span class="nav-number">4.4.</span> <span class="nav-text">4.滚动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-需要设置viewport来控制屏幕全屏显示，禁止缩放"><span class="nav-number">4.5.</span> <span class="nav-text">5.需要设置viewport来控制屏幕全屏显示，禁止缩放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-页面适配-动态-rem-（移动端方案，不是响应式）"><span class="nav-number">4.6.</span> <span class="nav-text">6.页面适配-动态 rem （移动端方案，不是响应式）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#响应式方案"><span class="nav-number">4.6.1.</span> <span class="nav-text">响应式方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#动态-rem方案"><span class="nav-number">4.6.2.</span> <span class="nav-text">动态 rem方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-开发调试"><span class="nav-number">4.7.</span> <span class="nav-text">7.开发调试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-移动端解决方法收集"><span class="nav-number">4.8.</span> <span class="nav-text">8.移动端解决方法收集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-安卓只会出发一次touchstart-touchmove-不处罚touchend"><span class="nav-number">4.9.</span> <span class="nav-text">9.安卓只会出发一次touchstart,touchmove,不处罚touchend</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-局部滚动开启弹性滚动"><span class="nav-number">4.10.</span> <span class="nav-text">10.局部滚动开启弹性滚动:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-Web移动端Fixed布局的解决方案"><span class="nav-number">4.11.</span> <span class="nav-text">11.Web移动端Fixed布局的解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1212,7 +1232,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">647k</span>
+    <span title="站点总字数">666k</span>
   
 
   
@@ -1223,7 +1243,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">9:48</span>
+    <span title="站点阅读时长">10:05</span>
   
 </div>
 
@@ -1243,7 +1263,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共248.9k字</span>
+  <span class="post-count">博客全站共255.8k字</span>
 </div>
         
 <div class="busuanzi-count">
